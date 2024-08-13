@@ -247,10 +247,10 @@ $result5=mysqli_query($con,$qry);
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_ls span"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span class="label label-important"><?php include'actions/dashboard-activecount.php'?></span> Active Members </a> </li>
-        <li class="bg_lo span3"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span class="label label-important"><?php include'dashboard-usercount.php'?></span> Registered Members</a> </li>
-        <li class="bg_lg span3"> <a href="payment.php" style="font-size: 16px;"> <i class="fa fa-dollar-sign"></i> Total Earnings: $<?php include'income-count.php' ?></a> </li>
-        <li class="bg_lb span2"> <a href="announcement.php" style="font-size: 16px;"> <i class="fas fa-bullhorn"></i><span class="label label-important"><?php include'actions/count-announcements.php'?></span>Announcements </a> </li>
+        <li class="bg_ls span"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span class="label label-important"><?php include'actions/dashboard-activecount.php'?></span> Usuarios Activos </a> </li>
+        <li class="bg_lo span3"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span class="label label-important"><?php include'dashboard-usercount.php'?></span> Usuarios Registrados</a> </li>
+        <li class="bg_lg span3"> <a href="payment.php" style="font-size: 16px;"> <i class="fa fa-dollar-sign"></i> Ganancias Totales $<?php include'income-count.php' ?></a> </li>
+        <li class="bg_lb span2"> <a href="announcement.php" style="font-size: 16px;"> <i class="fas fa-bullhorn"></i><span class="label label-important"><?php include'actions/count-announcements.php'?></span>Anuncios </a> </li>
 
         
         <!-- <li class="bg_ls span2"> <a href="buttons.html"> <i class="fas fa-tint"></i> Buttons</a> </li>
@@ -267,7 +267,7 @@ $result5=mysqli_query($con,$qry);
     <div class="row-fluid">
       <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="fas fa-file"></i></span>
-          <h5>Services Report</h5>
+          <h5>Reporte de Servicios</h5>
         </div>
         <div class="widget-content" >
           <div class="row-fluid">
@@ -277,12 +277,12 @@ $result5=mysqli_query($con,$qry);
             </div>
             <div class="span4">
               <ul class="site-stats">
-                <li class="bg_lh"><i class="fas fa-users"></i> <strong><?php include 'dashboard-usercount.php';?></strong> <small>Total Members</small></li>
-                <li class="bg_lg"><i class="fas fa-user-clock"></i> <strong><?php include 'actions/dashboard-staff-count.php';?></strong> <small>Staff Users</small></li>
-                <li class="bg_ls"><i class="fas fa-dumbbell"></i> <strong><?php include 'actions/count-equipments.php';?></strong> <small>Available Equipments</small></li>
-                <li class="bg_ly"><i class="fas fa-file-invoice-dollar"></i> <strong>$<?php include 'actions/total-exp.php';?></strong> <small>Total Expenses</small></li>
-                <li class="bg_lr"><i class="fas fa-user-ninja"></i> <strong><?php include 'actions/count-trainers.php';?></strong> <small>Active Gym Trainers</small></li>
-                <li class="bg_lb"><i class="fas fa-calendar-check"></i> <strong><?php include 'actions/count-attendance.php';?></strong> <small>Present Members</small></li>
+                <li class="bg_lh"><i class="fas fa-users"></i> <strong><?php include 'dashboard-usercount.php';?></strong> <small>Usuarios Totales</small></li>
+                <li class="bg_lg"><i class="fas fa-user-clock"></i> <strong><?php include 'actions/dashboard-staff-count.php';?></strong> <small>Usuarios</small></li>
+                <li class="bg_ls"><i class="fas fa-dumbbell"></i> <strong><?php include 'actions/count-equipments.php';?></strong> <small>Maquinas</small></li>
+                <li class="bg_ly"><i class="fas fa-file-invoice-dollar"></i> <strong>$<?php include 'actions/total-exp.php';?></strong> <small>Total Ganado</small></li>
+                <li class="bg_lr"><i class="fas fa-user-ninja"></i> <strong><?php include 'actions/count-trainers.php';?></strong> <small>Entrenadores Activos</small></li>
+                <li class="bg_lb"><i class="fas fa-calendar-check"></i> <strong><?php include 'actions/count-attendance.php';?></strong> <small>Usuarios Activos</small></li>
               </ul>
             </div>
           </div>
@@ -293,7 +293,7 @@ $result5=mysqli_query($con,$qry);
     <div class="row-fluid">
       <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="fas fa-file"></i></span>
-          <h5>Earnings & Expenses Reports</h5>
+          <h5>Reporte de Ingresos y Egresos</h5>
         </div>
         <div class="widget-content" >
           <div class="row-fluid">
@@ -311,7 +311,7 @@ $result5=mysqli_query($con,$qry);
       <div class="span6">
         <div class="widget-box">
           <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
-            <h5>Registered Gym Members by Gender: Overview</h5>
+            <h5>Usuarios Registrados por Genero</h5>
           </div>
           <div class="widget-content nopadding collapse in" id="collapseG2">
             <ul class="recent-posts">
