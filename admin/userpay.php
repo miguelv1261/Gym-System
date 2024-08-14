@@ -65,7 +65,7 @@ header('location:../index.php');
             $id=$_POST['id'];
             
 
-            $amountpayable = $amount * $plan;
+            $amountpayable = '5.5';
             
             include 'dbcon.php';
             date_default_timezone_set('Asia/Kathmandu');

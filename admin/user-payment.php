@@ -47,24 +47,31 @@ header('location:../index.php');
 
 <?php
 include 'dbcon.php';
-$id=$_GET['id'];
-$qry= "select * from members where user_id='$id'";
-$result=mysqli_query($conn,$qry);
-while($row=mysqli_fetch_array($result)){
-?> 
+$id = $_GET['id'];
+
+// Primera consulta: Recuperar datos del miembro
+$qry = "SELECT * FROM members WHERE user_id='$id'";
+$result = mysqli_query($conn, $qry);
+$row = mysqli_fetch_array($result);
+?>
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="payment.php">Payments</a> <a href="#" class="current">Invoice</a> </div>
+    <div id="breadcrumb"> 
+      <a href="index.php" title="Go to Home" class="tip-bottom">
+        <i class="fas fa-home"></i> Home
+      </a> 
+      <a href="payment.php">Payments</a> 
+      <a href="#" class="current">Invoice</a>
+    </div>
     <h1>Payment Form</h1>
   </div>
-  
-  
   <div class="container-fluid" style="margin-top:-38px;">
     <div class="row-fluid">
       <div class="span12">
         <div class="widget-box">
-          <div class="widget-title"> <span class="icon"> <i class="fas fa-money"></i> </span>
+          <div class="widget-title"> 
+            <span class="icon"> <i class="fas fa-money"></i> </span>
             <h5>Payments</h5>
           </div>
           <div class="widget-content">
@@ -72,138 +79,111 @@ while($row=mysqli_fetch_array($result)){
               <div class="span5">
                 <table class="">
                   <tbody>
-                  <tr>
+                    <tr>
                       <td><img src="../img/gym-logo.png" alt="Gym Logo" width="175"></td>
                     </tr>
                     <tr>
                       <td><h4>Perfect GYM Club</h4></td>
                     </tr>
                     <tr>
-                      <td>5021  Wetzel Lane, Williamsburg</td>
+                      <td>5021 Wetzel Lane, Williamsburg</td>
                     </tr>
-                    
                     <tr>
                       <td>Tel: 231-267-6011</td>
                     </tr>
                     <tr>
-                      <td >Email: support@perfectgym.com</td>
+                      <td>Email: support@perfectgym.com</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-			  
-			  
+
               <div class="span7">
                 <table class="table table-bordered table-invoice">
-				
                   <tbody>
-				  <form action="userpay.php" method="POST">
-                    <tr>
-                    <tr>
-                      <td class="width30">Member's Fullname:</td>
-                      <input type="hidden" name="fullname" value="<?php echo $row['fullname']; ?>">
-                      <td class="width70"><strong><?php echo $row['fullname']; ?></strong></td>
-                    </tr>
-                    <tr>
-                      <td>Service:</td>
-                      <input type="hidden" name="services" value="<?php echo $row['services']; ?>">
-                      <td><strong><?php echo $row['services']; ?></strong></td>
-                    </tr>
-                    <tr>
-                      <td>Amount Per Month:</td>
-                      <td><input id="amount" type="number" name="amount" value='<?php if($row['services'] == 'Fitness') { echo '55';} elseif ($row['services'] == 'Sauna') { echo '35';} else {echo '40';} ?>' /></td>
-                    </tr>
+                    <!-- Inicia el formulario -->
+                    <form action="userpay.php" method="POST">
+                      <tr>
+                        <td class="width30">Member's Fullname:</td>
+                        <input type="hidden" name="fullname" value="<?php echo $row['fullname']; ?>">
+                        <td class="width70"><strong><?php echo $row['fullname']; ?></strong></td>
+                      </tr>
+                      <tr>
+                        <td>Service:</td>
+                        <input type="hidden" name="services" value="<?php echo $row['services']; ?>">
+                        <td><strong><?php echo $row['services']; ?></strong></td>
+                      </tr>
+                      <tr>
+                        <td>Amount Per Month:</td>
+                        <td><input id="amount" type="number" name="amount" value='<?php if($row['services'] == 'Fitness') { echo '55';} elseif ($row['services'] == 'Sauna') { echo '35';} else {echo '40';} ?>' /></td>
+                      </tr>
+                      <input type="hidden" name="paid_date" value="<?php echo $row['paid_date']; ?>">
+                      <tr>
+                        <td class="width30">Plan:</td>
+                        <td class="width70">
+                          <div class="control-group">
+                            <div class="controls">
+                              <?php
+                              // Segunda consulta: Recuperar los planes
+                              $qry2 = "SELECT * FROM rates";
+                              $result2 = mysqli_query($conn, $qry2);
 
-                    <input type="hidden" name="paid_date" value="<?php echo $row['paid_date']; ?>">
-					
-                  <td class="width30">Plan:</td>
-                    <td class="width70">
-					<div class="controls">
-                <select name="plan" required="required" id="select">
-                  <option value="1" selected="selected" >One Month</option>
-                  <option value="3">Three Month</option>
-                  <option value="6">Six Month</option>
-                  <option value="12">One Year</option>
-                  <option value="0">None-Expired</option>
-
-                </select>
-              </div>
-
-             
-			  
-                      </td>
-					  
-					  <tr>
-                     
-                    </tr>
-                  <td class="width30">Member's Status:</td>
-                    <td class="width70">
-					<div class="controls">
-                <select name="status" required="required" id="select">
-                  <option value="Active" selected="selected" >Active</option>
-                  <option value="Expired">Expired</option>
-
-                </select>
-              </div>
-			  
-
-                      </td>
-                  </tr>
-                    </tbody>
-                  
+                              if (mysqli_num_rows($result2) > 0) {
+                                  echo '<select name="plan" id="plan">';
+                                  while ($rate = mysqli_fetch_assoc($result2)) {
+                                      echo '<option value="' . $rate['name'] . '">' . $rate['name'] . '</option>';
+                                  }
+                                  echo '</select>';
+                              } else {
+                                  echo 'No se encontraron tarifas.';
+                              }
+                              ?>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="width30">Member's Status:</td>
+                        <td class="width70">
+                          <div class="controls">
+                            <select name="status" required="required" id="select">
+                              <option value="Active" selected="selected">Active</option>
+                              <option value="Expired">Expired</option>
+                            </select>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- Campo oculto para el ID del miembro -->
+                      <input type="hidden" name="id" value="<?php echo $row['user_id']; ?>">
+                      <!-- Botón para enviar el formulario -->
+                      <tr>
+                        <td colspan="2" class="text-center">
+                          <button class="btn btn-success btn-large" type="submit">Make Payment</button>
+                        </td>
+                      </tr>
+                    </form>
+                    <!-- Fin del formulario -->
+                  </tbody>
                 </table>
               </div>
-			  
-			  
             </div> <!-- row-fluid ends here -->
-			
-			
-            <div class="row-fluid">
-              <div class="span12">
-                
-				
-				<hr>
-                <div class="text-center">
-                  <!-- user's ID is hidden here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-             <input type="hidden" name="id" value="<?php echo $row['user_id'];?>">
-      
-                  <button class="btn btn-success btn-large" type="SUBMIT" href="">Make Payment</button> 
-				</div>
-				  
-				  </form>
-              </div><!-- span12 ends here -->
-            </div><!-- row-fluid ends here -->
-			
-      <?php
-}
-      ?>
-          </div><!-- widget-content ends here -->
-		  
-		  
-        </div><!-- widget-box ends here -->
-      </div><!-- span12 ends here -->
-    </div> <!-- row-fluid ends here -->
-  </div> <!-- container-fluid ends here -->
-</div> <!-- div id content ends here -->
+<?php 
+mysqli_close($conn);
+?>
+
 
 
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
 
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
-
-<style>
-#footer {
-  color: white;
-}
-</style>
-
-<!--end-Footer-part-->
 
 <script src="../js/excanvas.min.js"></script> 
 <script src="../js/jquery.min.js"></script> 

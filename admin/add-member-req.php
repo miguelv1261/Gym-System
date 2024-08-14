@@ -55,12 +55,12 @@ header('location:../index.php');
 if(isset($_POST['fullname'])){
   $fullname = $_POST["fullname"];    
   $username = $_POST["username"];
-  $password = $_POST["password"];
+  $password = '';
   $dor = $_POST["dor"];
   $gender = $_POST["gender"];
-  $services = $_POST["services"];
+  $services = '';
   // $paid_date='$curr_date';
-  $amount = $_POST["amount"];
+  $amount = 1;
   $p_year = date('Y');
   $paid_date = date("Y-m-d");
   $plan = $_POST["plan"];
@@ -69,7 +69,7 @@ if(isset($_POST['fullname'])){
 
   $password = md5($password);
 
-  $totalamount = $amount * $plan;
+  $totalamount = '5.5';
   // <!-- Visit codeastro.com for more projects -->
 include 'dbcon.php';
 //code after connection is successfull

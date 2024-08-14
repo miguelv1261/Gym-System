@@ -44,6 +44,7 @@ header('location:../index.php');
 <!--sidebar-menu-->
 <?php $page='members-entry'; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
+
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
@@ -59,32 +60,25 @@ header('location:../index.php');
         </div>
         <div class="widget-content nopadding">
           <form action="add-member-req.php" method="POST" class="form-horizontal">
+          <div class="control-group">
+              <label class="control-label">Username :</label>
+              <div class="controls">
+                <input type="text" class="span11" id="cedula" name="username" placeholder="Username" />
+              </div>
+            </div>
             <div class="control-group">
               <label class="control-label">Nombre Completo :</label>
               <div class="controls">
-                <input type="text" class="span11" name="fullname" placeholder="Nombre Completo" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Username :</label>
-              <div class="controls">
-                <input type="text" class="span11" name="username" placeholder="Username" />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Password :</label>
-              <div class="controls">
-                <input type="password"  class="span11" name="password" placeholder="**********"  />
-                <span class="help-block">Note: The given information will create an account for this particular member</span>
+                <input type="text" class="span11" id="nombre" name="fullname" placeholder="Nombre Completo" />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Genero :</label>
               <div class="controls">
               <select name="gender" required="required" id="select">
-                  <option value="Male" selected="selected">Masculino</option>
-                  <option value="Female">Femenino</option>
-                  <option value="Other">Otro</option>
+                  <option value="Masculino" selected="selected">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Otro">Otro</option>
                 </select>
               </div>
             </div>
@@ -99,36 +93,6 @@ header('location:../index.php');
         </div>
      
         
-        <div class="widget-content nopadding">
-          <div class="form-horizontal">
-          
-        </div>
-        <div class="widget-content nopadding">
-          <div class="form-horizontal">
-            <div class="control-group">
-              <label for="normal" class="control-label">Plans: </label>
-              <div class="controls">
-                <select name="plan" required="required" id="select">
-                  <option value="1" selected="selected">Un Mes</option>
-                  <option value="3">Tres Meses</option>
-                  <option value="6">Seis Meses</option>
-                  <option value="12">Un Año</option>
-
-                </select>
-              </div>
-
-            </div>
-            <div class="control-group">
-              
-              
-            </div>
-          </div>
-
-          </div>
-
-
-
-        </div>
       </div>
 	  
 	
@@ -158,42 +122,39 @@ header('location:../index.php');
           </div>
 
               <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Service Details</h5>
+          <h5>Detalle Servicio</h5>
         </div>
         <div class="widget-content nopadding">
           <div class="form-horizontal">
-            
-            
-            <div class="control-group">
-              <label class="control-label">Services</label>
-              <div class="controls">
-                <label>
-                  <input type="radio" value="Fitness" name="services" />
-                  Fitness <small>- $55 per month</small></label>
-                <label>
-                  <input type="radio" value="Sauna" name="services" />
-                  Sauna <small>- $35 per month</small></label>
-                <label>
-                  <input type="radio" value="Cardio" name="services" />
-                  Cardio <small>- $40 per month</small></label>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <label class="control-label">Total Amount</label>
-              <div class="controls">
-                <div class="input-append">
-                  <span class="add-on">$</span> 
-                  <input type="number" placeholder="50" name="amount" class="span11">
-                  </div>
-              </div>
-            </div>
-            
+          <div class="control-group">
           
-            
+          <label class="control-label">Plan :</label>
+          <div class="controls" >
+            <?php
+              include 'dbcon.php';
+
+              $qry = "SELECT * FROM rates";
+              $result = mysqli_query($conn, $qry);
+
+              if (mysqli_num_rows($result) > 0) {
+                  echo '<select name="plan" id="plan">';
+                  while ($row = mysqli_fetch_assoc($result)) {
+                      // Mostrar solo el nombre en el select
+                      echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                  }
+                  echo '</select>';
+              } else {
+                  echo 'No se encontraron tarifas.';
+              }
+
+              mysqli_close($conn);
+              ?>
+              </div>
+            </div>
             <div class="form-actions text-center">
               <button type="submit" class="btn btn-success">Guardar</button>
             </div>
+            
             </form>
 
           </div>
@@ -237,7 +198,7 @@ header('location:../index.php');
 <script src="../js/matrix.popover.js"></script> 
 <script src="../js/jquery.dataTables.min.js"></script> 
 <script src="../js/matrix.tables.js"></script> 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
   // a different page. Ignore if the value returned is a null string:
@@ -261,6 +222,33 @@ header('location:../index.php');
 function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
+$(document).ready(function() {
+        $('#cedula').on('blur', function() {
+            var cedula = $('#cedula').val();
+            var url = "https://srienlinea.sri.gob.ec/movil-servicios/api/v1.0/deudas/porIdentificacion/" + cedula + "/?tipoPersona=N";
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function(data) {
+                    if(data && data.contribuyente && data.contribuyente.nombreComercial) {
+                        $("#nombre").val(data.contribuyente.nombreComercial);
+                    } else {
+                        alert('No se encontró el nombre comercial para la cédula proporcionada.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error al realizar la consulta:", status, error);
+                    alert('Ocurrió un error al consultar el nombre. Verifica la cédula y vuelve a intentar.');
+                }
+            });
+        });
+    });
+
+
+                
+
+
 </script>
 </body>
 </html>

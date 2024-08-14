@@ -74,7 +74,7 @@ header('location:../index.php');
                 <tr>
                   <th>#</th>
                   <th>Nombre</th>
-                  <th>Usuario</th>
+                  <th>Cedula</th>
                   <th>Genero</th>
                   <th>Teléfono</th>
                   <th>Fecha de Ingreso</th>
@@ -92,7 +92,7 @@ header('location:../index.php');
                
                 <td><div class='text-center'>".$cnt."</div></td>
                 <td><div class='text-center'>".$row['fullname']."</div></td>
-                <td><div class='text-center'>@".$row['username']."</div></td>
+                <td><div class='text-center'>".$row['username']."</div></td>
                 <td><div class='text-center'>".$row['gender']."</div></td>
                 <td><div class='text-center'>".$row['contact']."</div></td>
                 <td><div class='text-center'>".$row['dor']."</div></td>
@@ -100,8 +100,10 @@ header('location:../index.php');
                 <td><div class='text-center'>$".$row['amount']."</div></td>
                 <td><div class='text-center'>".$row['services']."</div></td>
                 <td><div class='text-center'>".$row['plan']." Month/s</div></td>
-                <td><div class='text-center'><a href='edit-memberform.php?id=".$row['user_id']."'><i class='fas fa-edit'></i> Editar</a></div>
-                <div class='text-center'><a href='actions/delete-member.php?id=".$row['user_id']."' style='color:#F66;'><i class='fas fa-trash'></i> Remove</a></div>
+                <td>
+                  <div class='text-center'><a href='ver-member.php?id=".$row['user_id']."'><i class='fas fa-eye'></i> Ver</a></div>  
+                  <div class='text-center'><a href='edit-memberform.php?id=".$row['user_id']."'><i class='fas fa-edit'></i> Editar</a></div>
+                  <div class='text-center'><a href='actions/delete-member.php?id=".$row['user_id']."' style='color:#F66;'><i class='fas fa-trash'></i>Eliminar</a></div>                 
                 </td>
                 
               </tbody>";
