@@ -47,8 +47,8 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="current">Registered Members</a> </div>
-    <h1 class="text-center">Registered Members List <i class="fas fa-group"></i></h1>
+    
+    <h1 class="text-center">Usuarios Registrados <i class="fas fa-group"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
@@ -57,7 +57,7 @@ header('location:../index.php');
 
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
-            <h5>Member table</h5>
+            <h5>Tabla de Usuarios</h5>
           </div>
           <div class='widget-content nopadding'>
 	  
@@ -73,15 +73,16 @@ header('location:../index.php');
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Fullname</th>
-                  <th>Username</th>
-                  <th>Gender</th>
-                  <th>Contact Number</th>
-                  <th>D.O.R</th>
-                  <th>Address</th>
+                  <th>Nombre</th>
+                  <th>Usuario</th>
+                  <th>Genero</th>
+                  <th>Teléfono</th>
+                  <th>Fecha de Ingreso</th>
+                  <th>Dirección</th>
                   <th>Amount</th>
-                  <th>Choosen Service</th>
+                  <th>Servicio</th>
                   <th>Plan</th>
+                  <th>Acción</th>
                 </tr>
               </thead>";
               
@@ -99,7 +100,9 @@ header('location:../index.php');
                 <td><div class='text-center'>$".$row['amount']."</div></td>
                 <td><div class='text-center'>".$row['services']."</div></td>
                 <td><div class='text-center'>".$row['plan']." Month/s</div></td>
-             
+                <td><div class='text-center'><a href='edit-memberform.php?id=".$row['user_id']."'><i class='fas fa-edit'></i> Editar</a></div>
+                <div class='text-center'><a href='actions/delete-member.php?id=".$row['user_id']."' style='color:#F66;'><i class='fas fa-trash'></i> Remove</a></div>
+                </td>
                 
               </tbody>";
           $cnt++;  }
@@ -118,19 +121,7 @@ header('location:../index.php');
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
 
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
-
-<style>
-#footer {
-  color: white;
-}
-</style>
-
-<!--end-Footer-part-->
 
 <script src="../js/excanvas.min.js"></script> 
 <script src="../js/jquery.min.js"></script> 

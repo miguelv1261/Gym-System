@@ -55,8 +55,8 @@ while($row=mysqli_fetch_array($result)){
 <!-- Visit codeastro.com for more projects -->
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
-  <h1>Update Member Details</h1>
+  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Usuarios</a> <a href="#" class="current">Add Members</a> </div>
+  <h1>Editar Informacion de Usuario</h1>
 </div>
 <div class="container-fluid">
   <hr>
@@ -70,13 +70,13 @@ while($row=mysqli_fetch_array($result)){
 
           <form action="edit-member-req.php" method="POST" class="form-horizontal">
             <div class="control-group">
-              <label class="control-label">Full Name :</label>
+              <label class="control-label">Nombre :</label>
               <div class="controls">
                 <input type="text" class="span11" name="fullname" value='<?php echo $row['fullname']; ?>' />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Username :</label>
+              <label class="control-label">User :</label>
               <div class="controls">
                 <input type="text" class="span11" name="username" value='<?php echo $row['username']; ?>' />
               </div>
@@ -89,7 +89,7 @@ while($row=mysqli_fetch_array($result)){
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Gender :</label>
+              <label class="control-label">Genero :</label>
               <div class="controls">
               <select name="gender" required="required" id="select">
                   <option value="Male" selected="selected">Male</option>
@@ -99,7 +99,7 @@ while($row=mysqli_fetch_array($result)){
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">D.O.R :</label>
+              <label class="control-label">Fecha de Ingreso :</label>
               <div class="controls">
                 <input type="date" name="dor" class="span11" value='<?php echo $row['dor']; ?>' />
                 <span class="help-block">Date of registration</span> </div>
@@ -116,7 +116,7 @@ while($row=mysqli_fetch_array($result)){
         <div class="widget-content nopadding">
           <div class="form-horizontal">
             <div class="control-group">
-              <label for="normal" class="control-label">Plans: </label>
+              <label for="normal" class="control-label">Plan: </label>
               <div class="controls">
                 <select name="plan" required="required" id="select">
                   <option value="30" selected="selected" >One Month</option>

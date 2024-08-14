@@ -47,7 +47,7 @@ header('location:../index.php');
 <div id="content">
 <div id="content-header">
   <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
-  <h1>Member Entry Form</h1>
+  <h1>Registrar Usuario</h1>
 </div>
 <div class="container-fluid">
   <hr>
@@ -55,14 +55,14 @@ header('location:../index.php');
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Personal-info</h5>
+          <h5>Información Personal</h5>
         </div>
         <div class="widget-content nopadding">
           <form action="add-member-req.php" method="POST" class="form-horizontal">
             <div class="control-group">
-              <label class="control-label">Full Name :</label>
+              <label class="control-label">Nombre Completo :</label>
               <div class="controls">
-                <input type="text" class="span11" name="fullname" placeholder="Fullname" />
+                <input type="text" class="span11" name="fullname" placeholder="Nombre Completo" />
               </div>
             </div>
             <div class="control-group">
@@ -79,20 +79,20 @@ header('location:../index.php');
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Gender :</label>
+              <label class="control-label">Genero :</label>
               <div class="controls">
               <select name="gender" required="required" id="select">
-                  <option value="Male" selected="selected">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  <option value="Male" selected="selected">Masculino</option>
+                  <option value="Female">Femenino</option>
+                  <option value="Other">Otro</option>
                 </select>
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">D.O.R :</label>
+              <label class="control-label">Fecha de Registro :</label>
               <div class="controls">
                 <input type="date" name="dor" class="span11" />
-                <span class="help-block">Date of registration</span> </div>
+                <span class="help-block">Fecha de Registro</span> </div>
             </div>
             
           
@@ -109,10 +109,10 @@ header('location:../index.php');
               <label for="normal" class="control-label">Plans: </label>
               <div class="controls">
                 <select name="plan" required="required" id="select">
-                  <option value="1" selected="selected">One Month</option>
-                  <option value="3">Three Month</option>
-                  <option value="6">Six Month</option>
-                  <option value="12">One Year</option>
+                  <option value="1" selected="selected">Un Mes</option>
+                  <option value="3">Tres Meses</option>
+                  <option value="6">Seis Meses</option>
+                  <option value="12">Un Año</option>
 
                 </select>
               </div>
@@ -139,21 +139,20 @@ header('location:../index.php');
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Contact Details</h5>
+          <h5>Detalles de Contacto</h5>
         </div>
         <div class="widget-content nopadding">
           <div class="form-horizontal">
             <div class="control-group">
-              <label for="normal" class="control-label">Contact Number</label>
+              <label for="normal" class="control-label">Celular</label>
               <div class="controls">
                 <input type="number" id="mask-phone" name="contact" placeholder="9876543210" class="span8 mask text">
-                <span class="help-block blue span8">(999) 999-9999</span> 
                 </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Address :</label>
+              <label class="control-label">Dirección :</label>
               <div class="controls">
-                <input type="text" class="span11" name="address" placeholder="Address" />
+                <input type="text" class="span11" name="address" placeholder="Salcedo" />
               </div>
             </div>
           </div>
@@ -193,7 +192,7 @@ header('location:../index.php');
           
             
             <div class="form-actions text-center">
-              <button type="submit" class="btn btn-success">Submit Member Details</button>
+              <button type="submit" class="btn btn-success">Guardar</button>
             </div>
             </form>
 
@@ -215,19 +214,7 @@ header('location:../index.php');
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
 
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
-
-<style>
-#footer {
-  color: white;
-}
-</style>
-
-<!--end-Footer-part-->
 
 <script src="../js/excanvas.min.js"></script> 
 <script src="../js/jquery.min.js"></script> 
