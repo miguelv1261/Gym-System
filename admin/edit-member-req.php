@@ -40,19 +40,17 @@ header('location:../index.php');
   <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
 </div> -->
 <!--close-top-serch-->
-
 <!--sidebar-menu-->
 <?php $page='members-update'; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
+  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manage Members</a> <a href="#" class="current">Add Members</a> </div>
   <h1>Editar Información de Usuario</h1>
 </div>
 <form role="form" action="index.php" method="POST">
     <?php 
-
-            if(isset($_POST['fullname'])){
+        if(isset($_POST['fullname'])){
             $fullname = $_POST["fullname"];    
             $username = $_POST["username"];
             $dor = $_POST["dor"];
@@ -67,61 +65,64 @@ header('location:../index.php');
             $totalamount = $amount * $plan;
             
             include 'dbcon.php';
-            //code after connection is successfull
-            //update query
-            $qry = "update members set fullname='$fullname', username='$username',dor='$dor', gender='$gender', services='$services', amount='$totalamount', plan='$plan', address='$address', contact='$contact' where user_id='$id'";
-            $result = mysqli_query($conn,$qry); //query executes
+
+            // Actualizar la base de datos
+            $qry = "UPDATE members SET fullname='$fullname', username='$username', dor='$dor', gender='$gender', services='$services', amount='$totalamount', plan='$plan', address='$address', contact='$contact' WHERE user_id='$id'";
+            $result = mysqli_query($conn, $qry); 
 
             if(!$result){
-                echo"<div class='container-fluid'>";
-                    echo"<div class='row-fluid'>";
-                    echo"<div class='span12'>";
-                    echo"<div class='widget-box'>";
-                    echo"<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
-                        echo"<h5>Error Message</h5>";
-                        echo"</div>";
-                        echo"<div class='widget-content'>";
-                            echo"<div class='error_ex'>";
-                            echo"<h1 style='color:maroon;'>Error 404</h1>";
-                            echo"<h3>Error occured while updating your details</h3>";
-                            echo"<p>Please Try Again</p>";
-                            echo"<a class='btn btn-warning btn-big'  href='edit-member.php'>Go Back</a> </div>";
-                        echo"</div>";
-                        echo"</div>";
-                    echo"</div>";
-                    echo"</div>";
-                echo"</div>";
-            }else {
+                // Mensaje de error
+                echo "<div class='container-fluid'>";
+                echo "<div class='row-fluid'>";
+                echo "<div class='span12'>";
+                echo "<div class='widget-box'>";
+                echo "<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
+                echo "<h5>Error Message</h5>";
+                echo "</div>";
+                echo "<div class='widget-content'>";
+                echo "<div class='error_ex'>";
+                echo "<h1 style='color:maroon;'>Error 404</h1>";
+                echo "<h3>Error occured while updating your details</h3>";
+                echo "<p>Please Try Again</p>";
+                echo "<a class='btn btn-warning btn-big'  href='edit-member.php'>Go Back</a> </div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            } else {
+                // Generar el código QR con la cédula del usuario
+                include 'libs/phpqrcode.php'; // Incluir la librería phpqrcode
+                $qrPath = 'qrcodes/' . $username . '.png';
+                QRcode::png($username, $qrPath, QR_ECLEVEL_L, 4);
 
-                echo"<div class='container-fluid'>";
-                    echo"<div class='row-fluid'>";
-                    echo"<div class='span12'>";
-                    echo"<div class='widget-box'>";
-                    echo"<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
-                        echo"<h5>Message</h5>";
-                        echo"</div>";
-                        echo"<div class='widget-content'>";
-                            echo"<div class='error_ex'>";
-                            echo"<h1>Success</h1>";
-                            echo"<h3>Member details has been updated!</h3>";
-                            echo"<p>The requested details are updated. Please click the button to go back.</p>";
-                            echo"<a class='btn btn-inverse btn-big'  href='members.php'>Go Back</a> </div>";
-                        echo"</div>";
-                        echo"</div>";
-                    echo"</div>";
-                    echo"</div>";
-                echo"</div>";
-
+                // Mensaje de éxito
+                echo "<div class='container-fluid'>";
+                echo "<div class='row-fluid'>";
+                echo "<div class='span12'>";
+                echo "<div class='widget-box'>";
+                echo "<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
+                echo "<h5>Message</h5>";
+                echo "</div>";
+                echo "<div class='widget-content'>";
+                echo "<div class='error_ex'>";
+                echo "<h1>Success</h1>";
+                echo "<h3>Member details have been updated!</h3>";
+                echo "<p>The requested details are updated. Please click the button to go back.</p>";
+                echo "<img src='$qrPath' alt='QR Code' />";
+                echo "<a class='btn btn-inverse btn-big'  href='members.php'>Go Back</a> </div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
             }
-
-            }else{
-                echo"<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='index.php'> DASHBOARD </a></h3>";
-            }
-?>
-                                                               
-                
-             </form>
-         </div>
+        } else {
+            echo "<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='index.php'> DASHBOARD </a></h3>";
+        }
+    ?>
+</form>
+</div>
 </div></div>
 </div>
 
