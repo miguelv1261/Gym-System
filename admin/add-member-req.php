@@ -97,20 +97,21 @@ if(!$result){
   echo "</div>";
 } else {
   // Generar el código QR con la cédula del usuario
+
+  $user_id = mysqli_insert_id($conn);
+
+  // Generar la URL del perfil del usuario
+  $profileUrl = 'http://localhost/Gym-System/ver-member.php?id=' . urlencode($user_id );
+  
+  // Generar el código QR con la URL del perfil
   include 'libs/phpqrcode.php'; 
   if (!file_exists('qrcodes')) {
-    mkdir('qrcodes', 0777, true);
-}
+      mkdir('qrcodes', 0777, true);
+  }
   $qrPath = 'qrcodes/' . $username . '.png';
-  QRcode::png($username, $qrPath, QR_ECLEVEL_L, 4);
+  QRcode::png($profileUrl, $qrPath, QR_ECLEVEL_L, 4);
 
-// URL to access the QR code image
-$qrUrl = 'https://tu-dominio.com/' . $qrPath; // Make sure this URL is accessible from the web
 
-// WhatsApp message
-$telefono = '593998912139'; // Replace with the actual phone number
-$mensaje = "Hola, aquí está tu código QR: " . urlencode($qrUrl);
-$whatsappUrl = "https://api.whatsapp.com/send?phone=" . $telefono . "&text=" . $mensaje;
 
   // Mensaje de éxito
   echo "<div class='container-fluid'>";

@@ -61,7 +61,7 @@ header('location:../index.php');
         <div class="widget-content nopadding">
           <form action="add-member-req.php" method="POST" class="form-horizontal">
           <div class="control-group">
-              <label class="control-label">Username :</label>
+              <label class="control-label">Cedula :</label>
               <div class="controls">
                 <input type="text" class="span11" id="cedula" name="username" placeholder="Username" />
               </div>
@@ -86,7 +86,7 @@ header('location:../index.php');
               <label class="control-label">Fecha de Registro :</label>
               <div class="controls">
                 <input type="date" name="dor" class="span11" />
-                <span class="help-block">Fecha de Registro</span> </div>
+              </div>
             </div>
             
           
