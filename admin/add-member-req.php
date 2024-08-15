@@ -70,51 +70,79 @@ if(isset($_POST['fullname'])){
   $password = md5($password);
 
   $totalamount = '5.5';
+  include 'dbcon.php';
   // <!-- Visit codeastro.com for more projects -->
-include 'dbcon.php';
-//code after connection is successfull
-$qry = "INSERT INTO members(fullname,username,password,dor,gender,services,amount,p_year,paid_date,plan,address,contact) values ('$fullname','$username','$password','$dor','$gender','$services','$totalamount','$p_year','$paid_date','$plan','$address','$contact')";
-$result = mysqli_query($conn,$qry); //query executes
+  $qry = "INSERT INTO members(fullname,username,password,dor,gender,services,amount,p_year,paid_date,plan,address,contact) values ('$fullname','$username','$password','$dor','$gender','$services','$totalamount','$p_year','$paid_date','$plan','$address','$contact')";
+  $result = mysqli_query($conn,$qry); //query executes
 
 if(!$result){
-  echo"<div class='container-fluid'>";
-      echo"<div class='row-fluid'>";
-      echo"<div class='span12'>";
-      echo"<div class='widget-box'>";
-      echo"<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
-          echo"<h5>Error Message</h5>";
-          echo"</div>";
-          echo"<div class='widget-content'>";
-              echo"<div class='error_ex'>";
-              echo"<h1 style='color:maroon;'>Error 404</h1>";
-              echo"<h3>Error occured while entering your details</h3>";
-              echo"<p>Please Try Again</p>";
-              echo"<a class='btn btn-warning btn-big'  href='edit-member.php'>Go Back</a> </div>";
-          echo"</div>";
-          echo"</div>";
-      echo"</div>";
-      echo"</div>";
-  echo"</div>";
-}else {
+  // Mensaje de error
+  echo "<div class='container-fluid'>";
+  echo "<div class='row-fluid'>";
+  echo "<div class='span12'>";
+  echo "<div class='widget-box'>";
+  echo "<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
+  echo "<h5>Error Message</h5>";
+  echo "</div>";
+  echo "<div class='widget-content'>";
+  echo "<div class='error_ex'>";
+  echo "<h1 style='color:maroon;'>Error 404</h1>";
+  echo "<h3>Error occured while updating your details</h3>";
+  echo "<p>Please Try Again</p>";
+  echo "<a class='btn btn-warning btn-big'  href='edit-member.php'>Go Back</a> </div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+} else {
+  // Generar el código QR con la cédula del usuario
+  include 'libs/phpqrcode.php'; 
+  if (!file_exists('qrcodes')) {
+    mkdir('qrcodes', 0777, true);
+}
+  $qrPath = 'qrcodes/' . $username . '.png';
+  QRcode::png($username, $qrPath, QR_ECLEVEL_L, 4);
 
-  echo"<div class='container-fluid'>";
-      echo"<div class='row-fluid'>";
-      echo"<div class='span12'>";
-      echo"<div class='widget-box'>";
-      echo"<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
-          echo"<h5>Message</h5>";
-          echo"</div>";
-          echo"<div class='widget-content'>";
-              echo"<div class='error_ex'>";
-              echo"<h1>Success</h1>";
-              echo"<h3>Member details has been added!</h3>";
-              echo"<p>The requested details are added. Please click the button to go back.</p>";
-              echo"<a class='btn btn-inverse btn-big'  href='members.php'>Go Back</a> </div>";
-          echo"</div>";
-          echo"</div>";
-      echo"</div>";
-      echo"</div>";
-  echo"</div>";
+// URL to access the QR code image
+$qrUrl = 'https://tu-dominio.com/' . $qrPath; // Make sure this URL is accessible from the web
+
+// WhatsApp message
+$telefono = '593998912139'; // Replace with the actual phone number
+$mensaje = "Hola, aquí está tu código QR: " . urlencode($qrUrl);
+$whatsappUrl = "https://api.whatsapp.com/send?phone=" . $telefono . "&text=" . $mensaje;
+
+  // Mensaje de éxito
+  echo "<div class='container-fluid'>";
+  echo "<div class='row-fluid'>";
+  echo "<div class='span12'>";
+  echo "<div class='widget-box'>";
+  echo "<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
+  echo "</div>";
+  echo "<div class='widget-content'>";
+  echo "<div class='error_ex'>";
+  echo "<h1>Registrado</h1>";
+  echo "<h3>Usuario Registrado con Exito!</h3>";
+  echo "<img src='$qrPath' alt='QR Code' />";
+  echo "<hr>";
+  echo "<a class='btn btn-inverse btn-big'  href='members.php'>Go Back</a> </div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  
+  // Supongamos que el archivo PNG ya ha sido generado y está disponible en una URL pública
+  $qrPath = 'https://tu-dominio.com/qrcodes/666.png'; // Reemplaza esto con la URL real del archivo PNG
+  
+  // Número de teléfono en formato internacional sin espacios ni signos de '+'
+  $telefono = '593998912139'; // Reemplaza con el número de teléfono real
+  
+  // Mensaje que incluirá la URL del QR en WhatsApp
+  $mensaje = "Hola, aquí está tu código QR: " . urlencode($qrPath);
+  
+  // Crear el enlace de WhatsApp
+  $whatsappUrl = "https://api.whatsapp.com/send?phone=" . $telefono . "&text=" . $mensaje;
 
 }
 
@@ -135,19 +163,6 @@ if(!$result){
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
-<!-- Visit codeastro.com for more projects -->
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
-
-<style>
-#footer {
-  color: white;
-}
-</style>
-
-<!--end-Footer-part-->
 
 <script src="../js/excanvas.min.js"></script> 
 <script src="../js/jquery.min.js"></script> 

@@ -70,58 +70,38 @@ while($row=mysqli_fetch_array($result)){
 
           <form action="edit-member-req.php" method="POST" class="form-horizontal">
             <div class="control-group">
+              <label class="control-label">Cedula :</label>
+              <div class="controls">
+                <input type="text" class="span11" name="username" readonly value='<?php echo $row['username']; ?>' />
+              </div>
+            </div>  
+            <div class="control-group">
               <label class="control-label">Nombre :</label>
               <div class="controls">
                 <input type="text" class="span11" name="fullname" readonly value='<?php echo $row['fullname']; ?>' />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">User :</label>
-              <div class="controls">
-                <input type="text" class="span11" name="username" readonly value='<?php echo $row['username']; ?>' />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Password :</label>
-              <div class="controls">
-                <input type="password"  class="span11" name="password" readonly disabled="" placeholder="**********"  />
-              </div>
-            </div>
-            <div class="control-group">
               <label class="control-label">Genero :</label>
               <div class="controls">
-              <select name="gender" readonly required="required" id="select">
-                  <option value="Male" selected="selected">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
+              <input type="text" class="span11" name="username" readonly value='<?php echo $row['gender']; ?>' />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Fecha de Ingreso :</label>
+              <label class="control-label">Fecha de Registro :</label>
               <div class="controls">
                 <input type="date" name="dor" class="span11" readonly value='<?php echo $row['dor']; ?>' />
-                <span class="help-block">Date of registration</span> </div>
+                
+               </div>
             </div>
             
           
         </div>
-     
-        
-      </div>
-	  
-	
-    </div>
-
-    
-    <!-- Visit codeastro.com for more projects -->
-    <div class="span6">
-      <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
           <h5>Detalles de Contacto</h5>
         </div>
         <div class="widget-content nopadding">
-          <div class="form-horizontal">
+        <div class="form-horizontal">
             <div class="control-group">
               <label for="normal" class="control-label">Telefono :</label>
               <div class="controls">
@@ -135,6 +115,19 @@ while($row=mysqli_fetch_array($result)){
               </div>
             </div>
           </div>
+        </div>
+      </div>
+	  
+	
+    </div>
+
+    
+    <!-- Visit codeastro.com for more projects -->
+    <div class="span6">
+      <div class="widget-box">
+
+        <div class="widget-content nopadding">
+          
 
               <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
           <h5>Detalle de Servicio</h5>
@@ -145,18 +138,6 @@ while($row=mysqli_fetch_array($result)){
             
             <div class="control-group">
               <label class="control-label">Plan :</label>
-              <div class="controls">
-              <input type="text" class="span11" name="address" readonly value='<?php echo $row['services']; ?>' />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Mes :</label>
-              <div class="controls">
-              <input type="text" class="span11" name="address" readonly value='<?php echo $row['plan']; ?>' />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Dias Restantes :</label>
               <div class="controls">
               <input type="text" class="span11" name="address" readonly value='<?php echo $row['plan']; ?>' />
               </div>
@@ -199,22 +180,41 @@ while($row=mysqli_fetch_array($result)){
                         $interval = $today->diff($expiration_date);
 
                         if ($today > $expiration_date) {
-                            echo 'El plan ha expirado.';
+                            $result1 = 'El plan ha expirado.';
+                            
                         } else {
-                            echo 'Tiempo restante: ' . $interval->y . ' años, ' . $interval->m . ' meses, ' . $interval->d . ' días';
+                            $result1 = '' . $interval->y . ' años, ' . $interval->m . ' meses, ' . $interval->d . ' días';
+                            
                         }
                     } else {
-                        echo 'No se encontró información del plan.';
+                      $result1 =  'No se encontró información del plan.';
+                        
                     }
                 } else {
-                    echo 'No se encontró el usuario.';
+                  $result1 = 'No se encontró el usuario.';
+                    
                 }
 
                 $stmt->close();
                 $conn->close();
                 ?>
-            </form>
+              <div class="control-group">
+              <label class="control-label">Duración Plan :</label>
+              <div class="controls">
+              <input type="text" class="span11" name="address" readonly value='<?php echo $plan['timepo']; ?> Meses' />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Tiempo Restante :</label>
+              <div class="controls">
+              <input type="text" class="span11" name="address" readonly value='<?php echo $result1; ?>' />
+              </div>
+            </div>
 
+            </form>
+            <div class="form-actions text-center">
+              <td><div class='text-center'><a href='user-payment.php?id=<?php echo $id?>'><button class='btn btn-success btn'><i class='fas fa-dollar-sign'></i> Registrar Pago</button></a></div></td>
+            </div>
           </div>
 <?php
 }

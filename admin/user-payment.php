@@ -64,7 +64,7 @@ $row = mysqli_fetch_array($result);
       <a href="payment.php">Payments</a> 
       <a href="#" class="current">Invoice</a>
     </div>
-    <h1>Payment Form</h1>
+    <h1>Registrar Pago</h1>
   </div>
   <div class="container-fluid" style="margin-top:-38px;">
     <div class="row-fluid">
@@ -72,7 +72,7 @@ $row = mysqli_fetch_array($result);
         <div class="widget-box">
           <div class="widget-title"> 
             <span class="icon"> <i class="fas fa-money"></i> </span>
-            <h5>Payments</h5>
+            <h5>Pago</h5>
           </div>
           <div class="widget-content">
             <div class="row-fluid">
@@ -104,7 +104,7 @@ $row = mysqli_fetch_array($result);
                     <!-- Inicia el formulario -->
                     <form action="userpay.php" method="POST">
                       <tr>
-                        <td class="width30">Member's Fullname:</td>
+                        <td class="width30">Usuario:</td>
                         <input type="hidden" name="fullname" value="<?php echo $row['fullname']; ?>">
                         <td class="width70"><strong><?php echo $row['fullname']; ?></strong></td>
                       </tr>
