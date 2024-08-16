@@ -180,6 +180,8 @@ while($row=mysqli_fetch_array($result)){
 
                         if ($today > $expiration_date) {
                             $result1 = 'El plan ha expirado.';
+                            $qry = "update members set status='Expired' where user_id='$id'";
+                            $result2 = mysqli_query($conn,$qry);
                             
                         } else {
                             $result1 = '' . $interval->y . ' años, ' . $interval->m . ' meses, ' . $interval->d . ' días';

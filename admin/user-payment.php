@@ -108,15 +108,7 @@ $row = mysqli_fetch_array($result);
                         <input type="hidden" name="fullname" value="<?php echo $row['fullname']; ?>">
                         <td class="width70"><strong><?php echo $row['fullname']; ?></strong></td>
                       </tr>
-                      <tr>
-                        <td>Service:</td>
-                        <input type="hidden" name="services" value="<?php echo $row['services']; ?>">
-                        <td><strong><?php echo $row['services']; ?></strong></td>
-                      </tr>
-                      <tr>
-                        <td>Amount Per Month:</td>
-                        <td><input id="amount" type="number" name="amount" value='<?php if($row['services'] == 'Fitness') { echo '55';} elseif ($row['services'] == 'Sauna') { echo '35';} else {echo '40';} ?>' /></td>
-                      </tr>
+
                       <input type="hidden" name="paid_date" value="<?php echo $row['paid_date']; ?>">
                       <tr>
                         <td class="width30">Plan:</td>
@@ -124,19 +116,19 @@ $row = mysqli_fetch_array($result);
                           <div class="control-group">
                             <div class="controls">
                               <?php
-                              // Segunda consulta: Recuperar los planes
-                              $qry2 = "SELECT * FROM rates";
-                              $result2 = mysqli_query($conn, $qry2);
-
-                              if (mysqli_num_rows($result2) > 0) {
-                                  echo '<select name="plan" id="plan">';
-                                  while ($rate = mysqli_fetch_assoc($result2)) {
-                                      echo '<option value="' . $rate['name'] . '">' . $rate['name'] . '</option>';
-                                  }
-                                  echo '</select>';
-                              } else {
-                                  echo 'No se encontraron tarifas.';
-                              }
+                                // Segunda consulta: Recuperar los planes
+                                $qry2 = "SELECT * FROM rates";
+                                $result2 = mysqli_query($conn, $qry2);
+                                if (mysqli_num_rows($result2) > 0) {
+                                    echo '<select name="plan" id="plan">';
+                                    while ($rate = mysqli_fetch_assoc($result2)) {
+                                        // Combina id, valor y nombre en el value del option
+                                        echo '<option value="' . $rate['id'] . '-' . $rate['charge'] . '-' . $rate['name'] . '">' . $rate['name'] . '</option>';
+                                    }
+                                    echo '</select>';
+                                } else {
+                                    echo 'No se encontraron tarifas.';
+                                }
                               ?>
                             </div>
                           </div>
@@ -147,8 +139,7 @@ $row = mysqli_fetch_array($result);
                         <td class="width70">
                           <div class="controls">
                             <select name="status" required="required" id="select">
-                              <option value="Active" selected="selected">Active</option>
-                              <option value="Expired">Expired</option>
+                              <option value="Active" selected="selected">Activo</option>
                             </select>
                           </div>
                         </td>
@@ -158,7 +149,7 @@ $row = mysqli_fetch_array($result);
                       <!-- Botón para enviar el formulario -->
                       <tr>
                         <td colspan="2" class="text-center">
-                          <button class="btn btn-success btn-large" type="submit">Make Payment</button>
+                          <button class="btn btn-success btn-large" type="submit">Hacer el Pago</button>
                         </td>
                       </tr>
                     </form>

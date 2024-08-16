@@ -46,8 +46,7 @@ header('location:../index.php');
 <!--sidebar-menu-->
 
 <div id="content">
-<div id="content-header">
-  <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
+<div id="content-header">  
   <h1>Registrar Usuario</h1>
 </div>
 <div class="container-fluid">
@@ -63,11 +62,11 @@ header('location:../index.php');
           <div class="control-group">
               <label class="control-label">Cedula :</label>
               <div class="controls">
-                <input type="text" class="span11" id="cedula" name="username" placeholder="Username" />
+                <input type="text" class="span11" id="cedula" name="username"  />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Nombre Completo :</label>
+              <label class="control-label">Nombre :</label>
               <div class="controls">
                 <input type="text" class="span11" id="nombre" name="fullname" placeholder="Nombre Completo" />
               </div>

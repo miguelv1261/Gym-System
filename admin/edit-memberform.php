@@ -84,9 +84,9 @@ while($row=mysqli_fetch_array($result)){
               <label class="control-label">Genero :</label>
               <div class="controls">
               <select name="gender" class="span11" required="required" id="select">
-                  <option value="Male" selected="selected">Masculino</option>
-                  <option value="Female">Femenino</option>
-                  <option value="Other">Otro</option>
+                  <option value="Masculino" selected="selected">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Otro">Otro</option>
                 </select>
               </div>
             </div>

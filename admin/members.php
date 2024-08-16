@@ -79,34 +79,35 @@ header('location:../index.php');
                   <th>Teléfono</th>
                   <th>Fecha de Registro</th>
                   <th>Dirección</th>
-                  
+                  <th>Membership Status</th>
                   
                   <th>Plan</th>
                   <th>Acción</th>
                 </tr>
               </thead>";
               
-            while($row=mysqli_fetch_array($result)){
+            while($row=mysqli_fetch_array($result)){?>
             
-            echo"<tbody> 
+            <tbody> 
                
-                <td><div class='text-center'>".$cnt."</div></td>
-                <td><div class='text-center'>".$row['fullname']."</div></td>
-                <td><div class='text-center'>".$row['username']."</div></td>
-                <td><div class='text-center'>".$row['gender']."</div></td>
-                <td><div class='text-center'>".$row['contact']."</div></td>
-                <td><div class='text-center'>".$row['dor']."</div></td>
-                <td><div class='text-center'>".$row['address']."</div></td>
+                <td><div class='text-center'><?php echo $cnt?></div></td>
+                <td><div class='text-center'><?php echo $row['fullname']?></div></td>
+                <td><div class='text-center'><?php echo $row['username']?></div></td>
+                <td><div class='text-center'><?php echo $row['gender']?></div></td>
+                <td><div class='text-center'><?php echo $row['contact']?></div></td>
+                <td><div class='text-center'><?php echo $row['dor']?></div></td>
+                <td><div class='text-center'><?php echo $row['address']?></div></td>
+                <td><div class='text-center'><?php if( $row['status'] == 'Active' ){ echo '<i class="fas fa-circle" style="color:green;"></i> Activo';} else if ($row['status'] == 'Expired') { echo '<i class="fas fa-circle" style="color:red;"></i> Expirado';} else { echo '<i class="fas fa-circle" style="color:orange;"></i> Pending Reg';}?></div></td>
                 
-                
-                <td><div class='text-center'>".$row['plan']."</div></td>
+                <td><div class='text-center'><?php echo $row['plan'];?></div></td>
                 <td>
-                  <div class='text-center'><a href='ver-member.php?id=".$row['user_id']."'><i class='fas fa-eye'></i> Ver</a></div>  
-                  <div class='text-center'><a href='edit-memberform.php?id=".$row['user_id']."'><i class='fas fa-edit'></i> Editar</a></div>
-                  <div class='text-center'><a href='actions/delete-member.php?id=".$row['user_id']."' style='color:#F66;'><i class='fas fa-trash'></i>Eliminar</a></div>                 
+                  <div class='text-center'><a href='ver-member.php?id=<?php echo $row['user_id']?>'><i class='fas fa-eye'></i> Ver</a></div>  
+                  <div class='text-center'><a href='edit-memberform.php?id=<?php echo $row['user_id']?></a>'><i class='fas fa-edit'></i> Editar</a></div>
+                  <div class='text-center'><a href='actions/delete-member.php?id=<?php echo $row['user_id']?></a>' style='color:#F66;'><i class='fas fa-trash'></i>Eliminar</a></div>                 
                 </td>
                 
-              </tbody>";
+              </tbody>
+              <?php
           $cnt++;  }
             ?>
 

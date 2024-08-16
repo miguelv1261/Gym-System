@@ -53,22 +53,22 @@ header('location:../index.php');
 <form role="form" action="index.php" method="POST">
     <?php 
 
-            if(isset($_POST['amount'])){ 
+            if(isset($_POST['plan'])){ 
 
             $fullname = $_POST['fullname'];
             $paid_date = $_POST['paid_date'];
             // $p_year = date('Y');
-            $services = $_POST["services"];
-            $amount = $_POST["amount"];
-            $plan = $_POST["plan"];
+            
             $status = $_POST["status"];
             $id=$_POST['id'];
-            
+            $planValue = $_POST['plan'];
+            // Separar el id, valor y nombre usando explode
+            list($planId, $planValue, $planName) = explode('-', $planValue);
 
-            $amountpayable = '5.5';
+
             
             include 'dbcon.php';
-            date_default_timezone_set('Asia/Kathmandu');
+            date_default_timezone_set('America/Guayaquil');
             //$current_date = date('Y-m-d h:i:s');
                 $current_date = date('Y-m-d h:i A');
                 $exp_date_time = explode(' ', $current_date);
@@ -76,10 +76,12 @@ header('location:../index.php');
                 $curr_time =  $exp_date_time['1']. ' ' .$exp_date_time['2'];
             //code after connection is successfull
             //update query
-            $qry = "UPDATE members SET amount='$amountpayable', plan='$plan', status='$status', paid_date='$curr_date', reminder='0' WHERE user_id='$id'";
+            $qry = "UPDATE members SET plan='$planName', status='$status', paid_date='$curr_date' WHERE user_id='$id'";
             $result = mysqli_query($conn,$qry); //query executes
-
-            if(!$result){ ?>
+            //PAGO
+            $qry1 = "INSERT INTO pagos(id_plan, valor, id_user) values ($planId, $planValue, $id) ";
+            $result2 = mysqli_query($conn,$qry1); //query executes
+            if(!$result || !$result2){ ?>
 
                 <h3 class="text-center">Something went wrong!</h3>
                 

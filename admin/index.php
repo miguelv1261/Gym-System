@@ -5,7 +5,7 @@ if(!isset($_SESSION['user_id'])){
 header('location:../index.php');	
 }
 include "dbcon.php";
-$qry="SELECT services, count(*) as number FROM members GROUP BY services";
+$qry="SELECT plan, count(*) as number FROM members GROUP BY plan";
 $result=mysqli_query($con,$qry);
 $qry="SELECT gender, count(*) as enumber FROM members GROUP BY gender";
 $result3=mysqli_query($con,$qry);
@@ -43,7 +43,7 @@ $result5=mysqli_query($con,$qry);
                           <?php  
                           while($row = mysqli_fetch_array($result))  
                           {  
-                               echo "['".$row["services"]."', ".$row["number"]."],";  
+                               echo "['".$row["plan"]."', ".$row["number"]."],";  
                           }  
                           ?>  
                      ]);  
@@ -65,17 +65,12 @@ $result5=mysqli_query($con,$qry);
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
           ['Services', 'Total Numbers'],
-          // ["King's pawn (e4)", 44],
-          // ["Queen's pawn (d4)", 31],
-          // ["Knight to King 3 (Nf3)", 12],
-          // ["Queen's bishop pawn (c4)", 10],
-          // ['Other', 3]
 
           <?php
-            $query="SELECT services, count(*) as number FROM members GROUP BY services";
+            $query="SELECT plan, count(*) as number FROM members GROUP BY plan";
             $res=mysqli_query($con,$query);
             while($data=mysqli_fetch_array($res)){
-              $services=$data['services'];
+              $services=$data['plan'];
               $number=$data['number'];
            ?>
            ['<?php echo $services;?>',<?php echo $number;?>],   
@@ -247,10 +242,9 @@ $result5=mysqli_query($con,$qry);
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_ls span"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span class="label label-important"><?php include'actions/dashboard-activecount.php'?></span> Usuarios Activos </a> </li>
+        <li class="bg_ls span3"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span class="label label-important"><?php include'actions/dashboard-activecount.php'?></span> Usuarios Activos </a> </li>
         <li class="bg_lo span3"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span class="label label-important"><?php include'dashboard-usercount.php'?></span> Usuarios Registrados</a> </li>
         <li class="bg_lg span3"> <a href="payment.php" style="font-size: 16px;"> <i class="fa fa-dollar-sign"></i> Ganancias Totales $<?php include'income-count.php' ?></a> </li>
-        <li class="bg_lb span2"> <a href="announcement.php" style="font-size: 16px;"> <i class="fas fa-bullhorn"></i><span class="label label-important"><?php include'actions/count-announcements.php'?></span>Anuncios </a> </li>
 
         
         <!-- <li class="bg_ls span2"> <a href="buttons.html"> <i class="fas fa-tint"></i> Buttons</a> </li>
@@ -278,11 +272,9 @@ $result5=mysqli_query($con,$qry);
             <div class="span4">
               <ul class="site-stats">
                 <li class="bg_lh"><i class="fas fa-users"></i> <strong><?php include 'dashboard-usercount.php';?></strong> <small>Usuarios Totales</small></li>
-                <li class="bg_lg"><i class="fas fa-user-clock"></i> <strong><?php include 'actions/dashboard-staff-count.php';?></strong> <small>Usuarios</small></li>
+                <li class="bg_lg"><i class="fas fa-user-clock"></i> <strong><?php include 'actions/dashboard-activecount.php';?></strong> <small>Usuarios Activos</small></li>
                 <li class="bg_ls"><i class="fas fa-dumbbell"></i> <strong><?php include 'actions/count-equipments.php';?></strong> <small>Maquinas</small></li>
                 <li class="bg_ly"><i class="fas fa-file-invoice-dollar"></i> <strong>$<?php include 'actions/total-exp.php';?></strong> <small>Total Ganado</small></li>
-                <li class="bg_lr"><i class="fas fa-user-ninja"></i> <strong><?php include 'actions/count-trainers.php';?></strong> <small>Entrenadores Activos</small></li>
-                <li class="bg_lb"><i class="fas fa-calendar-check"></i> <strong><?php include 'actions/count-attendance.php';?></strong> <small>Usuarios Activos</small></li>
               </ul>
             </div>
           </div>
@@ -338,102 +330,13 @@ $result5=mysqli_query($con,$qry);
       </div>
       </div>
 	
-<!--End-Chart-box-->  
-    <!-- <hr/> -->
-    <div class="row-fluid">
-      <div class="span6">
-        <div class="widget-box">
-          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
-            <h5>Gym Announcement</h5>
-          </div>
-          <div class="widget-content nopadding collapse in" id="collapseG2">
-            <ul class="recent-posts">
-              <li>
 
-              <?php
-
-                include "dbcon.php";
-                $qry="SELECT * FROM announcements";
-                $result=mysqli_query($conn,$qry);
-                  
-                while($row=mysqli_fetch_array($result)){
-                  echo"<div class='user-thumb'> <img width='70' height='40' alt='User' src='../img/demo/av1.jpg'> </div>";
-                  echo"<div class='article-post'>"; 
-                  echo"<span class='user-info'> By: System Administrator / Date: ".$row['date']." </span>";
-                  echo"<p><a href='#'>".$row['message']."</a> </p>";
-                 
-                }
-
-                echo"</div>";
-                echo"</li>";
-              ?>
-
-              <a href="manage-announcement.php"><button class="btn btn-warning btn-mini">View All</button></a>
-              </li>
-            </ul>
-          </div>
-        </div> 
-       
-         
-      </div>
-      <div class="span6">
-       
-      <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="fas fa-tasks"></i></span>
-            <h5>Customer's To-Do Lists</h5>
-          </div>
-          <div class="widget-content">
-            <div class="todo">
-              <ul>
-              <?php
-
-                include "dbcon.php";
-                $qry="SELECT * FROM todo";
-                $result=mysqli_query($con,$qry);
-
-                while($row=mysqli_fetch_array($result)){ ?>
-
-                <li class='clearfix'> 
-                                                                        
-                    <div class='txt'> <?php echo $row["task_desc"]?> <?php if ($row["task_status"] == "Pending") { echo '<span class="by label label-info">Pending</span>';} else { echo '<span class="by label label-success">In Progress</span>'; }?></div>
-                
-               <?php }
-                echo"</li>";
-              echo"</ul>";
-              ?>
-            </div>
-          </div>
-        </div>
-       
-                </div>
-       
-      </div> <!-- End of ToDo List Bar -->
-    </div><!-- End of Announcement Bar -->
   </div><!-- End of container-fluid -->
 </div><!-- End of content-ID -->
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
 
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
-
-<style>
-#footer {
-  color: white;
-}
-
-#piechart {
-  width: 800px; 
-  height: 280px;  
-  margin-left:auto; 
-  margin-right:auto;
-}
-</style>
-
-<!--end-Footer-part-->
 
 <script src="../js/excanvas.min.js"></script>  
 <script src="../js/jquery.min.js"></script> 

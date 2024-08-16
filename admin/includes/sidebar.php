@@ -3,7 +3,7 @@
     <li class="<?php if($page=='dashboard'){ echo 'active'; }?>"><a href="index.php"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a> </li>
     <li class="submenu"> <a href="#"><i class="fas fa-users"></i> <span>Usuarios</span> <span class="label label-important"><?php include 'dashboard-usercount.php';?> </span></a>
       <ul>
-        <li class="<?php if($page=='members'){ echo 'active'; }?>"><a href="members.php"><i class="fas fa-arrow-right"></i> Usuarios</a></li>
+        <li class="<?php if($page=='members'){ echo 'active'; }?>"><a href="members.php"><i class="fas fa-arrow-right"></i>Ver Usuarios</a></li>
         <li class="<?php if($page=='members-entry'){ echo 'active'; }?>"><a href="member-entry.php"><i class="fas fa-arrow-right"></i> Registrar Usuarios</a></li>
         <li class="<?php if($page=='members-remove'){ echo 'active'; }?>"><a href="remove-member.php"><i class="fas fa-arrow-right"></i> Eliminar Usuarios</a></li>
         <li class="<?php if($page=='members-update'){ echo 'active'; }?>"><a href="edit-member.php"><i class="fas fa-arrow-right"></i> Editar Usuarios</a></li>
@@ -11,7 +11,7 @@
     </li>
     <li class="submenu"> <a href="#"><i class="fas fa-users"></i> <span>Planes</span> <span class="label label-important"><?php include 'dashboard-usercount.php';?> </span></a>
       <ul>
-        <li class="<?php if($page=='members'){ echo 'active'; }?>"><a href="plan.php"><i class="fas fa-arrow-right"></i> Planes</a></li>
+        <li class="<?php if($page=='members'){ echo 'active'; }?>"><a href="plan.php"><i class="fas fa-arrow-right"></i>Ver Planes</a></li>
         <li class="<?php if($page=='members-entry'){ echo 'active'; }?>"><a href="plan-entry.php"><i class="fas fa-arrow-right"></i> Registrar Plan</a></li>
         <li class="<?php if($page=='members-remove'){ echo 'active'; }?>"><a href="remove-member.php"><i class="fas fa-arrow-right"></i> Eliminar Plan</a></li>
         <li class="<?php if($page=='members-update'){ echo 'active'; }?>"><a href="edit-member.php"><i class="fas fa-arrow-right"></i> Editar Plan</a></li>

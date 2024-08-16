@@ -48,7 +48,7 @@ header('location:../index.php');
 <div id="content">
   <div id="content-header">
     
-    <h1 class="text-center">Usuarios Registrados <i class="fas fa-group"></i></h1>
+    <h1 class="text-center">Planes <i class="fas fa-group"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
@@ -57,7 +57,7 @@ header('location:../index.php');
 
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
-            <h5>Tabla de Usuarios</h5>
+            <h5>Tabla de Planes</h5>
           </div>
           <div class='widget-content nopadding'>
 	  
@@ -86,10 +86,9 @@ header('location:../index.php');
                
                 <td><div class='text-center'>".$cnt."</div></td>
                 <td><div class='text-center'>".$row['name']."</div></td>
-                <td><div class='text-center'>".$row['charge']."</div></td>
-                <td><div class='text-center'>".$row['timepo']."</div></td>
+                <td><div class='text-center'>".$row['charge']." $</div></td>
+                <td><div class='text-center'>".$row['timepo']." Mes</div></td>
                 <td>
-                  <div class='text-center'><a href='ver-member.php?id=".$row['id']."'><i class='fas fa-eye'></i> Ver</a></div>  
                   <div class='text-center'><a href='edit-memberform.php?id=".$row['id']."'><i class='fas fa-edit'></i> Editar</a></div>
                   <div class='text-center'><a href='actions/delete-plan.php?id=".$row['id']."' style='color:#F66;'><i class='fas fa-trash'></i>Eliminar</a></div>                 
                 </td>
