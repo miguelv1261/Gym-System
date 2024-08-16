@@ -5,7 +5,7 @@ if(!isset($_SESSION['user_id'])){
 header('location:../index.php');	
 }
 ?>
-<!-- Visit codeastro.com for more projects -->
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,10 +52,9 @@ $qry= "select * from members where user_id='$id'";
 $result=mysqli_query($conn,$qry);
 while($row=mysqli_fetch_array($result)){
 ?> 
-<!-- Visit codeastro.com for more projects -->
+ 
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Usuarios</a> <a href="#" class="current">Add Members</a> </div>
   <h1>Informacion de Usuario</h1>
 </div>
 <div class="container-fluid">
@@ -122,7 +121,7 @@ while($row=mysqli_fetch_array($result)){
     </div>
 
     
-    <!-- Visit codeastro.com for more projects -->
+     
     <div class="span6">
       <div class="widget-box">
 

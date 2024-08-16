@@ -5,7 +5,7 @@ if(!isset($_SESSION['user_id'])){
 header('location:../index.php');	
 }
 ?>
-<!-- Visit codeastro.com for more projects -->
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +30,7 @@ header('location:../index.php');
 </div>
 <!--close-Header-part--> 
 
-<!-- Visit codeastro.com for more projects -->
+ 
 <!--top-Header-menu-->
 <?php include 'includes/topheader.php'?>
 <!--close-top-Header-menu-->
@@ -57,14 +57,14 @@ header('location:../index.php');
             $username = $_POST["username"];
             $dor = $_POST["dor"];
             $gender = $_POST["gender"];
-            $services = $_POST["services"];
-            $amount = $_POST["amount"];
+            $services = '';
+            $amount = '';
             $plan = $_POST["plan"];
             $address = $_POST["address"];
             $contact = $_POST["contact"];
             $id = $_POST["id"];
 
-            $totalamount = $amount * $plan;
+            $totalamount = 5.5;
             
             include 'dbcon.php';
             //code after connection is successfull
@@ -82,10 +82,10 @@ header('location:../index.php');
                         echo"</div>";
                         echo"<div class='widget-content'>";
                             echo"<div class='error_ex'>";
-                            echo"<h1 style='color:maroon;'>Error 404</h1>";
-                            echo"<h3>Error occured while updating your details</h3>";
-                            echo"<p>Please Try Again</p>";
-                            echo"<a class='btn btn-warning btn-big'  href='edit-member.php'>Go Back</a> </div>";
+                            echo"<h1 style='color:maroon;'>Error</h1>";
+                            echo"<h3>Datos del Usuario no se Actualizaron</h3>";
+                            echo"<p>Vuelve a intentarlo</p>";
+                            echo"<a class='btn btn-warning btn-big'  href='edit-member.php'>Regresar</a> </div>";
                         echo"</div>";
                         echo"</div>";
                     echo"</div>";
@@ -102,10 +102,9 @@ header('location:../index.php');
                         echo"</div>";
                         echo"<div class='widget-content'>";
                             echo"<div class='error_ex'>";
-                            echo"<h1>Success</h1>";
-                            echo"<h3>Member details has been updated!</h3>";
-                            echo"<p>The requested details are updated. Please click the button to go back.</p>";
-                            echo"<a class='btn btn-inverse btn-big'  href='members.php'>Go Back</a> </div>";
+                            echo"<h1>Bien</h1>";
+                            echo"<h3>Datos del Usuario Actualizados!</h3>";
+                            echo"<a class='btn btn-inverse btn-big'  href='members.php'>Regresar</a> </div>";
                         echo"</div>";
                         echo"</div>";
                     echo"</div>";
@@ -115,7 +114,7 @@ header('location:../index.php');
             }
 
             }else{
-                echo"<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='index.php'> DASHBOARD </a></h3>";
+                echo"<h3>NO ESTAS AUTORIZADO. REGRESAR <a href='index.php'> DASHBOARD </a></h3>";
             }
 ?>
                                                                

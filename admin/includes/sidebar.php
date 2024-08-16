@@ -9,7 +9,14 @@
         <li class="<?php if($page=='members-update'){ echo 'active'; }?>"><a href="edit-member.php"><i class="fas fa-arrow-right"></i> Editar Usuarios</a></li>
       </ul>
     </li>
-
+    <li class="submenu"> <a href="#"><i class="fas fa-users"></i> <span>Planes</span> <span class="label label-important"><?php include 'dashboard-usercount.php';?> </span></a>
+      <ul>
+        <li class="<?php if($page=='members'){ echo 'active'; }?>"><a href="plan.php"><i class="fas fa-arrow-right"></i> Planes</a></li>
+        <li class="<?php if($page=='members-entry'){ echo 'active'; }?>"><a href="plan-entry.php"><i class="fas fa-arrow-right"></i> Registrar Plan</a></li>
+        <li class="<?php if($page=='members-remove'){ echo 'active'; }?>"><a href="remove-member.php"><i class="fas fa-arrow-right"></i> Eliminar Plan</a></li>
+        <li class="<?php if($page=='members-update'){ echo 'active'; }?>"><a href="edit-member.php"><i class="fas fa-arrow-right"></i> Editar Plan</a></li>
+      </ul>
+    </li>
     <li class="submenu"> <a href="#"><i class="fas fa-dumbbell"></i> <span>Equipamiento</span> <span class="label label-important"><?php include 'dashboard-equipcount.php';?> </span></a>
     <ul>
         <li class="<?php if($page=='list-equip'){ echo 'active'; }?>"><a href="equipment.php"><i class="fas fa-arrow-right"></i> List Gym Equipment</a></li>
@@ -41,6 +48,6 @@
 
      
    
-    <!-- Visit codeastro.com for more projects -->
+     
   </ul>
 </div>

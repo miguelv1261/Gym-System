@@ -42,93 +42,83 @@ header('location:../index.php');
 <!--close-top-serch-->
 
 <!--sidebar-menu-->
-<?php $page='list-equip'; include 'includes/sidebar.php'?>
+  <?php $page='members-entry'; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
-
 <div id="content">
-  <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="current">Equipment List</a> </div>
-    <h1 class="text-center">Perfect Gym's Equipment List <i class="fas fa-cogs"></i></h1>
-  </div>
-  <div class="container-fluid">
-    <hr>
-    <div class="row-fluid">
-      <div class="span12">
+<div id="content-header">
+  
+</div>
+<form role="form" action="index.php" method="POST">
+            <?php 
 
-      <div class='widget-box'>
-          <div class='widget-title'> <span class='icon'> <i class='fas fa-cogs'></i> </span>
-            <h5>Equipment table</h5>
-          </div>
-          <div class='widget-content nopadding'>
-	  
-	  <?php
+if(isset($_POST['nombre'])){
+  $name = $_POST["nombre"];    
+  $precio = $_POST["precio"];
+  $dura = $_POST["dura"];
+  include 'dbcon.php';
+  //  
+  $qry = "INSERT INTO rates(name,charge, timepo) values ('$name','$precio','$dura')";
+  $result = mysqli_query($conn,$qry); //query executes
 
-      include "dbcon.php";
-      $qry="select * from equipment";
-      $cnt = 1;
-        $result=mysqli_query($conn,$qry);
+if(!$result){
+  // Mensaje de error
+  echo "<div class='container-fluid'>";
+  echo "<div class='row-fluid'>";
+  echo "<div class='span12'>";
+  echo "<div class='widget-box'>";
+  echo "<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
+  echo "<h5>Error Message</h5>";
+  echo "</div>";
+  echo "<div class='widget-content'>";
+  echo "<div class='error_ex'>";
+  echo "<h1 style='color:maroon;'>Error 404</h1>";
+  echo "<h3>Error occured while updating your details</h3>";
+  echo "<p>Please Try Again</p>";
+  echo "<a class='btn btn-warning btn-big'  href='edit-member.php'>Go Back</a> </div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+} else {
+  // Mensaje de éxito
+  echo "<div class='container-fluid'>";
+  echo "<div class='row-fluid'>";
+  echo "<div class='span12'>";
+  echo "<div class='widget-box'>";
+  echo "<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
+  echo "</div>";
+  echo "<div class='widget-content'>";
+  echo "<div class='error_ex'>";
+  echo "<h1>Registrado</h1>";
+  echo "<h3>Plan Registrado con Exito!</h3>";
+  echo "<hr>";
+  echo "<a class='btn btn-inverse btn-big'  href='members.php'>Go Back</a> </div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
 
-        
-          echo"<table class='table table-bordered table-hover'>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>E. Name</th>
-                  <th>Description</th>
-                  <th>Qty</th>
-                  <th>Amount</th>
-                  <th>Vendor</th>
-                  <th>Address</th>
-                  <th>Contact</th>
-                  <th>Purchased Date</th>
-                </tr>
-              </thead>";
-              
-            while($row=mysqli_fetch_array($result)){
-            
-            echo"<tbody> 
-               
-                <td><div class='text-center'>".$cnt."</div></td>
-                <td><div class='text-center'>".$row['name']."</div></td>
-                <td><div class='text-center'>".$row['description']."</div></td>
-                <td><div class='text-center'>".$row['quantity']."</div></td>
-                <td><div class='text-center'>$".$row['amount']."</div></td>
-                <td><div class='text-center'>".$row['vendor']."</div></td>
-                <td><div class='text-center'>".$row['address']."</div></td>
-                <td><div class='text-center'>".$row['contact']."</div></td>
-                <td><div class='text-center'>".$row['date']."</div></td>
-             
+}
+
+}else{
+    echo"<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='index.php'> DASHBOARD </a></h3>";
+}
+
+
+?>
+                                    
+                                
+                                        
                 
-              </tbody>";
-          $cnt++;  }
-            ?>
-
-            </table>
-          </div>
-        </div>
-   
-		
-	
-      </div>
-    </div>
-  </div>
+                                    </form>
+                                </div>
+</div></div>
 </div>
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
-
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
-
-<style>
-#footer {
-  color: white;
-}
-</style>
-
-<!--end-Footer-part-->
 
 <script src="../js/excanvas.min.js"></script> 
 <script src="../js/jquery.min.js"></script> 

@@ -5,7 +5,7 @@ if(!isset($_SESSION['user_id'])){
 header('location:../index.php');	
 }
 ?>
-<!-- Visit codeastro.com for more projects -->
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,10 +52,9 @@ $qry= "select * from members where user_id='$id'";
 $result=mysqli_query($conn,$qry);
 while($row=mysqli_fetch_array($result)){
 ?> 
-<!-- Visit codeastro.com for more projects -->
+ 
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Usuarios</a> <a href="#" class="current">Add Members</a> </div>
   <h1>Editar Informacion de Usuario</h1>
 </div>
 <div class="container-fluid">
@@ -64,37 +63,30 @@ while($row=mysqli_fetch_array($result)){
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Personal-info</h5>
+          <h5>Información Personal</h5>
         </div>
         <div class="widget-content nopadding">
 
           <form action="edit-member-req.php" method="POST" class="form-horizontal">
             <div class="control-group">
+            <div class="control-group">
+              <label class="control-label">Cedula :</label>
+              <div class="controls">
+                <input type="text" class="span11" name="username" value='<?php echo $row['username']; ?>' />
+              </div>
+            </div>
               <label class="control-label">Nombre :</label>
               <div class="controls">
                 <input type="text" class="span11" name="fullname" value='<?php echo $row['fullname']; ?>' />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">User :</label>
-              <div class="controls">
-                <input type="text" class="span11" name="username" value='<?php echo $row['username']; ?>' />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Password :</label>
-              <div class="controls">
-                <input type="password"  class="span11" name="password" disabled="" placeholder="**********"  />
-                <span class="help-block">Note: Only the members are allowed to change their password until and unless it's an emergency.</span>
-              </div>
-            </div>
-            <div class="control-group">
               <label class="control-label">Genero :</label>
               <div class="controls">
-              <select name="gender" required="required" id="select">
-                  <option value="Male" selected="selected">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+              <select name="gender" class="span11" required="required" id="select">
+                  <option value="Male" selected="selected">Masculino</option>
+                  <option value="Female">Femenino</option>
+                  <option value="Other">Otro</option>
                 </select>
               </div>
             </div>
@@ -102,66 +94,29 @@ while($row=mysqli_fetch_array($result)){
               <label class="control-label">Fecha de Ingreso :</label>
               <div class="controls">
                 <input type="date" name="dor" class="span11" value='<?php echo $row['dor']; ?>' />
-                <span class="help-block">Date of registration</span> </div>
-            </div>
-            
-          
-        </div>
-     
-        
-        <div class="widget-content nopadding">
-          <div class="form-horizontal">
-          <!-- Visit codeastro.com for more projects -->
-        </div>
-        <div class="widget-content nopadding">
-          <div class="form-horizontal">
-            <div class="control-group">
-              <label for="normal" class="control-label">Plan: </label>
-              <div class="controls">
-                <select name="plan" required="required" id="select">
-                  <option value="30" selected="selected" >One Month</option>
-                  <option value="90">Three Month</option>
-                  <option value="180">Six Month</option>
-                  <option value="365">One Year</option>
-
-                </select>
               </div>
-
             </div>
-            <div class="control-group">
-              
-              
-            </div>
-          </div>
-
-          </div>
-
-
-
         </div>
       </div>
-	  
-	
     </div>
 
     
-    <!-- Visit codeastro.com for more projects -->
+     
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Contact Details</h5>
+          <h5>Detalle de Contacto</h5>
         </div>
         <div class="widget-content nopadding">
           <div class="form-horizontal">
             <div class="control-group">
-              <label for="normal" class="control-label">Contact Number</label>
+              <label for="normal" class="control-label">Celular</label>
               <div class="controls">
                 <input type="number" id="mask-phone" name="contact" value='<?php echo $row['contact']; ?>' class="span8 mask text">
-                <span class="help-block blue span8">(999) 999-9999</span> 
                 </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Address :</label>
+              <label class="control-label">Dirección :</label>
               <div class="controls">
                 <input type="text" class="span11" name="address" value='<?php echo $row['address']; ?>' />
               </div>
@@ -169,43 +124,44 @@ while($row=mysqli_fetch_array($result)){
           </div>
 
               <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Service Details</h5>
+          <h5>Detalle de Servicio</h5>
         </div>
         <div class="widget-content nopadding">
           <div class="form-horizontal">
             
             
             <div class="control-group">
-              <label class="control-label">Services</label>
+              <label class="control-label">Plan :</label>
               <div class="controls">
-                <label>
-                  <input type="radio" value="Fitness" name="services" />
-                  Fitness <small>- $55 per month</small></label>
-                <label>
-                  <input type="radio" value="Sauna" name="services" />
-                  Sauna <small>- $35 per month</small></label>
-                <label>
-                  <input type="radio" value="Cardio" name="services" />
-                  Cardio <small>- $40 per month</small></label>
+              <?php
+              include 'dbcon.php';
+
+              $qry = "SELECT * FROM rates";
+              $result = mysqli_query($conn, $qry);
+
+              if (mysqli_num_rows($result) > 0) {
+                  echo '<select name="plan" class="span11" id="plan">';
+                  while ($row = mysqli_fetch_assoc($result)) {
+                      // Mostrar solo el nombre en el select
+                      echo '<option value="' . $row['name'] . '">' . $row['name'] . '</option>';
+                  }
+                  echo '</select>';
+              } else {
+                  echo 'No se encontraron tarifas.';
+              }
+
+              mysqli_close($conn);
+              ?>
               </div>
             </div>
 
-            <div class="control-group">
-              <label class="control-label">Total Amount</label>
-              <div class="controls">
-                <div class="input-append">
-                  <span class="add-on">$</span> 
-                  <input type="number" value='<?php echo $row['amount']; ?>' name="amount" class="span11">
-                  </div>
-              </div>
-            </div>
             
           
             
             <div class="form-actions text-center">
              <!-- user's ID is hidden here -->
-             <input type="hidden" name="id" value="<?php echo $row['user_id'];?>">
-              <button type="submit" class="btn btn-success">Update Member Details</button>
+             <input type="hidden" name="id" value="<?php echo $id;?>">
+              <button type="submit" class="btn btn-success">Editar Usuario</button>
             </div>
             </form>
 

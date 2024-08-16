@@ -5,7 +5,7 @@ if(!isset($_SESSION['user_id'])){
 header('location:../index.php');	
 }
 ?>
-<!-- Visit codeastro.com for more projects -->
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +24,7 @@ header('location:../index.php');
 </head>
 <body>
 
-<!--Header-part--><!-- Visit codeastro.com for more projects -->
+<!--Header-part--> 
 <div id="header">
   <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
 </div>

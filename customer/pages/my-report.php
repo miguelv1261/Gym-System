@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="../css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
-<body><!-- Visit codeastro.com for more projects -->
+<body> 
 
 <!--Header-part-->
 <div id="header">

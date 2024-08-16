@@ -23,14 +23,14 @@ header('location:../index.php');
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
- 
+
 <!--Header-part-->
 <div id="header">
   <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
 </div>
 <!--close-Header-part--> 
 
-
+ 
 <!--top-Header-menu-->
 <?php include 'includes/topheader.php'?>
 <!--close-top-Header-menu-->
@@ -42,13 +42,13 @@ header('location:../index.php');
 <!--close-top-serch-->
 
 <!--sidebar-menu-->
-<?php $page='list-equip'; include 'includes/sidebar.php'?>
+<?php $page="members"; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="current">Equipment List</a> </div>
-    <h1 class="text-center">Perfect Gym's Equipment List <i class="fas fa-cogs"></i></h1>
+    
+    <h1 class="text-center">Usuarios Registrados <i class="fas fa-group"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
@@ -56,15 +56,15 @@ header('location:../index.php');
       <div class="span12">
 
       <div class='widget-box'>
-          <div class='widget-title'> <span class='icon'> <i class='fas fa-cogs'></i> </span>
-            <h5>Equipment table</h5>
+          <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
+            <h5>Tabla de Usuarios</h5>
           </div>
           <div class='widget-content nopadding'>
 	  
 	  <?php
 
       include "dbcon.php";
-      $qry="select * from equipment";
+      $qry="select * from rates";
       $cnt = 1;
         $result=mysqli_query($conn,$qry);
 
@@ -73,14 +73,10 @@ header('location:../index.php');
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>E. Name</th>
-                  <th>Description</th>
-                  <th>Qty</th>
-                  <th>Amount</th>
-                  <th>Vendor</th>
-                  <th>Address</th>
-                  <th>Contact</th>
-                  <th>Purchased Date</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Duración</th>
+                  <th>Acción</th>
                 </tr>
               </thead>";
               
@@ -90,14 +86,13 @@ header('location:../index.php');
                
                 <td><div class='text-center'>".$cnt."</div></td>
                 <td><div class='text-center'>".$row['name']."</div></td>
-                <td><div class='text-center'>".$row['description']."</div></td>
-                <td><div class='text-center'>".$row['quantity']."</div></td>
-                <td><div class='text-center'>$".$row['amount']."</div></td>
-                <td><div class='text-center'>".$row['vendor']."</div></td>
-                <td><div class='text-center'>".$row['address']."</div></td>
-                <td><div class='text-center'>".$row['contact']."</div></td>
-                <td><div class='text-center'>".$row['date']."</div></td>
-             
+                <td><div class='text-center'>".$row['charge']."</div></td>
+                <td><div class='text-center'>".$row['timepo']."</div></td>
+                <td>
+                  <div class='text-center'><a href='ver-member.php?id=".$row['id']."'><i class='fas fa-eye'></i> Ver</a></div>  
+                  <div class='text-center'><a href='edit-memberform.php?id=".$row['id']."'><i class='fas fa-edit'></i> Editar</a></div>
+                  <div class='text-center'><a href='actions/delete-plan.php?id=".$row['id']."' style='color:#F66;'><i class='fas fa-trash'></i>Eliminar</a></div>                 
+                </td>
                 
               </tbody>";
           $cnt++;  }
@@ -116,19 +111,7 @@ header('location:../index.php');
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
 
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
-
-<style>
-#footer {
-  color: white;
-}
-</style>
-
-<!--end-Footer-part-->
 
 <script src="../js/excanvas.min.js"></script> 
 <script src="../js/jquery.min.js"></script> 
