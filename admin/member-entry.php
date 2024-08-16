@@ -225,7 +225,7 @@ $(document).ready(function() {
         $('#cedula').on('blur', function() {
             var cedula = $('#cedula').val();
             var url = "https://srienlinea.sri.gob.ec/movil-servicios/api/v1.0/deudas/porIdentificacion/" + cedula + "/?tipoPersona=N";
-
+          
             $.ajax({
                 type: "GET",
                 url: url,

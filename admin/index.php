@@ -5,12 +5,13 @@ if(!isset($_SESSION['user_id'])){
 header('location:../index.php');	
 }
 include "dbcon.php";
+mysqli_query($con, "SET lc_time_names = 'es_ES'");
 $qry="SELECT plan, count(*) as number FROM members GROUP BY plan";
 $result=mysqli_query($con,$qry);
 $qry="SELECT gender, count(*) as enumber FROM members GROUP BY gender";
 $result3=mysqli_query($con,$qry);
-$qry="SELECT designation, count(*) as snumber FROM staffs GROUP BY designation";
-$result5=mysqli_query($con,$qry);
+$qry="SELECT DATE_FORMAT(fecha, '%M') AS mes, SUM(valor) AS total_cobrado FROM pagos GROUP BY mes ORDER BY MONTH(fecha)";
+$result4=mysqli_query($con,$qry);
 ?>
  
 <!DOCTYPE html>
@@ -64,7 +65,7 @@ $result5=mysqli_query($con,$qry);
 
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
-          ['Services', 'Total Numbers'],
+          ['Services', 'Total'],
 
           <?php
             $query="SELECT plan, count(*) as number FROM members GROUP BY plan";
@@ -110,14 +111,14 @@ $result5=mysqli_query($con,$qry);
 
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
-          ['Terms', 'Total Amount',],
+          ['Valores', 'Cantidad Total',],
           
           <?php
-          $query1 = "SELECT gender, SUM(amount) as numberone FROM members; ";
-
-            $rezz=mysqli_query($con,$query1);
+          $query1 = "SELECT gender FROM members; ";
+          $query2 = "SELECT SUM(valor) as numberone FROM pagos; ";
+            $rezz=mysqli_query($con,$query2);
             while($data=mysqli_fetch_array($rezz)){
-              $services='Earnings';
+              $services='Ganancias';
               $numberone=$data['numberone'];
               // $numbertwo=$data['numbertwo'];
            ?>
@@ -130,7 +131,7 @@ $result5=mysqli_query($con,$qry);
           $query10 = "SELECT quantity, SUM(amount) as numbert FROM equipment";
             $res1000=mysqli_query($con,$query10);
             while($data=mysqli_fetch_array($res1000)){
-              $expenses='Expenses';
+              $expenses='Gastos';
               $numbert=$data['numbert'];
               
            ?>
@@ -189,27 +190,27 @@ $result5=mysqli_query($con,$qry);
     </script>
 
     <script>
-       google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([  
-                          ['Designation', 'Number'],  
-                          <?php  
-                          while($row = mysqli_fetch_array($result5))  
-                          {  
-                               echo "['".$row["designation"]."', ".$row["snumber"]."],";  
-                          }  
-                          ?>  
-                     ]); 
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([  
+                ['Mes', 'Total Cobrado'],  
+                <?php  
+                while($row = mysqli_fetch_array($result4))  
+                {  
+                    echo "['".$row["mes"]."', ".$row["total_cobrado"]."],";  
+                }  
+                ?>  
+            ]); 
 
-        var options = {
-          
-          pieHole: 0.4,
-        };
+            var options = {
+                hAxis: {title: 'Mes'},
+                legend: { position: 'none' }
+            };
 
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart2022'));
-        chart.draw(data, options);
-      }
+            var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+            chart.draw(data, options);
+        }
     </script>
 </head>
 <body>
@@ -232,11 +233,7 @@ $result5=mysqli_query($con,$qry);
 
 <!--main-container-part-->
 <div id="content">
-<!--breadcrumbs-->
-  <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="You're right here" class="tip-bottom"><i class="fa fa-home"></i> Home</a></div>
-  </div>
-<!--End-breadcrumbs-->
+
 
 <!--Action boxes-->
   <div class="container-fluid">
@@ -245,13 +242,6 @@ $result5=mysqli_query($con,$qry);
         <li class="bg_ls span3"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span class="label label-important"><?php include'actions/dashboard-activecount.php'?></span> Usuarios Activos </a> </li>
         <li class="bg_lo span3"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span class="label label-important"><?php include'dashboard-usercount.php'?></span> Usuarios Registrados</a> </li>
         <li class="bg_lg span3"> <a href="payment.php" style="font-size: 16px;"> <i class="fa fa-dollar-sign"></i> Ganancias Totales $<?php include'income-count.php' ?></a> </li>
-
-        
-        <!-- <li class="bg_ls span2"> <a href="buttons.html"> <i class="fas fa-tint"></i> Buttons</a> </li>
-        <li class="bg_ly span3"> <a href="form-common.html"> <i class="fas fa-th-list"></i> Forms</a> </li>
-        <li class="bg_lb span2"> <a href="interface.html"> <i class="fas fa-pencil"></i>Elements</a> </li> -->
-        <!-- <li class="bg_lg"> <a href="calendar.html"> <i class="fas fa-calendar"></i> Calendar</a> </li>
-        <li class="bg_lr"> <a href="error404.html"> <i class="fas fa-info-sign"></i> Error</a> </li> -->
  
       </ul>
     </div>
@@ -266,7 +256,6 @@ $result5=mysqli_query($con,$qry);
         <div class="widget-content" >
           <div class="row-fluid">
             <div class="span8">
-              <!-- <div id="piechart"></div>   -->
               <div id="top_x_div" style="width: 700px; height: 290px;"></div>
             </div>
             <div class="span4">
@@ -274,13 +263,14 @@ $result5=mysqli_query($con,$qry);
                 <li class="bg_lh"><i class="fas fa-users"></i> <strong><?php include 'dashboard-usercount.php';?></strong> <small>Usuarios Totales</small></li>
                 <li class="bg_lg"><i class="fas fa-user-clock"></i> <strong><?php include 'actions/dashboard-activecount.php';?></strong> <small>Usuarios Activos</small></li>
                 <li class="bg_ls"><i class="fas fa-dumbbell"></i> <strong><?php include 'actions/count-equipments.php';?></strong> <small>Maquinas</small></li>
-                <li class="bg_ly"><i class="fas fa-file-invoice-dollar"></i> <strong>$<?php include 'actions/total-exp.php';?></strong> <small>Total Ganado</small></li>
+                <li class="bg_ly"><i class="fas fa-file-invoice-dollar"></i> <strong>$<?php include 'actions/total-exp.php';?></strong> <small>Total Invertido</small></li>
               </ul>
             </div>
           </div>
         </div>
       </div> 
-    </div><!-- End of row-fluid -->
+    </div>
+    <!-- End of row-fluid -->
 
     <div class="row-fluid">
       <div class="widget-box">
@@ -302,34 +292,33 @@ $result5=mysqli_query($con,$qry);
     <div class="row-fluid">
       <div class="span6">
         <div class="widget-box">
-          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
+          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-file"></i></span>
             <h5>Usuarios Registrados por Genero</h5>
           </div>
-          <div class="widget-content nopadding collapse in" id="collapseG2">
+
             <ul class="recent-posts">
               
               <div id="donutchart" style="width: 600px; height: 300px;"></div>
 
             </ul>
-          </div>
+        
         </div>
       </div>
 
       <div class="span6">
         <div class="widget-box">
-          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-chevron-down"></i></span>
+          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-file"></i></span>
             <h5>Staff Members by Designation: Overview</h5>
           </div>
-          <div class="widget-content nopadding collapse in" id="collapseG2">
+          
             <ul class="recent-posts">
               
-            <div id="donutchart2022" style="width: 600px; height: 300px;"></div>
+            <div id="columnchart" style="width: 600px; height: 300px;"></div>
             </ul>
           </div>
-        </div>   
+           
       </div>
       </div>
-	
 
   </div><!-- End of container-fluid -->
 </div><!-- End of content-ID -->

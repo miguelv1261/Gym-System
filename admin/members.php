@@ -47,22 +47,17 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    
     <h1 class="text-center">Usuarios Registrados <i class="fas fa-group"></i></h1>
   </div>
   <div class="container-fluid">
-    <hr>
     <div class="row-fluid">
       <div class="span12">
-
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
             <h5>Tabla de Usuarios</h5>
           </div>
           <div class='widget-content nopadding'>
-	  
 	  <?php
-
       include "dbcon.php";
       $qry="select * from members";
       $cnt = 1;
