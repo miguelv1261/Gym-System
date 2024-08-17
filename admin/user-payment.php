@@ -108,31 +108,34 @@ $row = mysqli_fetch_array($result);
                         <input type="hidden" name="fullname" value="<?php echo $row['fullname']; ?>">
                         <td class="width70"><strong><?php echo $row['fullname']; ?></strong></td>
                       </tr>
-
-                      <input type="hidden" name="paid_date" value="<?php echo $row['paid_date']; ?>">
+                        <input type="hidden" name="paid_date" value="<?php echo $row['paid_date']; ?>">
+                        <tr>
+                          <td class="width30">Plan:</td>
+                          <td class="width70">
+                              <div class="control-group">
+                                  <div class="controls">
+                                      <?php
+                                      $defaultCharge = 0;
+                                      // Segunda consulta: Recuperar los planes
+                                      $qry2 = "SELECT * FROM rates";
+                                      $result2 = mysqli_query($conn, $qry2);
+                                      if (mysqli_num_rows($result2) > 0) {
+                                          echo '<select name="plan" id="plan" onchange="updatePrice(this)">';
+                                          while ($rate = mysqli_fetch_assoc($result2)) {
+                                              echo '<option value="' . $rate['id'] . '-' . $rate['charge'] . '-' . $rate['name'] . '">' . $rate['name'] . '</option>';
+                                          }
+                                          echo '</select>';
+                                      } else {
+                                          echo 'No se encontraron tarifas.';
+                                      }
+                                      ?>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
                       <tr>
-                        <td class="width30">Plan:</td>
-                        <td class="width70">
-                          <div class="control-group">
-                            <div class="controls">
-                              <?php
-                                // Segunda consulta: Recuperar los planes
-                                $qry2 = "SELECT * FROM rates";
-                                $result2 = mysqli_query($conn, $qry2);
-                                if (mysqli_num_rows($result2) > 0) {
-                                    echo '<select name="plan" id="plan">';
-                                    while ($rate = mysqli_fetch_assoc($result2)) {
-                                        // Combina id, valor y nombre en el value del option
-                                        echo '<option value="' . $rate['id'] . '-' . $rate['charge'] . '-' . $rate['name'] . '">' . $rate['name'] . '</option>';
-                                    }
-                                    echo '</select>';
-                                } else {
-                                    echo 'No se encontraron tarifas.';
-                                }
-                              ?>
-                            </div>
-                          </div>
-                        </td>
+                          <td class="width30">Precio:</td>
+                          <td class="width70"><strong id="planPrice"><?php echo $defaultCharge; ?></strong></td>
                       </tr>
                       <tr>
                         <td class="width30">Member's Status:</td>
@@ -221,6 +224,14 @@ mysqli_close($conn);
 function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
+function updatePrice(selectElement) {
+        // Obtener el valor del plan seleccionado
+        const selectedValue = selectElement.value;
+        // Extraer el precio (el segundo valor en la cadena separada por '-')
+        const price = selectedValue.split('-')[1];
+        // Actualizar el campo del precio
+        document.getElementById('planPrice').textContent =  price + '$';
+    }
 </script>
 </body>
 </html>

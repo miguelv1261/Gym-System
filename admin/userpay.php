@@ -65,7 +65,6 @@ header('location:../index.php');
             // Separar el id, valor y nombre usando explode
             list($planId, $planValue, $planName) = explode('-', $planValue);
 
-
             
             include 'dbcon.php';
             date_default_timezone_set('America/Guayaquil');
@@ -79,7 +78,7 @@ header('location:../index.php');
             $qry = "UPDATE members SET plan='$planName', status='$status', paid_date='$curr_date' WHERE user_id='$id'";
             $result = mysqli_query($conn,$qry); //query executes
             //PAGO
-            $qry1 = "INSERT INTO pagos(id_plan, valor, id_user) values ($planId, $planValue, $id) ";
+            $qry1 = "INSERT INTO pagos(id_plan, valor, id_user, fecha) values ($planId, $planValue, $id, '$curr_date') ";
             $result2 = mysqli_query($conn,$qry1); //query executes
             if(!$result || !$result2){ ?>
 
