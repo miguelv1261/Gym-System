@@ -47,7 +47,7 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <h1 class="text-center">Update Customer's Progress <i class="fas fa-signal"></i></h1>
+    <h1 class="text-center">Progreso de Usuarios <i class="fas fa-signal"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
@@ -89,10 +89,10 @@ header('location:../index.php');
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Fullname</th>
-                  <th>Choosen Service</th>
+                  <th>Nombre</th>
                   <th>Plan</th>
-                  <th>Action</th>
+                  <th>Plan</th>
+                  <th>Acción</th>
                 </tr>
               </thead>";
               

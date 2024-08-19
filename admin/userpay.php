@@ -57,8 +57,6 @@ header('location:../index.php');
 
             $fullname = $_POST['fullname'];
             $paid_date = $_POST['paid_date'];
-            // $p_year = date('Y');
-            
             $status = $_POST["status"];
             $id=$_POST['id'];
             $planValue = $_POST['plan'];

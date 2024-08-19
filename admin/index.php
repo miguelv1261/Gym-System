@@ -15,7 +15,6 @@ $result4=mysqli_query($con,$qry);
 ?>
  
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <title>Gym System Admin</title>
@@ -30,9 +29,6 @@ $result4=mysqli_query($con,$qry);
 <link href="../font-awesome/css/fontawesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="../css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
-
-
-
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
     <script type="text/javascript">  
            google.charts.load('current', {'packages':['corechart']});  
@@ -206,22 +202,19 @@ $result4=mysqli_query($con,$qry);
 <!--main-container-part-->
 <div id="content">
 
-
-<!--Action boxes-->
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_ls span3"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span class="label label-important"><?php include'actions/dashboard-activecount.php'?></span> Usuarios Activos </a> </li>
-        <li class="bg_lo span3"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span class="label label-important"><?php include'dashboard-usercount.php'?></span> Usuarios Registrados</a> </li>
-        <li class="bg_lg span3"> <a href="payment.php" style="font-size: 16px;"> <i class="fa fa-dollar-sign"></i> Ganancias Totales $<?php include'income-count.php' ?></a> </li>
+        <li class="bg_ls span3"> <a  style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span class="label label-important"><?php include'actions/dashboard-activecount.php'?></span> Usuarios Activos </a> </li>
+        <li class="bg_lo span3"> <a  style="font-size: 16px;"> <i class="fas fa-users"></i></i><span class="label label-important"><?php include'dashboard-usercount.php'?></span> Usuarios Registrados</a> </li>
+        <li class="bg_lg span3"> <a  style="font-size: 16px;"> <i class="fas fa-dumbbell"></i></i><span class="label label-important"><?php include'actions/count-equipments.php' ?></span> Maquinas</a> </li>
       </ul>
     </div>
-<!--End-Action boxes-->    
-<!--Chart-box-->    
+   
     <div class="row-fluid">
       <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="fas fa-file"></i></span>
-          <h5>Reporte de Servicios</h5>
+          <h5>Resumen Servicios</h5>
         </div>
         <div class="widget-content" >
           <div class="row-fluid">
@@ -232,7 +225,7 @@ $result4=mysqli_query($con,$qry);
               <ul class="site-stats">
                 <li class="bg_lh"><i class="fas fa-users"></i> <strong><?php include 'dashboard-usercount.php';?></strong> <small>Usuarios Totales</small></li>
                 <li class="bg_lg"><i class="fas fa-user-clock"></i> <strong><?php include 'actions/dashboard-activecount.php';?></strong> <small>Usuarios Activos</small></li>
-                <li class="bg_ls"><i class="fas fa-dumbbell"></i> <strong><?php include 'actions/count-equipments.php';?></strong> <small>Maquinas</small></li>
+                <li class="bg_ls"><i class="fas fa-dollar-sign"></i> <strong><?php include 'income-count.php';?></strong> <small>Total Ingresos</small></li>
                 <li class="bg_ly"><i class="fas fa-file-invoice-dollar"></i> <strong>$<?php include 'actions/total-exp.php';?></strong> <small>Total Invertido</small></li>
               </ul>
             </div>
@@ -240,19 +233,16 @@ $result4=mysqli_query($con,$qry);
         </div>
       </div> 
     </div>
-    <!-- End of row-fluid -->
     <div class="row-fluid">
       <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="fas fa-file"></i></span>
-          <h5>Reporte de Ingresos y Egresos</h5>
+          <h5>Ingresos y Gastos</h5>
         </div>
         <div class="widget-content" >
           <div class="row-fluid">
             <div class="span12">
-              <!-- <div id="piechart"></div>   -->
               <div id="top_y_div" style="width: 700px; height: 180px;"></div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -261,77 +251,40 @@ $result4=mysqli_query($con,$qry);
     <div class="row-fluid">
       <div class="span6">
         <div class="widget-box">
-          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-file"></i></span>
+          <div class="widget-title bg_ly"><span class="icon"><i class="fas fa-file"></i></span>
             <h5>Usuarios Registrados por Genero</h5>
           </div>
-            <ul class="recent-posts">
-              <div id="donutchart" style="width: 600px; height: 300px;"></div>
-            </ul>
+              <div id="donutchart" style="width: 640px; height: 300px;"></div>
         </div>
       </div>
       <div class="span6">
         <div class="widget-box">
-          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-file"></i></span>
+          <div class="widget-title bg_ly"><span class="icon"><i class="fas fa-file"></i></span>
             <h5>Ingresos por mes</h5>
           </div>
-          
-            <ul class="recent-posts">
-              
-            <div id="columnchart" style="width: 600px; height: 300px;"></div>
-            </ul>
+              <div id="columnchart" style="width: 640px; height: 300px;"></div>
           </div>
       </div>
-      </div>
+    </div>
 
   </div><!-- End of container-fluid -->
 </div><!-- End of content-ID -->
 
 <!--end-main-container-part-->
 
-
-
-<script src="../js/excanvas.min.js"></script>  
-<script src="../js/jquery.min.js"></script> 
-<script src="../js/jquery.ui.custom.js"></script> 
-<script src="../js/bootstrap.min.js"></script> 
-<script src="../js/jquery.flot.min.js"></script> 
-<script src="../js/jquery.flot.resize.min.js"></script> 
-<script src="../js/jquery.peity.min.js"></script> 
-<script src="../js/fullcalendar.min.js"></script> 
-<script src="../js/matrix.js"></script> 
-<script src="../js/matrix.dashboard.js"></script> 
-<script src="../js/jquery.gritter.min.js"></script> 
-<!-- <script src="../js/matrix.interface.js"></script>  -->
-<script src="../js/matrix.chat.js"></script> 
-<script src="../js/jquery.validate.js"></script> 
-<script src="../js/matrix.form_validation.js"></script> 
-<script src="../js/jquery.wizard.js"></script> 
-<script src="../js/jquery.uniform.js"></script> 
-<script src="../js/select2.min.js"></script> 
-<script src="../js/matrix.popover.js"></script> 
-<script src="../js/jquery.dataTables.min.js"></script> 
-<script src="../js/matrix.tables.js"></script> 
-
+<?php include 'includes/scripts.php'; ?>
 <script type="text/javascript">
-  // This function is called from the pop-up menus to transfer to
-  // a different page. Ignore if the value returned is a null string:
   function goPage (newURL) {
-
-      // if url is empty, skip the menu dividers and reset the menu selection to default
       if (newURL != "") {
       
-          // if url is "-", it is this page -- reset the menu:
           if (newURL == "-" ) {
               resetMenu();            
           } 
-          // else, send page to designated URL            
           else {  
             document.location.href = newURL;
           }
       }
   }
-
-// resets the menu selection upon entry to this page:
 function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }

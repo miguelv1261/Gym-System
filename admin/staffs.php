@@ -41,7 +41,7 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <h1 class="text-center">GYM's Staff List <i class="fas fa-briefcase"></i></h1>
+    <h1 class="text-center">Miembros del Staff <i class="fas fa-briefcase"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>

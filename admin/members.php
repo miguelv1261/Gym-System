@@ -24,27 +24,11 @@ header('location:../index.php');
 </head>
 <body>
 
-<!--Header-part-->
 <div id="header">
   <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
 </div>
-<!--close-Header-part--> 
-
- 
-<!--top-Header-menu-->
 <?php include 'includes/topheader.php'?>
-<!--close-top-Header-menu-->
-<!--start-top-serch-->
-<!-- <div id="search">
-  <input type="hidden" placeholder="Search here..."/>
-  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
-</div> -->
-<!--close-top-serch-->
-
-<!--sidebar-menu-->
 <?php $page="members"; include 'includes/sidebar.php'?>
-<!--sidebar-menu-->
-
 <div id="content">
   <div id="content-header">
     <h1 class="text-center">Usuarios Registrados <i class="fas fa-group"></i></h1>
@@ -65,7 +49,7 @@ header('location:../index.php');
         $result=mysqli_query($conn,$qry);
 
         
-          echo"<table class='table table-bordered table-hover'>
+          echo"<table id='zero_config' class='table table-striped table-bordered'>
               <thead>
                 <tr>
                   <th>#</th>
@@ -76,7 +60,6 @@ header('location:../index.php');
                   <th>Fecha de Registro</th>
                   <th>Dirección</th>
                   <th>Membership Status</th>
-                  
                   <th>Plan</th>
                   <th>Acción</th>
                 </tr>
@@ -168,5 +151,8 @@ function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
 </script>
+    <script>
+      $("#zero_config").DataTable();
+    </script>
 </body>
 </html>
