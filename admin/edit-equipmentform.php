@@ -53,7 +53,6 @@ header('location:../index.php');
  
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Equipments</a> <a href="#" class="current">Edit Equipments</a> </div>
   <h1>Equipment Entry Form</h1>
 </div>
 <div class="container-fluid">

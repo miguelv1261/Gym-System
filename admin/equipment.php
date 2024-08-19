@@ -47,17 +47,16 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="current">Equipment List</a> </div>
-    <h1 class="text-center">Perfect Gym's Equipment List <i class="fas fa-cogs"></i></h1>
+    <h1 class="text-center">Listado de Equipo <i class="fas fa-cogs"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
     <div class="row-fluid">
       <div class="span12">
-
+      <a href="equipment-entry.php"><button class="btn btn-primary">Nuevo Equipo <i class="fas fa-plus"></i></button></a>
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-cogs'></i> </span>
-            <h5>Equipment table</h5>
+            <h5>Tabla de Equipo</h5>
           </div>
           <div class='widget-content nopadding'>
 	  
@@ -73,14 +72,15 @@ header('location:../index.php');
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>E. Name</th>
-                  <th>Description</th>
-                  <th>Qty</th>
-                  <th>Amount</th>
-                  <th>Vendor</th>
-                  <th>Address</th>
-                  <th>Contact</th>
-                  <th>Purchased Date</th>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Cantidad</th>
+                  <th>Precio</th>
+                  <th>Proveedor</th>
+                  <th>Dirección</th>
+                  <th>Contacto</th>
+                  <th>Fecha de Compra</th>
+                  <th>Action</th>
                 </tr>
               </thead>";
               
@@ -97,7 +97,8 @@ header('location:../index.php');
                 <td><div class='text-center'>".$row['address']."</div></td>
                 <td><div class='text-center'>".$row['contact']."</div></td>
                 <td><div class='text-center'>".$row['date']."</div></td>
-             
+                <td><div class='text-center'><a href='edit-equipmentform.php?id=".$row['id']."'><i class='fas fa-edit'></i> Editar</a></div>
+                <div class='text-center'><a href='actions/delete-equipment.php?id=".$row['id']."' style='color:#F66;'><i class='fas fa-trash'></i> Eliminar</a></div></td>
                 
               </tbody>";
           $cnt++;  }

@@ -4,9 +4,9 @@
     <li class="submenu"> <a href="#"><i class="fas fa-users"></i> <span>Usuarios</span> <span class="label label-important"><?php include 'dashboard-usercount.php';?> </span></a>
       <ul>
         <li class="<?php if($page=='members'){ echo 'active'; }?>"><a href="members.php"><i class="fas fa-arrow-right"></i>Ver Usuarios</a></li>
-        <li class="<?php if($page=='members-entry'){ echo 'active'; }?>"><a href="member-entry.php"><i class="fas fa-arrow-right"></i> Registrar Usuarios</a></li>
+        <!--<li class="<?php if($page=='members-entry'){ echo 'active'; }?>"><a href="member-entry.php"><i class="fas fa-arrow-right"></i> Registrar Usuarios</a></li>
         <li class="<?php if($page=='members-remove'){ echo 'active'; }?>"><a href="remove-member.php"><i class="fas fa-arrow-right"></i> Eliminar Usuarios</a></li>
-        <li class="<?php if($page=='members-update'){ echo 'active'; }?>"><a href="edit-member.php"><i class="fas fa-arrow-right"></i> Editar Usuarios</a></li>
+        <li class="<?php if($page=='members-update'){ echo 'active'; }?>"><a href="edit-member.php"><i class="fas fa-arrow-right"></i> Editar Usuarios</a></li>-->
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="fas fa-users"></i> <span>Planes</span> <span class="label label-important"><?php include 'dashboard-usercount.php';?> </span></a>
@@ -17,12 +17,12 @@
         <li class="<?php if($page=='members-update'){ echo 'active'; }?>"><a href="edit-member.php"><i class="fas fa-arrow-right"></i> Editar Plan</a></li>
       </ul>
     </li>
-    <li class="submenu"> <a href="#"><i class="fas fa-dumbbell"></i> <span>Equipamiento</span> <span class="label label-important"><?php include 'dashboard-equipcount.php';?> </span></a>
+    <li class="submenu"> <a href="#"><i class="fas fa-dumbbell"></i> <span>Equipo</span> <span class="label label-important"><?php include 'dashboard-equipcount.php';?> </span></a>
     <ul>
-        <li class="<?php if($page=='list-equip'){ echo 'active'; }?>"><a href="equipment.php"><i class="fas fa-arrow-right"></i> List Gym Equipment</a></li>
-        <li class="<?php if($page=='add-equip'){ echo 'active'; }?>"><a href="equipment-entry.php"><i class="fas fa-arrow-right"></i> Add Equipment</a></li>
-        <li class="<?php if($page=='remove-equip'){ echo 'active'; }?>"><a href="remove-equipment.php"><i class="fas fa-arrow-right"></i> Remove Equipment</a></li>
-        <li class="<?php if($page=='update-equip'){ echo 'active'; }?>"><a href="edit-equipment.php"><i class="fas fa-arrow-right"></i> Update Equipment Details</a></li>
+        <li class="<?php if($page=='list-equip'){ echo 'active'; }?>"><a href="equipment.php"><i class="fas fa-arrow-right"></i> Ver Equipo </a></li>
+        <li class="<?php if($page=='add-equip'){ echo 'active'; }?>"><a href="equipment-entry.php"><i class="fas fa-arrow-right"></i> Agregar Equipo</a></li>
+        <li class="<?php if($page=='remove-equip'){ echo 'active'; }?>"><a href="remove-equipment.php"><i class="fas fa-arrow-right"></i> Eliminar Equipo</a></li>
+        <li class="<?php if($page=='update-equip'){ echo 'active'; }?>"><a href="edit-equipment.php"><i class="fas fa-arrow-right"></i> Actualizar</a></li>
       </ul>
     </li>
    <!-- <li class="<?php //if($page=='attendance'){ echo 'submenu active'; } else { echo 'submenu';}?>"> <a href="#"><i class="fas fa-calendar-alt"></i> <span>Attendance</span></a>
@@ -33,21 +33,35 @@
       </li>-->
 
     
-    <li class="<?php if($page=='manage-customer-progress'){ echo 'active'; }?>"><a href="customer-progress.php"><i class="fas fa-tasks"></i> <span>Manage Customer Progress</span></a></li>
+    <li class="<?php if($page=='manage-customer-progress'){ echo 'active'; }?>"><a href="customer-progress.php"><i class="fas fa-tasks"></i> <span>Progreso de Usuarios</span></a></li>
     <!-- <li class="<?php //if($page=='member-status'){ echo 'active'; }?>"><a href="member-status.php"><i class="fas fa-eye"></i> <span>Member's Status</span></a></li>-->
     <!--<li class="<?php //if($page=='payment'){ echo 'active'; }?>"><a href="payment.php"><i class="fas fa-hand-holding-usd"></i> <span>Payments</span></a></li>-->
     <!--<li class="<?php if($page=='announcement'){ echo 'active'; }?>"><a href="announcement.php"><i class="fas fa-bullhorn"></i> <span>Announcement</span></a></li>-->
-    <li class="<?php if($page=='staff-management'){ echo 'active'; }?>"><a href="staffs.php"><i class="fas fa-briefcase"></i> <span>Staff Management</span></a></li>
-    <li class="submenu"> <a href="#"><i class="fas fa-file"></i> <span>Reports</span></a>
+    <li class="<?php if($page=='staff-management'){ echo 'active'; }?>"><a href="staffs.php"><i class="fas fa-briefcase"></i> <span>Staff</span></a></li>
+    <li class="submenu"> <a href="#"><i class="fas fa-file"></i> <span>Reportes</span></a>
     <ul>
         <li class="<?php if($page=='chart'){ echo 'active'; }?>"><a href="reports.php"><i class="fas fa-arrow-right"></i> Chart Representation</a></li>
         <li class="<?php if($page=='member-repo'){ echo 'active'; }?>"><a href="members-report.php"><i class="fas fa-arrow-right"></i> Members Report</a></li>
         <li class="<?php if($page=='c-p-r'){ echo 'active'; }?>"><a href="progress-report.php"><i class="fas fa-arrow-right"></i> Customer Progress Report</a></li>
       </ul>
     </li>
-
-     
-   
-     
-  </ul>
+    <li id="clock" style="color: white; font-size: 35px; position: absolute; bottom: -300px; left: 35px;"></li>
+  </ul> 
 </div>
+
+<script>
+function updateClock() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    var timeString = hours + ':' + minutes + ':' + seconds;
+    document.getElementById('clock').textContent = timeString;
+}
+
+setInterval(updateClock, 1000);  // Actualiza el reloj cada segundo
+updateClock();  // Llama a la función para mostrar el reloj inmediatamente
+</script>

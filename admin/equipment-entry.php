@@ -47,8 +47,7 @@ header('location:../index.php');
 
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Equipments</a> <a href="#" class="current">Add Equipments</a> </div>
-  <h1>Equipment Entry Form</h1>
+  <h1>Agregar Equipo</h1>
 </div>
 <div class="container-fluid">
   <hr>
@@ -56,35 +55,35 @@ header('location:../index.php');
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Eqipment-info</h5>
+          <h5>Información del Equipo</h5>
         </div>
         <div class="widget-content nopadding">
           <form action="add-equipment-req.php" method="POST" class="form-horizontal">
             <div class="control-group">
               <label class="control-label">Equipment :</label>
               <div class="controls">
-                <input type="text" class="span11" name="ename" placeholder="Equipment Name" required />
+                <input type="text" class="span11" name="ename" placeholder="Nombre del Equipo" required />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Description :</label>
+              <label class="control-label">Nombre :</label>
               <div class="controls">
-                <input type="text" class="span11" name="description" placeholder="Short Description" required />
+                <input type="text" class="span11" name="description" placeholder="Pequeña Descripción" required />
               </div>
             </div>
            
             
             <div class="control-group">
-              <label class="control-label">Date of Purchase :</label>
+              <label class="control-label">Fecha de Compra :</label>
               <div class="controls">
                 <input type="date" name="date" class="span11" />
-                <span class="help-block">Please mention the date of purchase</span> </div>
+              </div>
             </div>
 
             <div class="control-group">
-              <label class="control-label">Quantity :</label>
+              <label class="control-label">Cantidad :</label>
               <div class="controls">
-                <input type="number" class="span5" name="quantity" placeholder="Equipment Qty" required />
+                <input type="number" class="span5" name="quantity" placeholder="Cantidad de Equipo" required />
               </div>
             </div>
             
@@ -117,37 +116,36 @@ header('location:../index.php');
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Other Details</h5>
+          <h5>Otros Detalles</h5>
         </div>
         <div class="widget-content nopadding">
           <div class="form-horizontal">
             
             <div class="control-group">
-              <label class="control-label">Vendor :</label>
+              <label class="control-label">Proveedor :</label>
               <div class="controls">
-                <input type="text" class="span11" name="vendor" placeholder="Vendor"required />
+                <input type="text" class="span11" name="vendor" placeholder="Proveedor"required />
               </div>
             </div>
 
             <div class="control-group">
-              <label class="control-label">Address :</label>
+              <label class="control-label">Dirección :</label>
               <div class="controls">
-                <input type="text" class="span11" name="address" placeholder="Vendor Address" required />
+                <input type="text" class="span11" name="address" placeholder="Dirección del Proveedor" required />
               </div>
             </div>
 
             <div class="control-group">
-              <label for="normal" class="control-label">Contact Number</label>
+              <label for="normal" class="control-label">Numero de Contacto</label>
               <div class="controls">
                 <input type="text" id="mask-phone" name="contact" minlength="10" maxlength="10" class="span8 mask text" required>
-                <span class="help-block blue span8">(999) 999-9999</span> 
-                </div>
+              </div>
             </div>
 
           </div>
 
               <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Pricing</h5>
+          <h5>Precio</h5>
         </div>
         <div class="widget-content nopadding">
           <div class="form-horizontal">
@@ -156,7 +154,7 @@ header('location:../index.php');
     
 
             <div class="control-group">
-              <label class="control-label">Cost Per Item: </label>
+              <label class="control-label">Costo por item: </label>
               <div class="controls">
                 <div class="input-append">
                   <span class="add-on">$</span> 
@@ -168,7 +166,7 @@ header('location:../index.php');
           
             
             <div class="form-actions text-center">
-              <button type="submit" class="btn btn-success">Submit Details</button>
+              <button type="submit" class="btn btn-success">Guardar</button>
             </div>
             </form>
 

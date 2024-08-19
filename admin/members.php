@@ -52,6 +52,7 @@ header('location:../index.php');
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span12">
+      <a href="member-entry.php"><button class="btn btn-primary">Nuevo Usuario <i class="fas fa-plus"></i></button></a>
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
             <h5>Tabla de Usuarios</h5>

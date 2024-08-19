@@ -41,14 +41,13 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="current">Staff Members</a> </div>
     <h1 class="text-center">GYM's Staff List <i class="fas fa-briefcase"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
     <div class="row-fluid">
       <div class="span12">
-        <a href="staffs-entry.php"><button class="btn btn-primary">Add Staff Members</button></a>
+        <a href="staffs-entry.php"><button class="btn btn-primary">Nuevo Staff <i class="fas fa-plus"></i></button></a>
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
             <h5>Staff table</h5>

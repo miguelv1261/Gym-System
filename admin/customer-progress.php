@@ -47,7 +47,6 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="customer-progress.php" class="current">Customer Progress</a> </div>
     <h1 class="text-center">Update Customer's Progress <i class="fas fa-signal"></i></h1>
   </div>
   <div class="container-fluid">

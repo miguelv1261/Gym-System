@@ -33,8 +33,8 @@ $result4=mysqli_query($con,$qry);
 
 
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
-           <script type="text/javascript">  
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
+    <script type="text/javascript">  
            google.charts.load('current', {'packages':['corechart']});  
            google.charts.setOnLoadCallback(drawChart);  
            function drawChart()  
@@ -56,17 +56,14 @@ $result4=mysqli_query($con,$qry);
                 var chart = new google.visualization.PieChart(document.getElementById('piechart'));  
                 chart.draw(data, options);  
            }  
-           </script>
- 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
-
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
           ['Services', 'Total'],
-
           <?php
             $query="SELECT plan, count(*) as number FROM members GROUP BY plan";
             $res=mysqli_query($con,$query);
@@ -78,10 +75,7 @@ $result4=mysqli_query($con,$qry);
            <?php   
             }
            ?> 
-
-          
         ]);
-
         var options = {
           // title: 'Chess opening moves',
           width: 710,
@@ -96,23 +90,17 @@ $result4=mysqli_query($con,$qry);
           },
           bar: { groupWidth: "100%" }
         };
-
         var chart = new google.charts.Bar(document.getElementById('top_x_div'));
         chart.draw(data, options);
       };
-
-
-      
     </script>
-
-<script type="text/javascript">
+    <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawStuff);
 
       function drawStuff() {
         var data = new google.visualization.arrayToDataTable([
           ['Valores', 'Cantidad Total',],
-          
           <?php
           $query1 = "SELECT gender FROM members; ";
           $query2 = "SELECT SUM(valor) as numberone FROM pagos; ";
@@ -125,10 +113,9 @@ $result4=mysqli_query($con,$qry);
            ['<?php echo $services;?>',<?php echo $numberone;?>,],   
            <?php   
             }
-           ?> 
-
-      <?php
-          $query10 = "SELECT quantity, SUM(amount) as numbert FROM equipment";
+           ?>
+          <?php
+            $query10 = "SELECT quantity, SUM(amount) as numbert FROM equipment";
             $res1000=mysqli_query($con,$query10);
             while($data=mysqli_fetch_array($res1000)){
               $expenses='Gastos';
@@ -138,13 +125,9 @@ $result4=mysqli_query($con,$qry);
            ['<?php echo $expenses;?>',<?php echo $numbert;?>,],   
            <?php   
             }
-           ?> 
-
-          
+           ?>
         ]);
-
         var options = {
-         
           width: "1050",
           legend: { position: 'none' },
           
@@ -156,16 +139,11 @@ $result4=mysqli_query($con,$qry);
           },
           bar: { groupWidth: "100%" }
         };
-
         var chart = new google.charts.Bar(document.getElementById('top_y_div'));
         chart.draw(data, options);
       };
-
-
-      
     </script>
-
-<script type="text/javascript">
+    <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
@@ -178,17 +156,13 @@ $result4=mysqli_query($con,$qry);
                           }  
                           ?>  
                      ]); 
-
         var options = {
-          
           pieHole: 0.4,
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
       }
     </script>
-
     <script>
         google.charts.load("current", {packages:["corechart"]});
         google.charts.setOnLoadCallback(drawChart);
@@ -202,12 +176,10 @@ $result4=mysqli_query($con,$qry);
                 }  
                 ?>  
             ]); 
-
             var options = {
                 hAxis: {title: 'Mes'},
                 legend: { position: 'none' }
             };
-
             var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
             chart.draw(data, options);
         }
@@ -242,11 +214,9 @@ $result4=mysqli_query($con,$qry);
         <li class="bg_ls span3"> <a href="index.php" style="font-size: 16px;"> <i class="fas fa-user-check"></i> <span class="label label-important"><?php include'actions/dashboard-activecount.php'?></span> Usuarios Activos </a> </li>
         <li class="bg_lo span3"> <a href="members.php" style="font-size: 16px;"> <i class="fas fa-users"></i></i><span class="label label-important"><?php include'dashboard-usercount.php'?></span> Usuarios Registrados</a> </li>
         <li class="bg_lg span3"> <a href="payment.php" style="font-size: 16px;"> <i class="fa fa-dollar-sign"></i> Ganancias Totales $<?php include'income-count.php' ?></a> </li>
- 
       </ul>
     </div>
 <!--End-Action boxes-->    
-
 <!--Chart-box-->    
     <div class="row-fluid">
       <div class="widget-box">
@@ -271,7 +241,6 @@ $result4=mysqli_query($con,$qry);
       </div> 
     </div>
     <!-- End of row-fluid -->
-
     <div class="row-fluid">
       <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="fas fa-file"></i></span>
@@ -295,20 +264,15 @@ $result4=mysqli_query($con,$qry);
           <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-file"></i></span>
             <h5>Usuarios Registrados por Genero</h5>
           </div>
-
             <ul class="recent-posts">
-              
               <div id="donutchart" style="width: 600px; height: 300px;"></div>
-
             </ul>
-        
         </div>
       </div>
-
       <div class="span6">
         <div class="widget-box">
           <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="fas fa-file"></i></span>
-            <h5>Staff Members by Designation: Overview</h5>
+            <h5>Ingresos por mes</h5>
           </div>
           
             <ul class="recent-posts">
@@ -316,7 +280,6 @@ $result4=mysqli_query($con,$qry);
             <div id="columnchart" style="width: 600px; height: 300px;"></div>
             </ul>
           </div>
-           
       </div>
       </div>
 
