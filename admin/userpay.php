@@ -97,7 +97,7 @@ header('location:../index.php');
                                         <table width="100%" cellpadding="0" cellspacing="0">
                                             <tbody><tr>
                                                 <td class="content-block">
-                                                    <h3 class="text-center">Payment Receipt</h3>
+                                                    <h3 class="text-center">Recibo de Pago</h3>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -105,12 +105,12 @@ header('location:../index.php');
                                                     <table class="invoice">
                                                         <tbody>
                                                         <tr>
-                                                            <td><div style="float:left">Invoice #GMS_<?php echo(rand(100000,10000000));?> <br> 5021  Wetzel Lane, <br>Williamsburg </div><div style="float:right"> Last Payment: <?php echo $paid_date?></div></td>
+                                                            <td><div style="float:left">Invoice #GMS_<?php echo(rand(100000,10000000));?> <br> 5021  Wetzel Lane, <br>Williamsburg </div><div style="float:right"> Último Pago: <?php echo $paid_date?></div></td>
                                                         </tr>
 
                                                         <tr>
-                                                        <td class="text-center" style="font-size:14px;"><b>Member: <?php echo $fullname; ?></b>  <br>
-                                                          Paid On: <?php echo date("F j, Y - g:i a");?>
+                                                        <td class="text-center" style="font-size:14px;"><b>Miembro: <?php echo $fullname; ?></b>  <br>
+                                                          Fecha de Pago: <?php echo date("%d de %B de %Y - %I:%M %p");?>
                                                         </td>
                                                         
                                                         </tr>
