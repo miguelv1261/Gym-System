@@ -9,7 +9,7 @@ header('location:../index.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gym System Admin</title>
+<title>94 Fitness Center</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -49,7 +49,7 @@ header('location:../index.php');
         $result=mysqli_query($conn,$qry);
 
         
-          echo"<table id='zero_config' class='table table-striped table-bordered'>
+          echo"<table  class='table table-striped table-bordered'>
               <thead>
                 <tr>
                   <th>#</th>
@@ -81,8 +81,11 @@ header('location:../index.php');
                 <td><div class='text-center'><?php echo $row['plan'];?></div></td>
                 <td>
                   <div class='text-center'><a href='ver-member.php?id=<?php echo $row['user_id']?>'><i class='fas fa-eye'></i> Ver</a></div>  
-                  <div class='text-center'><a href='edit-memberform.php?id=<?php echo $row['user_id']?></a>'><i class='fas fa-edit'></i> Editar</a></div>
-                  <div class='text-center'><a href='actions/delete-member.php?id=<?php echo $row['user_id']?></a>' style='color:#F66;'><i class='fas fa-trash'></i>Eliminar</a></div>                 
+                  <div class='text-center'><a href='edit-memberform.php?id=<?php echo $row['user_id']?>'><i class='fas fa-edit'></i> Editar</a></div>
+                  <div class='text-center'>
+                    <a href='actions/delete-member.php?id=<?php echo $row['user_id']?>
+                    ' style='color:#F66;'><i class='fas fa-trash'></i>Eliminar</a>
+                  </div>                 
                 </td>
                 
               </tbody>
@@ -151,8 +154,5 @@ function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
 </script>
-    <script>
-      $("#zero_config").DataTable();
-    </script>
 </body>
 </html>

@@ -9,7 +9,7 @@ header('location:../index.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gym System Admin</title>
+<title>94 Fitness Center</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -55,8 +55,7 @@ while($row=mysqli_fetch_array($result)){
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="customer-progress.php">Customer Progress</a> <a href="#" class="current">Update Progress</a> </div>
-    <h1 class="text-center">Update Customer's Progress <i class="fas fa-signal"></i></h1>
+    <h1 class="text-center">Actualizar Progreso de Usuario <i class="fas fa-signal"></i></h1>
   </div>
   
   
@@ -65,7 +64,7 @@ while($row=mysqli_fetch_array($result)){
       <div class="span12">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="fas fa-signal"></i> </span>
-            <h5>Progress </h5>
+            <h5>Progreso </h5>
           </div>
           <div class="widget-content">
             <div class="row-fluid">
@@ -79,25 +78,21 @@ while($row=mysqli_fetch_array($result)){
 				  <form action="userprogress-req.php" method="POST">
                     <tr>
                     <tr>
-                      <td class="width30">Member's Fullname:</td>
+                      <td class="width30">Nombre:</td>
                       <td class="width70"><strong><?php echo $row['fullname']; ?></strong></td>
                     </tr>
                     <tr>
-                      <td>Service Taken:</td>
-                      <td><strong><?php echo $row['services']; ?></strong></td>
-                    </tr>
-                    <tr>
-                      <td>Initial Weight: (KG)</td>
+                      <td>Peso Inicial: (KG)</td>
                       <td><input id="weight" type="number" name="ini_weight" value='<?php echo $row['ini_weight']; ?>' /></td>
                     </tr>
 
                     <tr>
-                      <td>Current Weight: (KG)</td>
+                      <td>Peso Actual: (KG)</td>
                       <td><input id="weight" type="number" name="curr_weight" value='<?php echo $row['curr_weight']; ?>' /></td>
                     </tr>
 					
                     <tr>
-                      <td>Initial Body Type:</td>
+                      <td>Tipo de Cuerpo Inicial:</td>
                       <td><input id="ini_bodytype" type="text" name="ini_bodytype" value='<?php echo $row['ini_bodytype']; ?>' /></td>
                     </tr>
                   
@@ -110,13 +105,11 @@ while($row=mysqli_fetch_array($result)){
                     </tr>
 
                     <tr>
-                      <td>Current Body Type:</td>
+                      <td>Tipo de Cuerpo Actual:</td>
                       <td><input id="curr_bodytype" type="text" name="curr_bodytype" value='<?php echo $row['curr_bodytype']; ?>' /></td>
                     </tr>
                   
               </div>
-			  
-
                       </td>
                   </tr>
                     </tbody>
@@ -136,7 +129,7 @@ while($row=mysqli_fetch_array($result)){
                 <div class="text-center">
                   <!-- user's ID is hidden here -->
              <input type="hidden" name="id" value="<?php echo $row['user_id'];?>">
-                  <button class="btn btn-primary btn-large" type="SUBMIT" href="">Save Changes</button> 
+                  <button class="btn btn-primary btn-large" type="SUBMIT" href="">Guardar Cambios</button> 
 				</div>
 				  
 				  </form>

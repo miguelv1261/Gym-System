@@ -9,7 +9,7 @@ header('location:../index.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gym System Admin</title>
+<title>94 Fitness Center</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -47,8 +47,7 @@ header('location:../index.php');
 
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="customer-progress.php" class="tip-bottom">Progress Form</a> <a href="#" class="current">Update Progress</a> </div>
-  <h1 class="text-center">Update Customer's Progress <i class="fas fa-signal"></i></h1>
+  <h1 class="text-center">  </i></h1>
 </div>
 <form role="form" action="index.php" method="POST">
     <?php 
@@ -98,14 +97,13 @@ header('location:../index.php');
                     echo"<div class='span12'>";
                     echo"<div class='widget-box'>";
                     echo"<div class='widget-title'> <span class='icon'> <i class='fas fa-briefcase'></i> </span>";
-                        echo"<h5>Administrator</h5>";
+                        echo"<h5>Administrador</h5>";
                         echo"</div>";
                         echo"<div class='widget-content'>";
                             echo"<div class='error_ex'>";
-                            echo"<h1>Successfull</h1>";
-                            echo"<h3>Changes Done Succefully!</h3>";
-                            echo"<p>The requested user's progress has been updated. Please click the button to go back.</p>";
-                            echo"<a class='btn btn-inverse btn-big'  href='index.php'>Return Home</a> </div>";
+                            echo"<h1>Completo</h1>";
+                            echo"<h3>Cambios Realizados con Exito!</h3>";
+                            echo"<a class='btn btn-inverse btn-big'  href='customer-progress.php'>Regresar</a> </div>";
                         echo"</div>";
                         echo"</div>";
                     echo"</div>";

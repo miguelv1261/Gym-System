@@ -9,7 +9,7 @@ header('location:../index.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gym System Admin</title>
+<title>94 Fitness Center</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -47,8 +47,7 @@ header('location:../index.php');
 
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="progress-report.php" class="current">Progress Reports</a> </div>
-    <h1 class="text-center">View Progress Reports <i class="fas fa-signal"></i></h1>
+    <h1 class="text-center">Reporte de Progreso <i class="fas fa-signal"></i></h1>
   </div>
   <div class="container-fluid">
     <hr>
@@ -58,7 +57,7 @@ header('location:../index.php');
       <div class='widget-box'>
       
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
-            <h5>Report Section</h5>
+            <h5>Sección Reportes</h5>
           </div>
           <div class='widget-content nopadding'>
 	  
@@ -74,9 +73,9 @@ header('location:../index.php');
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Fullname</th>
-                  <th>Choosen Service</th>
-                  <th>Action</th>
+                  <th>Nombre</th>
+                  <th>Plan</th>
+                  <th>Acción</th>
                 </tr>
               </thead>";
               
@@ -86,8 +85,8 @@ header('location:../index.php');
                
                 <td><div class='text-center'><?php echo $cnt;?></div></td>
                 <td><div class='text-center'><?php echo $row['fullname'];?></div></td>
-                <td><div class='text-center'><?php echo $row['services'];?></div></td>
-                <td><div class='text-center'><a href="view-progress-report.php?id= <?php echo $row['user_id'] ?>"><i class="fas fa-file"></i> View Progress Report</a></div></td>
+                <td><div class='text-center'><?php echo $row['plan'];?></div></td>
+                <td><div class='text-center'><a href="view-progress-report.php?id= <?php echo $row['user_id'] ?>"><i class="fas fa-file"></i> Ver Reporte de Progreso</a></div></td>
                 
               </tbody>
           <?php

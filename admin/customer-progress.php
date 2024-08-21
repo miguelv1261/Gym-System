@@ -9,7 +9,7 @@ header('location:../index.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gym System Admin</title>
+<title>94 Fitness Center</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -56,10 +56,10 @@ header('location:../index.php');
 
       <div class='widget-box'>
           <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
-            <h5>Member's Table</h5>
+            <h5>Tabla de Usuarios</h5>
             <form id="custom-search-form" role="search" method="POST" action="search-result-progress.php" class="form-search form-horizontal pull-right">
                 <div class="input-append span12">
-                    <input type="text" class="search-query" placeholder="Search" name="search" required>
+                    <input type="text" class="search-query" placeholder="Buscar" name="search" required>
                     <button type="submit" class="btn"><i class="fas fa-search"></i></button>
                 </div>
             </form>
@@ -91,7 +91,6 @@ header('location:../index.php');
                   <th>#</th>
                   <th>Nombre</th>
                   <th>Plan</th>
-                  <th>Plan</th>
                   <th>Acción</th>
                 </tr>
               </thead>";
@@ -102,9 +101,8 @@ header('location:../index.php');
                
                 <td><div class='text-center'>".$cnt."</div></td>
                 <td><div class='text-center'>".$row['fullname']."</div></td>
-                <td><div class='text-center'>".$row['services']."</div></td>
-                <td><div class='text-center'>".$row['plan']." Month/s</div></td>
-                <td><div class='text-center'><a href='update-progress.php?id=".$row['user_id']."'><button class='btn btn-warning btn'> Update Progress</button></a></div></td>
+                <td><div class='text-center'>".$row['plan']."</div></td>
+                <td><div class='text-center'><a href='update-progress.php?id=".$row['user_id']."'><button class='btn btn-warning btn'> Registrar Progreso</button></a></div></td>
                 
               </tbody>";
           $cnt++;  }
@@ -123,19 +121,6 @@ header('location:../index.php');
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
-
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
-
-<style>
-#footer {
-  color: white;
-}
-</style>
-
-<!--end-Footer-part-->
 
 <style>
     #custom-search-form {
@@ -149,8 +134,6 @@ header('location:../index.php');
         padding-right: 4px \9;
         padding-left: 3px;
         padding-left: 4px \9;
-        /* IE7-8 doesn't have border-radius, so don't indent the padding */
- 
         margin-bottom: 0;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -160,12 +143,10 @@ header('location:../index.php');
     #custom-search-form button {
         border: 0;
         background: none;
-        /** belows styles are working good */
         padding: 2px 5px;
         margin-top: 2px;
         position: relative;
         left: -28px;
-        /* IE7-8 doesn't have border-radius, so don't indent the padding */
         margin-bottom: 0;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;

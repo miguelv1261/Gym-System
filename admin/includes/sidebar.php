@@ -39,12 +39,12 @@
     <!--<li class="<?php if($page=='announcement'){ echo 'active'; }?>"><a href="announcement.php"><i class="fas fa-bullhorn"></i> <span>Announcement</span></a></li>-->
     <li class="<?php if($page=='staff-management'){ echo 'active'; }?>"><a href="staffs.php"><i class="fas fa-briefcase"></i> <span>Staff</span></a></li>
     <li class="submenu"> <a href="#"><i class="fas fa-file"></i> <span>Reportes</span></a>
-    <ul>
+      <ul>
         <li class="<?php if($page=='member-repo'){ echo 'active'; }?>"><a href="members-report.php"><i class="fas fa-arrow-right"></i> Members Report</a></li>
-        <li class="<?php if($page=='c-p-r'){ echo 'active'; }?>"><a href="progress-report.php"><i class="fas fa-arrow-right"></i> Customer Progress Report</a></li>
+        <li class="<?php if($page=='c-p-r'){ echo 'active'; }?>"><a href="progress-report.php"><i class="fas fa-arrow-right"></i> Reporte de Progreso</a></li>
       </ul>
     </li>
-    <li id="clock" style="color: white; font-size: 35px; position: absolute; bottom: -300px; left: 35px;"></li>
+      <div id="clock" style="color: white; font-size: 35px; position: absolute; bottom: -300px; left: 35px;"></div>
   </ul> 
 </div>
 

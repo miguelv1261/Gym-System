@@ -9,7 +9,7 @@ header('location:../index.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gym System Admin</title>
+<title>94 Fitness Center</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -133,17 +133,6 @@ if(!$result){
   echo "</div>";
   echo "</div>";
   
-  // Supongamos que el archivo PNG ya ha sido generado y está disponible en una URL pública
-  $qrPath = 'https://tu-dominio.com/qrcodes/666.png'; // Reemplaza esto con la URL real del archivo PNG
-  
-  // Número de teléfono en formato internacional sin espacios ni signos de '+'
-  $telefono = '593998912139'; // Reemplaza con el número de teléfono real
-  
-  // Mensaje que incluirá la URL del QR en WhatsApp
-  $mensaje = "Hola, aquí está tu código QR: " . urlencode($qrPath);
-  
-  // Crear el enlace de WhatsApp
-  $whatsappUrl = "https://api.whatsapp.com/send?phone=" . $telefono . "&text=" . $mensaje;
 
 }
 

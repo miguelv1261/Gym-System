@@ -9,7 +9,7 @@ header('location:../index.php');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Gym System Admin</title>
+<title>94 Fitness Center</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -217,10 +217,25 @@ while($row=mysqli_fetch_array($result)){
               <td><div class='text-center'><a href='user-payment.php?id=<?php echo $id?>'><button class='btn btn-success btn'><i class='fas fa-dollar-sign'></i> Registrar Pago</button></a></div></td>
             </div>
           </div>
+          <td>
+    <div class='text-center'>
+      <?php
+        
+        // URL de la imagen QR almacenada en tu servidor local
+        $image_url = "http://localhost/Gym-System/qrcodes/".$row['username'].".png"; 
+        // Texto del mensaje que quieres enviar junto con la imagen
+        $message = urlencode("Haz clic en el enlace para ver tu código QR y envíalo manualmente en WhatsApp: ") . $image_url;
+        $phone_number = '+593' . substr($row['contact'], 1);
+      ?>
+        <a href='https://wa.me/<?php echo $phone_number; ?>?text=<?php echo $message; ?>' target='_blank'>
+        <button class='btn btn-primary btn'><i class='fab fa-whatsapp'></i> Enviar QR por WhatsApp</button>
+      </a>
+    </div>
+  </td>
 <?php
 }
 ?>
-
+      
 
         </div>
 
