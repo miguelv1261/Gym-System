@@ -222,7 +222,7 @@ while($row=mysqli_fetch_array($result)){
       <?php
         
         // URL de la imagen QR almacenada en tu servidor local
-        $image_url = "http://localhost/Gym-System/qrcodes/".$row['username'].".png"; 
+        $image_url = "http://localhost/Gym-System/admin/qrcodes/".$row['username'].".png"; 
         // Texto del mensaje que quieres enviar junto con la imagen
         $message = urlencode("Haz clic en el enlace para ver tu código QR y envíalo manualmente en WhatsApp: ") . $image_url;
         $phone_number = '+593' . substr($row['contact'], 1);
