@@ -101,7 +101,7 @@ if(!$result){
   $user_id = mysqli_insert_id($conn);
 
   // Generar la URL del perfil del usuario
-  $profileUrl = 'http://localhost/Gym-System/ver-member.php?id=' . urlencode($user_id );
+  $profileUrl = 'http://localhost/Gym-System/admin/ver-member.php?id=' . urlencode($user_id );
   
   // Generar el código QR con la URL del perfil
   include 'libs/phpqrcode.php'; 
@@ -111,7 +111,9 @@ if(!$result){
   $qrPath = 'qrcodes/' . $username . '.png';
   QRcode::png($profileUrl, $qrPath, QR_ECLEVEL_L, 4);
 
-
+  $qry= "select * from members where user_id='$user_id'";
+$result=mysqli_query($conn,$qry);
+while($row=mysqli_fetch_array($result)){
 
   // Mensaje de éxito
   echo "<div class='container-fluid'>";
@@ -125,6 +127,16 @@ if(!$result){
   echo "<h1>Registrado</h1>";
   echo "<h3>Usuario Registrado con Exito!</h3>";
   echo "<img src='$qrPath' alt='QR Code' />";
+
+
+    // Texto del mensaje que quieres enviar junto con la imagen
+    $message = urlencode("Hola ".$row['fullname']. ",  bienvenid@ a la Familia *94 Fitness Center* ");
+    $phone_number = '+593' . substr($row['contact'], 1);
+
+  echo "<a href='https://web.whatsapp.com/send?phone=<?php echo $phone_number; ?>&text= $message' target='_blank'";
+  echo " class='btn btn-primary btn'<i class='fab fa-whatsapp'></i> Enviar QR por WhatsApp";
+  echo  "</a>";
+
   echo "<hr>";
   echo "<a class='btn btn-inverse btn-big'  href='members.php'>Go Back</a> </div>";
   echo "</div>";
@@ -133,7 +145,7 @@ if(!$result){
   echo "</div>";
   echo "</div>";
   
-
+ }
 }
 
 }else{

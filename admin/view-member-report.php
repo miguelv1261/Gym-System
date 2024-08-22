@@ -48,7 +48,7 @@ header('location:../index.php');
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="member-report.php" class="current">Member Reports</a> </div>
-    <h1 class="text-center">Member's Report <i class="fas fa-file"></i></h1>
+    <h1 class="text-center">Reporte de Usuario <i class="fas fa-file"></i></h1>
   </div>
   <div class="container-fluid print-container">
     <div class="row-fluid">
@@ -68,7 +68,7 @@ header('location:../index.php');
                 <table class="">
                   <tbody>
                     <tr>
-                      <td><h4>Perfect GYM Club</h4></td>
+                      <td><h3> 94 Fitness Center</h3></td>
                     </tr>
                     <tr>
                       <td>5021  Wetzel Lane, Williamsburg</td>
@@ -76,9 +76,6 @@ header('location:../index.php');
                     
                     <tr>
                       <td>Tel: 231-267-6011</td>
-                    </tr>
-                    <tr>
-                      <td >Email: support@perfectgym.com</td>
                     </tr>
                   </tbody>
                 </table>
@@ -88,17 +85,17 @@ header('location:../index.php');
                 <table class="table table-bordered table-invoice-full">
                   <thead>
                     <tr>
-                      <th class="head0">Membership ID</th>
+                      <th class="head0">Cedula</th>
                       <th class="head1">Services Taken</th>
-                      <th class="head0 right">My Plans (Upto)</th>
-                      <th class="head1 right">Address</th>
+                      <th class="head0 right">Mi Plan</th>
+                      <th class="head1 right">Dirección</th>
                       <th class="head0 right">Charge</th>
                       <th class="head0 right">Attendance Count</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><div class="text-center">PGC-SS-<?php echo $row['user_id']; ?></div></td>
+                      <td><div class="text-center"><?php echo $row['username']; ?></div></td>
                       <td><div class="text-center"><?php echo $row['services']; ?></div></td>
                       <td><div class="text-center"><?php if($row['plan'] == 0) { echo 'NONE';} else {echo $row['plan'].' Month/s';} ?></div></td>
                       <td><div class="text-center"><?php echo $row['address']; ?></div></td>

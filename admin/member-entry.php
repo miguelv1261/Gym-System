@@ -62,26 +62,26 @@ header('location:../index.php');
           <div class="control-group">
               <label class="control-label">Cedula :</label>
               <div class="controls">
-                <input type="text" class="span11" id="cedula" name="username"  />
+                <input type="text" class="span11" id="cedula" name="username" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Nombre :</label>
               <div class="controls">
-                <input type="text" class="span11" id="nombre" name="fullname" placeholder="Nombre Completo" />
+                <input type="text" class="span11" id="nombre" name="fullname" placeholder="Nombre Completo" required/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Genero :</label>
               <div class="controls">
-              <select name="gender" required="required" id="select">
+              <select name="gender" required="required" id="select" required>
                   <option value="Masculino" selected="selected">Masculino</option>
                   <option value="Femenino">Femenino</option>
                   <option value="Otro">Otro</option>
                 </select>
               </div>
             </div>
-            <div class="control-group">
+            <div class="control-group" required>
               <label class="control-label">Fecha de Registro :</label>
               <div class="controls">
                 <input type="date" name="dor" class="span11" />
@@ -109,13 +109,13 @@ header('location:../index.php');
             <div class="control-group">
               <label for="normal" class="control-label">Celular</label>
               <div class="controls">
-                <input type="number" id="mask-phone" name="contact" placeholder="9876543210" class="span8 mask text">
+                <input type="number" id="mask-phone" name="contact" placeholder="9876543210" class="span8 mask text" required>
                 </div>
             </div>
             <div class="control-group">
               <label class="control-label">Dirección :</label>
               <div class="controls">
-                <input type="text" class="span11" name="address" placeholder="Salcedo" />
+                <input type="text" class="span11" name="address" placeholder="Salcedo" required>
               </div>
             </div>
           </div>
@@ -222,31 +222,48 @@ function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
 $(document).ready(function() {
-        $('#cedula').on('blur', function() {
-            var cedula = $('#cedula').val();
-            var url = "https://srienlinea.sri.gob.ec/movil-servicios/api/v1.0/deudas/porIdentificacion/" + cedula + "/?tipoPersona=N";
-          
-            $.ajax({
-                type: "GET",
-                url: url,
-                success: function(data) {
-                    if(data && data.contribuyente && data.contribuyente.nombreComercial) {
-                        $("#nombre").val(data.contribuyente.nombreComercial);
-                    } else {
-                        alert('No se encontró el nombre comercial para la cédula proporcionada.');
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error("Error al realizar la consulta:", status, error);
-                    alert('Ocurrió un error al consultar el nombre. Verifica la cédula y vuelve a intentar.');
+    $('#cedula').on('blur', function() {
+        var cedula = $('#cedula').val();
+
+        // Verifica si la cédula ya existe en la base de datos
+        $.ajax({
+            type: "POST",
+            url: "verificar_cedula.php",
+            data: { cedula: cedula },
+            dataType: "json",
+            success: function(response) {
+                if (response.exists) {
+                    alert('La cédula ya está registrada. No se puede registrar este usuario nuevamente.');
+                    $('#cedula').val(''); // Limpia el campo de cédula
+                    $("#nombre").val('');  // Limpia el campo de nombre
+                } else {
+                    // Si la cédula no existe, realiza la consulta a la API del SRI
+                    var url = "https://srienlinea.sri.gob.ec/movil-servicios/api/v1.0/deudas/porIdentificacion/" + cedula + "/?tipoPersona=N";
+                    
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        success: function(data) {
+                            if (data && data.contribuyente && data.contribuyente.nombreComercial) {
+                                $("#nombre").val(data.contribuyente.nombreComercial);
+                            } else {
+                                alert('No se encontró el nombre para la cédula proporcionada.');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error al realizar la consulta:", status, error);
+                            alert('Ocurrió un error al consultar el nombre. Verifica la cédula y vuelve a intentar.');
+                        }
+                    });
                 }
-            });
+            },
+            error: function(xhr, status, error) {
+                console.error("Error al verificar la cédula:", status, error);
+                alert('Ocurrió un error al verificar la cédula. Por favor, intenta nuevamente.');
+            }
         });
     });
-
-
-                
-
+});
 
 </script>
 </body>

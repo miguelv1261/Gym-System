@@ -59,7 +59,7 @@ header('location:../index.php');
                   <th>Teléfono</th>
                   <th>Fecha de Registro</th>
                   <th>Dirección</th>
-                  <th>Membership Status</th>
+                  <th>Estado</th>
                   <th>Plan</th>
                   <th>Acción</th>
                 </tr>

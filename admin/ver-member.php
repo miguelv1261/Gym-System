@@ -224,12 +224,27 @@ while($row=mysqli_fetch_array($result)){
         // URL de la imagen QR almacenada en tu servidor local
         $image_url = "http://localhost/Gym-System/admin/qrcodes/".$row['username'].".png"; 
         // Texto del mensaje que quieres enviar junto con la imagen
-        $message = urlencode("Haz clic en el enlace para ver tu código QR y envíalo manualmente en WhatsApp: ") . $image_url;
+        $message = urlencode("Hola ".$row['fullname']. ",  bienvenid@ a la Familia *94 Fitness Center* ");
         $phone_number = '+593' . substr($row['contact'], 1);
       ?>
-        <a href='https://wa.me/<?php echo $phone_number; ?>?text=<?php echo $message; ?>' target='_blank'>
+         <a href='https://web.whatsapp.com/send?phone=<?php echo $phone_number; ?>&text=<?php echo $message; ?>' target='_blank'>
         <button class='btn btn-primary btn'><i class='fab fa-whatsapp'></i> Enviar QR por WhatsApp</button>
       </a>
+      <?php
+
+// Consulta para obtener el nombre del archivo QR basado en el ID del usuario
+$query = "SELECT username FROM members WHERE user_id = ?";
+$stmt = $con->prepare($query);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$stmt->bind_result($username);
+$stmt->fetch();
+$stmt->close();
+
+// Ruta completa de la imagen QR
+$qr_path = "qrcodes/" . $username . ".png";
+?>
+    <img src="<?php echo $qr_path; ?>" alt="Código QR">
     </div>
   </td>
 <?php
