@@ -47,8 +47,7 @@ header('location:../index.php');
 
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="payment.php" class="tip-bottom">Payment</a> <a href="#" class="current">Make Payments</a> </div>
-  <h1>Payments</h1>
+  <h1>Pago</h1>
 </div>
 <form role="form" action="index.php" method="POST">
     <?php 
@@ -78,13 +77,20 @@ header('location:../index.php');
             //PAGO
             $qry1 = "INSERT INTO pagos(id_plan, valor, id_user, fecha) values ($planId, $planValue, $id, '$curr_date') ";
             $result2 = mysqli_query($conn,$qry1); //query executes
+            $qry2 = "SELECT * FROM members WHERE user_id='$id'";
+            $result3 = mysqli_query($conn, $qry2);
+            $row = mysqli_fetch_array($result3);
+            $plan = mysqli_real_escape_string($conn, $row['plan']);
+$qry4 = "SELECT * FROM rates WHERE name = '$plan'";
+$result4 = mysqli_query($conn, $qry4);
+$row4 = mysqli_fetch_assoc($result4);
             if(!$result || !$result2){ ?>
 
                 <h3 class="text-center">Something went wrong!</h3>
                 
              <?php } else { ?>
 
-              <?php if ($status == 'Active') {?> 
+              <?php if ($status == 'Active') {?>
             
                 <table class="body-wrap">
                 <tbody><tr>
@@ -110,7 +116,7 @@ header('location:../index.php');
 
                                                         <tr>
                                                         <td class="text-center" style="font-size:14px;"><b>Miembro: <?php echo $fullname; ?></b>  <br>
-                                                          Fecha de Pago: <?php echo date("%d de %B de %Y - %I:%M %p");?>
+                                                          Fecha de Pago: <?php echo date("Y-m-d");?>
                                                         </td>
                                                         
                                                         </tr>
@@ -121,25 +127,20 @@ header('location:../index.php');
                                                                     <tbody>
                                                                     
                                                                     <tr>
-                                                                        <td><b>Service Taken</b></td>
-                                                                        <td class="alignright"><b>Valid Upto</b></td>
+                                                                        <td><b>Plan </b></td>
+                                                                        <td class="alignright"><b>Validez del Plan</b></td>
                                                                     </tr>
                                                                     
                                                                     
                                                                     <tr>
-                                                                        <td><?php echo $services; ?></td>
-                                                                        <td class="alignright"><?php echo $plan?> Month/s</td>
-                                                                    </tr>
-
-                                                                    <tr>
-                                                                        <td><?php echo 'Charge Per Month'; ?></td>
-                                                                        <td class="alignright"><?php echo '$'.$amount?></td>
+                                                                        <td><?php echo $row['plan'] ?></td>
+                                                                        <td class="alignright"><?php echo $row4['timepo']?> Meses</td>
                                                                     </tr>
                                                                    
                                                                     
                                                                     <tr class="total">
                                                                         <td class="alignright" width="80%">Total Amount</td>
-                                                                        <td class="alignright">$<?php echo $amountpayable; ?></td>
+                                                                        <td class="alignright">$<?php echo $row4['charge']; ?></td>
                                                                     </tr>
                                                                 </tbody></table>
                                                             </td>

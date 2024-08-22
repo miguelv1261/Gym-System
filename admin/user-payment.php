@@ -91,9 +91,6 @@ $row = mysqli_fetch_array($result);
                     <tr>
                       <td>Tel: 231-267-6011</td>
                     </tr>
-                    <tr>
-                      <td>Email: support@perfectgym.com</td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
