@@ -30,7 +30,7 @@ header('location:../index.php');
 </div>
 <!--close-Header-part--> 
 
-
+ 
 <!--top-Header-menu-->
 <?php include 'includes/topheader.php'?>
 <!--close-top-Header-menu-->
@@ -41,78 +41,73 @@ header('location:../index.php');
 </div> -->
 <!--close-top-serch-->
 
-<!--sidebar-menu--> 
-<?php $page='members-remove'; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
-
+<?php $page='members-update'; include 'includes/sidebar.php'?>
+<!--sidebar-menu-->
 <div id="content">
-  <div id="content-header">
-    <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="remove-member.php" class="current">Remove Members</a> </div>
-    <h1 class="text-center">Remove Members <i class="fas fa-group"></i></h1>
-  </div>
-  <div class="container-fluid">
-    <hr>
-    <div class="row-fluid">
-      <div class="span12">
 
-      <div class='widget-box'>
-          <div class='widget-title'> <span class='icon'> <i class='fas fa-th'></i> </span>
-            <h5>Member table</h5>
-          </div>
-          <div class='widget-content nopadding'>
-	  
-	  <?php
+<form role="form" action="index.php" method="POST">
+    <?php 
 
-      include "dbcon.php";
-      $qry="select * from members";
-      $cnt = 1;
-        $result=mysqli_query($conn,$qry);
+            if(isset($_POST['nombre'])){
+            $name = $_POST["nombre"];    
+            $charge = $_POST["precio"];
+            $timepo = $_POST["dura"];
+            $id = $_POST["id"];
+            include 'dbcon.php';
+            $qry = "update rates set name='$name', charge='$charge',timepo='$timepo' where id='$id'";
+            $result = mysqli_query($conn,$qry); //query executes
 
-        
-          echo"<table class='table table-bordered table-hover'>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Fullname</th>
-                  <th>Username</th>
-                  <th>Contact Number</th>
-                  <th>D.O.R</th>
-                  <th>Address</th>
-                  <th>Amount</th>
-                  <th>Choosen Service</th>
-                  <th>Plan</th>
-                  <th>Action</th>
-                </tr>
-              </thead>";
-              
-            while($row=mysqli_fetch_array($result)){
-            
-            echo"<tbody> 
-               
-                <td><div class='text-center'>".$cnt."</div></td>
-                <td><div class='text-center'>".$row['fullname']."</div></td>
-                <td><div class='text-center'>@".$row['username']."</div></td>
-                <td><div class='text-center'>".$row['contact']."</div></td>
-                <td><div class='text-center'>".$row['dor']."</div></td>
-                <td><div class='text-center'>".$row['address']."</div></td>
-                <td><div class='text-center'>$".$row['amount']."</div></td>
-                <td><div class='text-center'>".$row['services']."</div></td>
-                <td><div class='text-center'>".$row['plan']." Month/s</div></td>
-                <td><div class='text-center'><a href='actions/delete-member.php?id=".$row['user_id']."' style='color:#F66;'><i class='fas fa-trash'></i> Remove</a></div></td>
+            if(!$result){
+                echo"<div class='container-fluid'>";
+                    echo"<div class='row-fluid'>";
+                    echo"<div class='span12'>";
+                    echo"<div class='widget-box'>";
+                    echo"<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
+                        echo"<h5>Error Message</h5>";
+                        echo"</div>";
+                        echo"<div class='widget-content'>";
+                            echo"<div class='error_ex'>";
+                            echo"<h1 style='color:maroon;'>Error</h1>";
+                            echo"<h3>Datos del Usuario no se Actualizaron</h3>";
+                            echo"<p>Vuelve a intentarlo</p>";
+                            echo"<a class='btn btn-warning btn-big'  href='edit-member.php'>Regresar</a> </div>";
+                        echo"</div>";
+                        echo"</div>";
+                    echo"</div>";
+                    echo"</div>";
+                echo"</div>";
+            }else {
+
+                echo"<div class='container-fluid'>";
+                    echo"<div class='row-fluid'>";
+                    echo"<div class='span12'>";
+                    echo"<div class='widget-box'>";
+                    echo"<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
+                        echo"<h5>Mensaje</h5>";
+                        echo"</div>";
+                        echo"<div class='widget-content'>";
+                            echo"<div class='error_ex'>";
+                            echo"<h1>Bien</h1>";
+                            echo"<h3>Datos del Plan Actualizados!</h3>";
+                            echo"<a class='btn btn-inverse btn-big'  href='plan.php'>Regresar</a> </div>";
+                        echo"</div>";
+                        echo"</div>";
+                    echo"</div>";
+                    echo"</div>";
+                echo"</div>";
+
+            }
+
+            }else{
+                echo"<h3>NO ESTAS AUTORIZADO. REGRESAR <a href='index.php'> DASHBOARD </a></h3>";
+            }
+?>
+                                                               
                 
-              </tbody>";
-         $cnt++;   }
-            ?>
-
-            </table>
-          </div>
-        </div>
-   
-		
-	
-      </div>
-    </div>
-  </div>
+             </form>
+         </div>
+</div></div>
 </div>
 
 <!--end-main-container-part-->

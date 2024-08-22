@@ -56,7 +56,7 @@
                 <table class="">
                   <tbody>
                     <tr>
-                      <td><h4>Perfect GYM Club</h4></td>
+                      <td><h4>94 Fitness Center</h4></td>
                     </tr>
                     <tr>
                       <td>5021 Wetzel Lane, Williamsburg</td>

@@ -26,7 +26,7 @@ header('location:../index.php');
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
+  <h1><a href="dashboard.html">94 Fitness Center</a></h1>
 </div>
 <!--close-Header-part--> 
 
@@ -48,7 +48,7 @@ header('location:../index.php');
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="attendance.php" class="current">Manage Attendance</a> </div>
-    <h1 class="text-center">Attendance List <i class="icon icon-calendar"></i></h1>
+    <h1 class="text-center">Attendance List 1<i class="icon icon-calendar"></i></h1>
   </div>
   <div class="container-fluid">
     <div class="row-fluid">
@@ -143,19 +143,7 @@ header('location:../index.php');
 
 <!--end-main-container-part-->
 
-<!--Footer-part-->
 
-<div class="row-fluid">
-  <div id="footer" class="span12"> <?php echo date("Y");?> &copy; Developed By Naseeb Bajracharya</a> </div>
-</div>
-
-<style>
-#footer {
-  color: white;
-}
-</style>
-
-<!--end-Footer-part-->
 
 <script src="../js/jquery.min.js"></script> 
 <script src="../js/jquery.ui.custom.js"></script> 

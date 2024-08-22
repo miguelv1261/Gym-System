@@ -26,7 +26,7 @@ header('location:../index.php');
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
+  <h1><a href="dashboard.html">94 Fitness Center</a></h1>
 </div>
 <!--close-Header-part--> 
 
@@ -89,7 +89,7 @@ header('location:../index.php');
                 <td><div class='text-center'>".$row['charge']." $</div></td>
                 <td><div class='text-center'>".$row['timepo']." Mes</div></td>
                 <td>
-                  <div class='text-center'><a href='edit-memberform.php?id=".$row['id']."'><i class='fas fa-edit'></i> Editar</a></div>
+                  <div class='text-center'><a href='edit-planform.php?id=".$row['id']."'><i class='fas fa-edit'></i> Editar</a></div>
                   <div class='text-center'><a href='actions/delete-plan.php?id=".$row['id']."' style='color:#F66;'><i class='fas fa-trash'></i>Eliminar</a></div>                 
                 </td>
                 

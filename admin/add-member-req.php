@@ -26,7 +26,7 @@ header('location:../index.php');
  
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">Perfect Gym Admin</a></h1>
+  <h1><a href="dashboard.html">94 Fitness Center</a></h1>
 </div>
 <!--close-Header-part--> 
 
@@ -45,10 +45,7 @@ header('location:../index.php');
   <?php $page='members-entry'; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
 <div id="content">
-<div id="content-header">
-  <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="#" class="tip-bottom">Manamge Members</a> <a href="#" class="current">Add Members</a> </div>
-  <h1>Member Entry Form</h1>
-</div>
+
 <form role="form" action="index.php" method="POST">
             <?php 
 
@@ -82,14 +79,13 @@ if(!$result){
   echo "<div class='span12'>";
   echo "<div class='widget-box'>";
   echo "<div class='widget-title'> <span class='icon'> <i class='fas fa-info'></i> </span>";
-  echo "<h5>Error Message</h5>";
+  echo "<h5>Error</h5>";
   echo "</div>";
   echo "<div class='widget-content'>";
   echo "<div class='error_ex'>";
   echo "<h1 style='color:maroon;'>Error 404</h1>";
-  echo "<h3>Error occured while updating your details</h3>";
-  echo "<p>Please Try Again</p>";
-  echo "<a class='btn btn-warning btn-big'  href='edit-member.php'>Go Back</a> </div>";
+  echo "<p>Por favor, Intentalo nuevamente</p>";
+  echo "<a class='btn btn-warning btn-big'  href='edit-member.php'>Regresar</a> </div>";
   echo "</div>";
   echo "</div>";
   echo "</div>";
@@ -124,7 +120,7 @@ while($row=mysqli_fetch_array($result)){
   echo "</div>";
   echo "<div class='widget-content'>";
   echo "<div class='error_ex'>";
-  echo "<h1>Registrado</h1>";
+  echo "<h1>Registro Exitoso</h1>";
   echo "<h3>Usuario Registrado con Exito!</h3>";
   echo "<img src='$qrPath' alt='QR Code' />";
 
@@ -138,7 +134,7 @@ while($row=mysqli_fetch_array($result)){
   echo  "</a>";
 
   echo "<hr>";
-  echo "<a class='btn btn-inverse btn-big'  href='members.php'>Go Back</a> </div>";
+  echo "<a class='btn btn-inverse btn-big'  href='members.php'>Regresar</a> </div>";
   echo "</div>";
   echo "</div>";
   echo "</div>";
@@ -149,7 +145,7 @@ while($row=mysqli_fetch_array($result)){
 }
 
 }else{
-    echo"<h3>YOU ARE NOT AUTHORIZED TO REDIRECT THIS PAGE. GO BACK to <a href='index.php'> DASHBOARD </a></h3>";
+    echo"<h3>NO ESTAS AUTORIZADO PARA ESTAR EN ESTA PAGINA.REGRESA A  <a href='index.php'> DASHBOARD </a></h3>";
 }
 
 

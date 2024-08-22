@@ -24,13 +24,13 @@ header('location:../index.php');
 </head>
 <body>
 
-<!--Header-part-->
+<!--Header-part--> 
 <div id="header">
   <h1><a href="dashboard.html">94 Fitness Center</a></h1>
 </div>
 <!--close-Header-part--> 
 
- 
+
 <!--top-Header-menu-->
 <?php include 'includes/topheader.php'?>
 <!--close-top-Header-menu-->
@@ -42,21 +42,18 @@ header('location:../index.php');
 <!--close-top-serch-->
 
 <!--sidebar-menu-->
-<?php $page='staff-management'; include 'includes/sidebar.php'?>
+<?php $page='members-entry'; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
-
 <?php
 include 'dbcon.php';
 $id=$_GET['id'];
-$qry= "select * from staffs where user_id='$id'";
+$qry= "select * from rates where id='$id'";
 $result=mysqli_query($conn,$qry);
 while($row=mysqli_fetch_array($result)){
 ?> 
-
 <div id="content">
 <div id="content-header">
-  <div id="breadcrumb"> <a href="index.php" title="Go to Home" class="tip-bottom"><i class="fas fa-home"></i> Home</a> <a href="staffs.php" class="tip-bottom">Staffs</a> <a href="edit-staff-form.php" class="current">Edit Staff Records</a> </div>
-  <h1 class="text-center">Update Staff's Detail <i class="fas fa-briefcase"></i></h1>
+  <h1>Editar Plan</h1>
 </div>
 <div class="container-fluid">
   <hr>
@@ -64,123 +61,55 @@ while($row=mysqli_fetch_array($result)){
     <div class="span6">
       <div class="widget-box">
         <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Staff-Details</h5>
+          <h5>Información Plan</h5>
         </div>
         <div class="widget-content nopadding">
-
-          <form action="edit-staff-req.php" method="POST" class="form-horizontal">
+          <form action="edit-plan-req.php" method="POST" class="form-horizontal">
             <div class="control-group">
-              <label class="control-label">Full Name :</label>
+              <label class="control-label">Nombre Plan :</label>
               <div class="controls">
-                <input type="text" class="span11" name="fullname" value='<?php echo $row['fullname']; ?>' />
+                <input type="text" class="span11" id="nombre" name="nombre" placeholder=""  value='<?php echo $row['name']; ?>'/>
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Username :</label>
+              <label class="control-label">Precio :</label>
               <div class="controls">
-                <input type="text" class="span11" name="username" value='<?php echo $row['username']; ?>' />
+                <input type="text" class="span11" id="precio" name="precio" placeholder="" value='<?php echo $row['charge']; ?>'/>
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Password :</label>
+              <label class="control-label">Duración en Meses :</label>
               <div class="controls">
-                <input type="password"  class="span11" name="password" disabled="" placeholder="**********"  />
-                <span class="help-block">Note: Only the members are allowed to change their password until and unless it's an emergency.</span>
+                <input type="text" class="span11" id="dura" name="dura" placeholder="" value='<?php echo $row['timepo']; ?>'/>
               </div>
             </div>
-            <div class="control-group">
-              <label class="control-label">Gender :</label>
-              <div class="controls">
-                <input type="text" class="span11" name="gender" value='<?php echo $row['gender']; ?>' />
-              </div>
-            </div>
-           
             
           
         </div>
      
         
-        <div class="widget-content nopadding">
-          <div class="form-horizontal">
-           
-        </div>
-        <div class="widget-content nopadding">
-          
-          </div>
-
-
-        </div>
       </div>
-	
+	  
+      <div class="form-actions text-center">
+            <input type="hidden" name="id" value="<?php echo $id;?>">
+              <button type="submit" class="btn btn-success">Guardar</button>
+            </div>
     </div>
-
-    <div class="span6">
-      <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="fas fa-align-justify"></i> </span>
-          <h5>Staff-Details</h5>
-        </div>
-        <div class="widget-content nopadding">
-          <div class="form-horizontal">
-            <div class="control-group">
-              <label for="normal" class="control-label">Contact Number</label>
-              <div class="controls">
-                <input type="number" id="mask-phone" name="contact" value='<?php echo $row['contact']; ?>' class="span8 mask text">
-                <span class="help-block blue span8">(999) 999-9999</span> 
-                </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Address :</label>
-              <div class="controls">
-                <input type="text" class="span11" name="address" value='<?php echo $row['address']; ?>' />
-              </div>
-            </div>
-			
-            <div class="control-group">
-                  <label class="control-label">Designation</label>
-                  <div class="controls">
-                  <select name="designation" id="designation">
-                    <option value="Cashier">Cashier</option>
-                    <option value="Trainer">Trainer</option>
-                    <option value="GYM Assistant">GYM Assistant</option>
-                    <option value="Front Desk Staff">Front Desk Staff</option>
-                    <option value="Manager">Manager</option>
-                    </select>
-                  </div>
-                </div>
-			
-			
-          </div>
-
-           
- 
-            <div class="form-actions text-center">
-             <!-- user's ID is hidden here --> 
-             <input type="hidden" name="id" value="<?php echo $row['user_id'];?>">
-              <button type="submit" class="btn btn-success">Update Staff Details</button>
-            </div>
-
             </form>
-
           </div>
-<?php
+          <?php
 }
 ?>
-
-
         </div>
-
         </div>
       </div>
-
-	
+	</div>
   </div>
   
-  <div class="row-fluid">
-   
-  </div>
-</div>
+  
+</div></div>
 
- 
+
 <!--end-main-container-part-->
 
 
@@ -206,7 +135,7 @@ while($row=mysqli_fetch_array($result)){
 <script src="../js/matrix.popover.js"></script> 
 <script src="../js/jquery.dataTables.min.js"></script> 
 <script src="../js/matrix.tables.js"></script> 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
   // a different page. Ignore if the value returned is a null string:
