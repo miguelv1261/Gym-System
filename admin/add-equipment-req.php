@@ -100,10 +100,10 @@ if(!$result){
           echo"</div>";
           echo"<div class='widget-content'>";
               echo"<div class='error_ex'>";
-              echo"<h1>Success</h1>";
-              echo"<h3>Equipment record has been added!</h3>";
-              echo"<p>The requested details are added. Please click the button to go back.</p>";
-              echo"<a class='btn btn-inverse btn-big'  href='equipment.php'>Go Back</a> </div>";
+              echo"<h1>Registrado</h1>";
+              echo"<h3>Equipo Registrado con Exito!</h3>";
+              
+              echo"<a class='btn btn-inverse btn-big'  href='equipment.php'>Regresar</a> </div>";
           echo"</div>";
           echo"</div>";
       echo"</div>";

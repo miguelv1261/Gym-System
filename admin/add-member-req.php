@@ -120,7 +120,7 @@ while($row=mysqli_fetch_array($result)){
   echo "</div>";
   echo "<div class='widget-content'>";
   echo "<div class='error_ex'>";
-  echo "<h1>Registro Exitoso</h1>";
+  echo "<h1>Registrado</h1>";
   echo "<h3>Usuario Registrado con Exito!</h3>";
   echo "<img src='$qrPath' alt='QR Code' />";
 

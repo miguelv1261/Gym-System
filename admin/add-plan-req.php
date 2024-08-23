@@ -93,7 +93,7 @@ if(!$result){
   echo "<h1>Registrado</h1>";
   echo "<h3>Plan Registrado con Exito!</h3>";
   echo "<hr>";
-  echo "<a class='btn btn-inverse btn-big'  href='members.php'>Go Back</a> </div>";
+  echo "<a class='btn btn-inverse btn-big'  href='members.php'>Regresar</a> </div>";
   echo "</div>";
   echo "</div>";
   echo "</div>";
