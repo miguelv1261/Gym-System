@@ -186,7 +186,7 @@ $result4=mysqli_query($con,$qry);
 
 <!--Header-part-->
 <div id="header">
-  <h1>94 Fitness Center</h1>
+  <h1><a href="">94 Fitness Center</a></h1>
 </div>
 <!--close-Header-part--> 
 
