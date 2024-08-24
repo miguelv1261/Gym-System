@@ -25,7 +25,7 @@ header('location:../index.php');
 <!--Header-part-->
 <div id="header">
   <h1><a href="dashboard.html">94 Fitness Center</a></h1>
-  <img src="img/icongym.png" alt="">
+  <img src="img/94logo.png" alt="">
 </div>
 <!--close-Header-part--> 
 

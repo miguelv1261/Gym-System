@@ -18,7 +18,7 @@ $result4=mysqli_query($con,$qry);
 <html lang="en">
 <head>
 <title>94 Fitness Center</title>
-<link rel="icon" type="image/png" href="../img/icongym.png">
+<link rel="icon" type="image/png" href="../img/94logo.png">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
