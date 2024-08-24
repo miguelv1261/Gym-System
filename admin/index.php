@@ -18,6 +18,7 @@ $result4=mysqli_query($con,$qry);
 <html lang="en">
 <head>
 <title>94 Fitness Center</title>
+<link rel="icon" type="image/png" href="../img/icongym.png">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -185,10 +186,9 @@ $result4=mysqli_query($con,$qry);
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">94 Fitness Center</a></h1>
+  <h1>94 Fitness Center</h1>
 </div>
 <!--close-Header-part--> 
-
 
 <!--top-Header-menu-->
 <?php include 'includes/topheader.php'?>
@@ -196,8 +196,10 @@ $result4=mysqli_query($con,$qry);
 
  
 <!--sidebar-menu-->
-  <?php $page='dashboard'; include 'includes/sidebar.php'?>
+<?php $page='dashboard'; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
+
+
 
 <!--main-container-part-->
 <div id="content">

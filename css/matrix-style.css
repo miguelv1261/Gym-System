@@ -187,6 +187,20 @@ hr {
 #header h1 a {
   display: block;
 }
+#header h2 {
+  background: url("../img/icongym.png") no-repeat scroll 0 0 transparent;
+  background-size: cover;
+  height: 100px; /* Ajusta según sea necesario */
+  left: 20px;
+  overflow: hidden;
+  position: relative;
+  top: 26px;
+  width: 191px;
+}
+#header h2 a {
+  display: block;
+  text-indent: -9999px;
+}
 /* Search input */
 #search {
   position: absolute;
