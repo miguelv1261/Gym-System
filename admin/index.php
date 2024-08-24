@@ -256,7 +256,7 @@ $result4=mysqli_query($con,$qry);
           <div class="widget-title bg_ly"><span class="icon"><i class="fas fa-file"></i></span>
             <h5>Usuarios Registrados por Genero</h5>
           </div>
-              <div id="donutchart" style="width: 640px; height: 300px;"></div>
+              <div id="donutchart" style="width: 500px; height: 300px;"></div>
         </div>
       </div>
       <div class="span6">
@@ -264,7 +264,7 @@ $result4=mysqli_query($con,$qry);
           <div class="widget-title bg_ly"><span class="icon"><i class="fas fa-file"></i></span>
             <h5>Ingresos por mes</h5>
           </div>
-              <div id="columnchart" style="width: 640px; height: 300px;"></div>
+              <div id="columnchart" style="width: 500px; height: 300px;"></div>
           </div>
       </div>
     </div>

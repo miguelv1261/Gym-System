@@ -56,7 +56,7 @@ if (!isset($_SESSION['user_id'])) {
             while ($row = mysqli_fetch_array($result)) {
               ?>
               <div class="widget-content">
-                <h1 style="text-align: center;">Certificado de Control de Peso</h1>
+                <h1 style="text-align: center;">Certificado de Control</h1>
                 <div class="row-fluid">
                   <div class="span4">
                     <table class="">
@@ -68,17 +68,21 @@ if (!isset($_SESSION['user_id'])) {
                         </tr>
                       </tbody>
                     </table>
-                    
+
                   </div>
                   <div class="span6">
-                      <br>
-                      <h4>Miembro del Gimnasio: <?php echo $row['fullname']; ?> <br> Variación de Peso <em
-                          style="color:green"><?php include 'actions/progress-percent.php'; ?>%</em> según las
-                        actualizaciones actuales! <i class="fa fa-spinner fa-spin" style="font-size:24px"></i><br />
-                        <br />
-                        <br />
-                      </h4><br /></p>
-                    </div>
+                    <br>
+                    <h4>Miembro : 
+                      <?php echo $row['fullname']; ?> 
+                      <br> Variación de Peso 
+                        <em style="color:green">
+                          <?php include 'actions/progress-percent.php'; ?>%
+                        </em> según las actualizaciones actuales! 
+                      <br/>
+                      <br/>
+                      
+                    </h4><br /></p>
+                  </div>
                   <div class="span10">
                     <table class="table table-bordered table-invoice-full">
                       <thead>
@@ -125,17 +129,17 @@ if (!isset($_SESSION['user_id'])) {
                       </tbody>
                     </table>
                   </div> <!-- end of span 12 -->
-                  <div  class="span12">
-                  <div class="row-fluid">
-                    <div style="text-align: center;">
-                      <h4><span>Aprovado por:</h4>
-                      <img src="../img/report/stamp-sample.png" width="124px;" alt="">
-                      <p class="text-center">Nota:Autogenerado</p>
-                    </div>
+                  <div class="span12">
+                    <div class="row-fluid">
+                      <div style="text-align: center;">
+                        <h4><span>Aprovado por:</h4>
+                        <img src="../img/report/stamp-sample.png" width="124px;" alt="">
+                        <p class="text-center">Nota:Autogenerado</p>
+                      </div>
 
+                    </div>
                   </div>
-                  </div>
-                  
+
 
                 </div>
 
