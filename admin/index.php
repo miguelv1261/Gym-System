@@ -18,6 +18,7 @@ $result4=mysqli_query($con,$qry);
 <html lang="en">
 <head>
 <title>94 Fitness Center</title>
+<link rel="icon" type="image/png" href="../img/icongym.png">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -185,10 +186,9 @@ $result4=mysqli_query($con,$qry);
 
 <!--Header-part-->
 <div id="header">
-  <h1><a href="dashboard.html">94 Fitness Center</a></h1>
+  <h1><a href="">94 Fitness Center</a></h1>
 </div>
 <!--close-Header-part--> 
-
 
 <!--top-Header-menu-->
 <?php include 'includes/topheader.php'?>
@@ -196,8 +196,10 @@ $result4=mysqli_query($con,$qry);
 
  
 <!--sidebar-menu-->
-  <?php $page='dashboard'; include 'includes/sidebar.php'?>
+<?php $page='dashboard'; include 'includes/sidebar.php'?>
 <!--sidebar-menu-->
+
+
 
 <!--main-container-part-->
 <div id="content">
@@ -254,7 +256,7 @@ $result4=mysqli_query($con,$qry);
           <div class="widget-title bg_ly"><span class="icon"><i class="fas fa-file"></i></span>
             <h5>Usuarios Registrados por Genero</h5>
           </div>
-              <div id="donutchart" style="width: 640px; height: 300px;"></div>
+              <div id="donutchart" style="width: 500px; height: 300px;"></div>
         </div>
       </div>
       <div class="span6">
@@ -262,7 +264,7 @@ $result4=mysqli_query($con,$qry);
           <div class="widget-title bg_ly"><span class="icon"><i class="fas fa-file"></i></span>
             <h5>Ingresos por mes</h5>
           </div>
-              <div id="columnchart" style="width: 640px; height: 300px;"></div>
+              <div id="columnchart" style="width: 500px; height: 300px;"></div>
           </div>
       </div>
     </div>

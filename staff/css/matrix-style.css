@@ -174,7 +174,7 @@ hr {
   width: 100%;
   z-index: -9;
 }
-#header h1 {
+#header h2 {
   background: url("../img/icongym.png") no-repeat scroll 0 0 transparent;
   height: 31px;
   left: 20px;

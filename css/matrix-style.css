@@ -176,16 +176,17 @@ hr {
 }
 #header h1 {
   background: url("../img/icongym.png") no-repeat scroll 0 0 transparent;
-  height: 31px;
-  left: 20px;
-  line-height: 600px;
+  background-size: contain;
+  height: 100px; /* Ajusta según sea necesario */
+  left: 10px;
   overflow: hidden;
   position: relative;
-  top: 26px;
+  top: 5px;
   width: 191px;
 }
 #header h1 a {
   display: block;
+  text-indent: -9999px;
 }
 /* Search input */
 #search {
@@ -290,7 +291,7 @@ hr {
 #sidebar > ul > li > a {
   padding: 10px 0 10px 15px;
   display: block;
-  color: #939da8;
+  color: #ffffff;
 }
 #sidebar > ul > li > a > i {
   margin-right: 10px;
@@ -316,7 +317,7 @@ hr {
 #sidebar > ul li ul li a {
   padding: 10px 0 10px 25px;
   display: block;
-  color: #777777;
+  color: #ffffff;
 }
 #sidebar > ul li ul li:first-child a {
   border-top: 0;

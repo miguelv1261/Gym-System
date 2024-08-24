@@ -29,7 +29,7 @@ if (!isset($_SESSION['user_id'])) {
 
   <!--Header-part-->
   <div id="header">
-    <h1><a href="dashboard.html">94 Fitness Center</a></h1>
+    <h1></h1>
   </div>
   <!--close-Header-part-->
 
@@ -56,25 +56,34 @@ if (!isset($_SESSION['user_id'])) {
             while ($row = mysqli_fetch_array($result)) {
               ?>
               <div class="widget-content">
+                <h1 style="text-align: center;">Certificado de Control</h1>
                 <div class="row-fluid">
                   <div class="span4">
                     <table class="">
                       <tbody>
                         <tr>
                           <td>
-                            <h4>94 Fitness Center</h4>
+                            <img src="../img/icongym.png" alt="">
                           </td>
-                        </tr>
-                        <tr>
-                          <td>5021 Wetzel Lane, Williamsburg</td>
-                        </tr>
-                        <tr>
-                          <td>Tel: 231-267-6011</td>
                         </tr>
                       </tbody>
                     </table>
+
                   </div>
-                  <div class="span8">
+                  <div class="span6">
+                    <br>
+                    <h4>Miembro : 
+                      <?php echo $row['fullname']; ?> 
+                      <br> Variación de Peso 
+                        <em style="color:green">
+                          <?php include 'actions/progress-percent.php'; ?>%
+                        </em> según las actualizaciones actuales! 
+                      <br/>
+                      <br/>
+                      
+                    </h4><br /></p>
+                  </div>
+                  <div class="span10">
                     <table class="table table-bordered table-invoice-full">
                       <thead>
                         <tr>
@@ -120,21 +129,20 @@ if (!isset($_SESSION['user_id'])) {
                       </tbody>
                     </table>
                   </div> <!-- end of span 12 -->
-                </div>
-                <div class="row-fluid">
-                  <div class="pull-left">
-                    <br>
-                    <h4>Miembro del Gimnasio: <?php echo $row['fullname']; ?> <br> Variación de Peso <em
-                        style="color:green"><?php include 'actions/progress-percent.php'; ?>%</em> según las
-                      actualizaciones actuales! <i class="fa fa-spinner fa-spin" style="font-size:24px"></i><br /> <br />
-                      <br /></h4><br /></p>
+                  <div class="span12">
+                    <div class="row-fluid">
+                      <div style="text-align: center;">
+                        <h4><span>Aprovado por:</h4>
+                        <img src="../img/report/stamp-sample.png" width="124px;" alt="">
+                        <p class="text-center">Nota:Autogenerado</p>
+                      </div>
+
+                    </div>
                   </div>
-                  <div class="pull-right">
-                    <h4><span>Aprovado por:</h4>
-                    <img src="../img/report/stamp-sample.png" width="124px;" alt="">
-                    <p class="text-center">Nota:Autogenerado</p>
-                  </div>
+
+
                 </div>
+
               </div>
             </div>
           </div>
@@ -144,7 +152,7 @@ if (!isset($_SESSION['user_id'])) {
       </div>
     </div>
     <div class="text-center">
-    <button class="btn btn-danger" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+      <button class="btn btn-danger" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
     </div>
   </div>
 
@@ -162,7 +170,7 @@ if (!isset($_SESSION['user_id'])) {
 
       .print-container {
         position: absolute;
-        left: 0px;
+        left: -200px;
         top: 0px;
         right: 0px;
       }

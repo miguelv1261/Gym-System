@@ -5,6 +5,7 @@
      
 <head>
         <title>94 Fitness Center</title><meta charset="UTF-8" />
+        <link rel="icon" type="image/png" href="../img/icongym.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
@@ -24,14 +25,14 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_lg"><i class="fas fa-user-circle"></i></span><input type="text" name="user" placeholder="Username" required/>
+                            <span class="add-on bg_lg"><i class="fas fa-user-circle"></i></span><input type="text" name="user" placeholder="Usario" required/>
                         </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_ly"><i class="fas fa-lock"></i></span><input type="password" name="pass" placeholder="Password" required />
+                            <span class="add-on bg_ly"><i class="fas fa-lock"></i></span><input type="password" name="pass" placeholder="Contraseña" required />
                         </div>
                     </div>
                 </div>
@@ -70,6 +71,7 @@
                             }
                     }
             ?>
+            <!--
             <div class="pull-left">
             <a href="customer/index.php"><h6>Customer Login</h6></a>
             </div>
@@ -77,7 +79,7 @@
             <div class="pull-right">
             <a href="staff/index.php"><h6>Staff Login</h6></a>
             </div>
-            
+            -->
         </div>
         
         <script src="js/jquery.min.js"></script>  
