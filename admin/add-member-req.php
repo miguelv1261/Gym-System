@@ -54,7 +54,7 @@ header('location:../index.php');
   use Picqer\Barcode\BarcodeGenerator;
   use Picqer\Barcode\BarcodeGeneratorPNG;
   require_once  '../libs/Types/TypeCode128.php';
-  require_once  '../libs/Types/TypeInterface.php';
+  
 if(isset($_POST['fullname'])){
   $fullname = $_POST["fullname"];    
   $username = $_POST["username"];
@@ -113,13 +113,29 @@ $barcodePath = 'barcodes/barcode.png';
 
 // Generar el código de barras
 $generator = new BarcodeGeneratorPNG();
-$barcode = $generator->getBarcode($profileUrl, BarcodeGenerator::TYPE_CODE_128);
+ // Configurar tamaño y resolución
+ $barcodeWidth = 200; // Ajusta el ancho
+ $barcodeHeight = 50; // Ajusta la altura
+ $barcode = $generator->getBarcode($profileUrl, $generator::TYPE_CODE_128);
 
-// Guardar el código de barras en un archivo
-file_put_contents($barcodePath, $barcode);
+ // Redimensionar la imagen
+ $image = imagecreatefromstring($barcode);
+ $resizedImage = imagecreatetruecolor($barcodeWidth, $barcodeHeight);
 
-// Mostrar el código de barras en el HTML
-echo "<img src='$barcodePath' alt='Código de Barras'/>";
+ // Establecer el color de fondo blanco y el color de las barras negro
+ $white = imagecolorallocate($resizedImage, 255, 255, 255);
+ $black = imagecolorallocate($resizedImage, 0, 0, 0);
+ imagefilledrectangle($resizedImage, 0, 0, $barcodeWidth, $barcodeHeight, $white);
+
+ // Copiar y redimensionar la imagen original
+ imagecopyresampled($resizedImage, $image, 0, 0, 0, 0, $barcodeWidth, $barcodeHeight, imagesx($image), imagesy($image));
+
+ // Guardar la imagen redimensionada
+ imagepng($resizedImage, $barcodePath);
+
+ // Liberar memoria
+ imagedestroy($image);
+ imagedestroy($resizedImage);
   
   $qry= "select * from members where user_id='$user_id'";
 $result=mysqli_query($conn,$qry);

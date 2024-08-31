@@ -1,7 +1,8 @@
 <?php
 
 namespace Picqer\Barcode;
-
+require_once  '../libs/Types/Barcode.php';
+require_once  '../libs/Types/BarcodeBar.php';
 use Imagick;
 use imagickdraw;
 use imagickpixel;

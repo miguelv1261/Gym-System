@@ -1,7 +1,7 @@
 <?php
 
 namespace Picqer\Barcode\Types;
-
+require_once  '../libs/Types/TypeInterface.php';
 use Picqer\Barcode\Barcode;
 use Picqer\Barcode\BarcodeBar;
 use Picqer\Barcode\Exceptions\BarcodeException;
