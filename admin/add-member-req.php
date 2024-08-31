@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 //the isset function to check username is already loged in and stored on the session
@@ -48,7 +49,12 @@ header('location:../index.php');
 
 <form role="form" action="index.php" method="POST">
             <?php 
-
+  require '../libs/BarcodeGenerator.php';
+  require '../libs/BarcodeGeneratorPNG.php';
+  use Picqer\Barcode\BarcodeGenerator;
+  use Picqer\Barcode\BarcodeGeneratorPNG;
+  require_once  '../libs/Types/TypeCode128.php';
+  require_once  '../libs/Types/TypeInterface.php';
 if(isset($_POST['fullname'])){
   $fullname = $_POST["fullname"];    
   $username = $_POST["username"];
@@ -92,21 +98,29 @@ if(!$result){
   echo "</div>";
   echo "</div>";
 } else {
-  // Generar el código QR con la cédula del usuario
 
   $user_id = mysqli_insert_id($conn);
-
-  // Generar la URL del perfil del usuario
-  $profileUrl = 'http://localhost/Gym-System/admin/ver-member.php?id=' . urlencode($user_id );
   
-  // Generar el código QR con la URL del perfil
-  include 'libs/phpqrcode.php'; 
-  if (!file_exists('qrcodes')) {
-      mkdir('qrcodes', 0777, true);
-  }
-  $qrPath = 'qrcodes/' . $username . '.png';
-  QRcode::png($profileUrl, $qrPath, QR_ECLEVEL_L, 4);
+  // Generar la URL del perfil del usuario
+  $profileUrl = 'http://localhost/Gym-System/admin/ver-member.php?id=' . urlencode($user_id);
+// Crear la carpeta para guardar el código de barras si no existe
+if (!file_exists('barcodes')) {
+    mkdir('barcodes', 0777, true);
+}
 
+// Nombre del archivo para guardar el código de barras
+$barcodePath = 'barcodes/barcode.png';
+
+// Generar el código de barras
+$generator = new BarcodeGeneratorPNG();
+$barcode = $generator->getBarcode($profileUrl, BarcodeGenerator::TYPE_CODE_128);
+
+// Guardar el código de barras en un archivo
+file_put_contents($barcodePath, $barcode);
+
+// Mostrar el código de barras en el HTML
+echo "<img src='$barcodePath' alt='Código de Barras'/>";
+  
   $qry= "select * from members where user_id='$user_id'";
 $result=mysqli_query($conn,$qry);
 while($row=mysqli_fetch_array($result)){
@@ -122,7 +136,7 @@ while($row=mysqli_fetch_array($result)){
   echo "<div class='error_ex'>";
   echo "<h1>Registrado</h1>";
   echo "<h3>Usuario Registrado con Exito!</h3>";
-  echo "<img src='$qrPath' alt='QR Code' />";
+  echo "<img src='$barcodePath'/>";
 
 
     // Texto del mensaje que quieres enviar junto con la imagen
