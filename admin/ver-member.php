@@ -47,10 +47,20 @@ header('location:../index.php');
 
 <?php
 include 'dbcon.php';
-$id=$_GET['id'];
-$qry= "select * from members where user_id='$id'";
+if (isset($_GET['cedula'])) {
+  $ced = $_GET['cedula'];
+  $qry= "select * from members where username='$ced'";
+  
+  // Continúa con el procesamiento
+} else {
+  $id=$_GET['id'];
+  $qry= "select * from members where username='$id'";
+}
+
+
 $result=mysqli_query($conn,$qry);
 while($row=mysqli_fetch_array($result)){
+  $id = $row['user_id'];
 ?> 
  
 <div id="content">
@@ -144,8 +154,6 @@ while($row=mysqli_fetch_array($result)){
             <?php
                 include 'dbcon.php';
 
-                // Suponemos que tienes el user_id del usuario
-                $id=$_GET['id'];
 
                 // Consulta para obtener el nombre del plan del usuario
 

@@ -51,8 +51,10 @@ header('location:../index.php');
             <?php 
   require '../libs/BarcodeGenerator.php';
   require '../libs/BarcodeGeneratorPNG.php';
+  require '../libs/BarcodeGeneratorJPG.php';
   use Picqer\Barcode\BarcodeGenerator;
   use Picqer\Barcode\BarcodeGeneratorPNG;
+  use Picqer\Barcode\BarcodeGeneratorJPG;
   require_once  '../libs/Types/TypeCode128.php';
   
 if(isset($_POST['fullname'])){
@@ -100,43 +102,50 @@ if(!$result){
 } else {
 
   $user_id = mysqli_insert_id($conn);
-  
-  // Generar la URL del perfil del usuario
-  $profileUrl = 'http://localhost/Gym-System/admin/ver-member.php?id=' . urlencode($user_id);
+  $ced = $_POST["username"];
 // Crear la carpeta para guardar el código de barras si no existe
 if (!file_exists('barcodes')) {
     mkdir('barcodes', 0777, true);
 }
+// Ruta donde se guardará el código de barras
+$barcodePath = 'barcodes/' . $ced . '.jpg';
 
-// Nombre del archivo para guardar el código de barras
-$barcodePath = 'barcodes/barcode.png';
+// Crear una instancia del generador de código de barras
+$generator = new BarcodeGeneratorJPG();
 
-// Generar el código de barras
-$generator = new BarcodeGeneratorPNG();
- // Configurar tamaño y resolución
- $barcodeWidth = 200; // Ajusta el ancho
- $barcodeHeight = 50; // Ajusta la altura
- $barcode = $generator->getBarcode($profileUrl, $generator::TYPE_CODE_128);
 
- // Redimensionar la imagen
- $image = imagecreatefromstring($barcode);
- $resizedImage = imagecreatetruecolor($barcodeWidth, $barcodeHeight);
 
- // Establecer el color de fondo blanco y el color de las barras negro
- $white = imagecolorallocate($resizedImage, 255, 255, 255);
- $black = imagecolorallocate($resizedImage, 0, 0, 0);
- imagefilledrectangle($resizedImage, 0, 0, $barcodeWidth, $barcodeHeight, $white);
+// Ajustar el tamaño del código de barras
+$barcodeWidth = 400; // Ajusta el ancho según sea necesario
+$barcodeHeight = 50; // Ajusta la altura según sea necesario
+$barcode = $generator->getBarcode($ced, $generator::TYPE_CODE_128);
 
- // Copiar y redimensionar la imagen original
- imagecopyresampled($resizedImage, $image, 0, 0, 0, 0, $barcodeWidth, $barcodeHeight, imagesx($image), imagesy($image));
+// Crear una imagen con el espacio adicional
+$im = imagecreatetruecolor($barcodeWidth , $barcodeHeight ); // Ajustar el tamaño de la imagen final
 
- // Guardar la imagen redimensionada
- imagepng($resizedImage, $barcodePath);
+// Definir colores
+$white = imagecolorallocate($im, 255, 255, 255);
+$black = imagecolorallocate($im, 0, 0, 0);
 
- // Liberar memoria
- imagedestroy($image);
- imagedestroy($resizedImage);
-  
+// Rellenar el fondo con blanco
+imagefill($im, 0, 0, $white);
+
+// Crear una imagen desde el código de barras
+$barcodeImage = imagecreatefromstring($barcode);
+
+// Copiar la imagen del código de barras a la nueva imagen con espacio adicional
+imagecopy($im, $barcodeImage, 20, 10, 0, 0, $barcodeWidth, $barcodeHeight);
+
+// Escribir el número de cédula debajo del código de barras
+imagestring($im, 5, 20, $barcodeHeight + 15, $ced, $black);
+
+// Guardar la imagen final en un archivo PNG
+imagepng($im, $barcodePath);
+
+// Liberar memoria
+imagedestroy($barcodeImage);
+imagedestroy($im);
+
   $qry= "select * from members where user_id='$user_id'";
 $result=mysqli_query($conn,$qry);
 while($row=mysqli_fetch_array($result)){
@@ -153,7 +162,8 @@ while($row=mysqli_fetch_array($result)){
   echo "<h1>Registrado</h1>";
   echo "<h3>Usuario Registrado con Exito!</h3>";
   echo "<img src='$barcodePath'/>";
-
+  echo "";
+  
 
     // Texto del mensaje que quieres enviar junto con la imagen
     $message = urlencode("Hola ".$row['fullname']. ",  bienvenid@ a la Familia *94 Fitness Center* ");

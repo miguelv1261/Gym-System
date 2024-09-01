@@ -45,6 +45,7 @@
     <li class="<?php //if($page=='payment'){ echo 'active'; }?>"><a href="payment.php"><i class="fas fa-hand-holding-usd"></i> <span>Payments</span></a></li>
     <li class="<?php //if($page=='announcement'){ echo 'active'; }?>"><a href="announcement.php"><i class="fas fa-bullhorn"></i> <span>Announcement</span></a></li>
     -->
+    <li class="<?php if($page=='cobro'){ echo 'active'; }?>"><a href="caja.php"><i class="fas fa-briefcase"></i> <span>Caja</span></a></li>
     <li class="<?php if($page=='staff-management'){ echo 'active'; }?>"><a href="staffs.php"><i class="fas fa-briefcase"></i> <span>Staff</span></a></li>
     <li class="submenu"> <a href="#"><i class="fas fa-file"></i> <span>Reportes</span></a>
       <ul>
@@ -55,7 +56,17 @@
       </ul>
     </li>
       <div id="clock" style="color: white; font-size: 35px; position: absolute; bottom: -150px; left: 35px;"></div>
-  </ul> 
+      <li>
+  <form action="ver-member.php" method="get" id="scan-form">
+    <input type="text" name="cedula" placeholder="Escanea o ingresa la cédula" id="scan-input">
+    <button type="submit">Buscar</button>
+  </form>
+  </li>
+    </ul>
+  <ul>
+
+  </ul>
+
 </div>
 
 <script>
@@ -73,4 +84,14 @@ function updateClock() {
 
 setInterval(updateClock, 1000);  // Actualiza el reloj cada segundo
 updateClock();  // Llama a la función para mostrar el reloj inmediatamente
+//
+document.getElementById('scan-input').focus(); // El campo está siempre enfocado
+
+document.getElementById('scan-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Evita el envío automático del formulario
+        document.getElementById('scan-form').submit(); // Envía el formulario manualmente
+    }
+});
+
 </script>

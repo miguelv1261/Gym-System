@@ -81,7 +81,7 @@ header('location:../index.php');
                 
                 <td><div class='text-center'><?php echo $row['plan'];?></div></td>
                 <td>
-                  <div class='text-center'><a href='ver-member.php?id=<?php echo $row['user_id']?>'><i class='fas fa-eye'></i> Ver</a></div>  
+                  <div class='text-center'><a href='ver-member.php?id=<?php echo $row['user_id']?>&cedula=<?php echo urlencode($row['username']); ?>'><i class='fas fa-eye'></i> Ver</a></div>  
                   <div class='text-center'><a href='edit-memberform.php?id=<?php echo $row['user_id']?>'><i class='fas fa-edit'></i> Editar</a></div>
                   <div class='text-center'>
                     <a href='actions/delete-member.php?id=<?php echo $row['user_id']?>
