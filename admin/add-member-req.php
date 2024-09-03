@@ -79,7 +79,7 @@ if(isset($_POST['fullname'])){
   //  
   $qry = "INSERT INTO members(fullname,username,password,dor,gender,services,amount,p_year,paid_date,plan,address,contact) values ('$fullname','$username','$password','$dor','$gender','$services','$totalamount','$p_year','$paid_date','$plan','$address','$contact')";
   $result = mysqli_query($conn,$qry); //query executes
-
+  $qry2 = "INSERTO INTO pagos(id_plan, valor, fecha) values ('$plan','$valor','$paid_date')";
 if(!$result){
   // Mensaje de error
   echo "<div class='container-fluid'>";

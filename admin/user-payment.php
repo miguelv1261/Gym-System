@@ -58,11 +58,7 @@ $row = mysqli_fetch_array($result);
 <div id="content">
   <div id="content-header">
     <div id="breadcrumb"> 
-      <a href="index.php" title="Go to Home" class="tip-bottom">
-        <i class="fas fa-home"></i> Home
-      </a> 
-      <a href="payment.php">Payments</a> 
-      <a href="#" class="current">Invoice</a>
+
     </div>
     <h1>Registrar Pago</h1>
   </div>
@@ -80,16 +76,10 @@ $row = mysqli_fetch_array($result);
                 <table class="">
                   <tbody>
                     <tr>
-                      <td><img src="../img/gym-logo.png" alt="Gym Logo" width="175"></td>
+                      <td><img src="../img/94logo.png" alt="Gym Logo" width="175"></td>
                     </tr>
                     <tr>
                       <td><h4>94 Fitness Center</h4></td>
-                    </tr>
-                    <tr>
-                      <td>5021 Wetzel Lane, Williamsburg</td>
-                    </tr>
-                    <tr>
-                      <td>Tel: 231-267-6011</td>
                     </tr>
                   </tbody>
                 </table>

@@ -89,40 +89,55 @@ if (!isset($_SESSION['user_id'])) {
         <h1><a href="dashboard.html">94 Fitness Center</a></h1>
     </div>
     <?php include 'includes/topheader.php' ?>
-    <?php $page = 'cobro';
-    include 'includes/sidebar.php' ?>
+    <?php $page = 'cobro'; include 'includes/sidebar.php' ?>
 
     <div id="content">
         <div id="content-header">
             <div class="caja">
                 <h2>Registrar Cobro</h2>
-                <form id="cobroForm" action="cobrar.php" method="POST">
+                <form id="cobroForm">
                     <label for="monto">Monto (USD):</label>
                     <input type="number" id="monto" name="monto" step="0.01" required>
-                    <button type="submit" class="boton">Registrar Cobro</button>
+                    <button type="button" onclick="actualizarTotalCobrado()">Realizar Cobro</button>
                 </form>
 
                 <h2>Total Cobrado Hoy</h2>
-                <div id="totalCobrado">
-                    <!-- El total cobrado se mostrará aquí -->
-                </div>
+                <div id="totalCobrado"></div>
             </div>
         </div>
     </div>
     <?php include 'includes/scripts.php'; ?>
     <script>
-        // Función para actualizar el total cobrado
-        function actualizarTotalCobrado() {
-            fetch('total_cobrado.php')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('totalCobrado').innerHTML = data;
-                });
-        }
+    function actualizarTotalCobrado() {
+        const monto = document.getElementById('monto').value;
+        
+        fetch('cobrar.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'monto=' + encodeURIComponent(monto)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            actualizarTotalCobradoEnPantalla();  // Actualiza el total cobrado en pantalla
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Ocurrió un error al realizar el cobro.');
+        });
+    }
 
-        // Actualizar el total cobrado al cargar la página
-        window.onload = actualizarTotalCobrado;
+    function actualizarTotalCobradoEnPantalla() {
+        fetch('total_cobrado.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('totalCobrado').innerHTML = data;
+            });
+    }
+
+    window.onload = actualizarTotalCobradoEnPantalla;  // Actualizar el total cobrado al cargar la página
     </script>
 </body>
-
 </html>
