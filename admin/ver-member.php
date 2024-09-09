@@ -184,6 +184,7 @@ while($row=mysqli_fetch_array($result)){
 
                         // Calcula el tiempo restante
                         $today = new DateTime();
+                        $today->setTime(0, 0, 0); // Normaliza la hora actual a medianoche
                         $interval = $today->diff($expiration_date);
 
                         if ($today > $expiration_date) {

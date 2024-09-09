@@ -111,7 +111,7 @@ $row4 = mysqli_fetch_assoc($result4);
                                                     <table class="invoice">
                                                         <tbody>
                                                         <tr>
-                                                            <td><div style="float:left">Invoice #GMS_<?php echo(rand(100000,10000000));?> <br> 5021  Wetzel Lane, <br>Williamsburg </div><div style="float:right"> Último Pago: <?php echo $paid_date?></div></td>
+                                                            <td><div style="float:left">Salcedo, <br> Cotopaxi, <br>Ecuador </div><div style="float:right"> Último Pago: <?php echo $paid_date?></div></td>
                                                         </tr>
 
                                                         <tr>
@@ -139,19 +139,13 @@ $row4 = mysqli_fetch_assoc($result4);
                                                                    
                                                                     
                                                                     <tr class="total">
-                                                                        <td class="alignright" width="80%">Total Amount</td>
+                                                                        <td class="alignright" width="80%">Total</td>
                                                                         <td class="alignright">$<?php echo $row4['charge']; ?></td>
                                                                     </tr>
                                                                 </tbody></table>
                                                             </td>
                                                         </tr>
                                                     </tbody></table>
-                                                </td>
-                                            </tr>
-                                            
-                                            <tr>
-                                                <td class="content-block text-center">
-                                                We sincerely appreciate your promptness regarding all payments from your side.
                                                 </td>
                                             </tr>
                                         </tbody></table>
@@ -161,7 +155,7 @@ $row4 = mysqli_fetch_assoc($result4);
                             <div class="footer">
                                 <table width="100%">
                                     <tbody><tr>
-                                        <td class="aligncenter content-block"><button class="btn btn-danger" onclick="window.print()"><i class="fas fa-print"></i> Print</button></td>
+                                        <td class="aligncenter content-block"><button class="btn btn-danger" onclick="window.print()"><i class="fas fa-print"></i> Imprimir</button></td>
                                     </tr>
                                 </tbody></table>
                             </div></div>
