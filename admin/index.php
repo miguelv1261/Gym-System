@@ -290,6 +290,55 @@ $result4=mysqli_query($con,$qry);
 function resetMenu() {
    document.gomenu.selector.selectedIndex = 2;
 }
+<?php
+include 'dbcon.php';
+
+// Consulta para obtener todos los usuarios con sus planes y fechas de pago
+$query = "SELECT user_id, plan, paid_date FROM members";
+$result = $conn->query($query);
+
+if ($result->num_rows > 0) {
+    while ($user = $result->fetch_assoc()) {
+        $id = $user['user_id'];
+        $plan_name = $user['plan'];
+        $subscription_start_date = $user['paid_date'];
+
+        // Consulta para obtener la duración del plan en meses
+        $query_plan = "SELECT timepo FROM rates WHERE name = ?";
+        $stmt = $conn->prepare($query_plan);
+        $stmt->bind_param("s", $plan_name);
+        $stmt->execute();
+        $result_plan = $stmt->get_result();
+
+        if ($result_plan->num_rows > 0) {
+            $plan = $result_plan->fetch_assoc();
+            $duration_months = $plan['timepo'];
+
+            // Calcula la fecha de expiración del plan
+            $subscription_start_date = new DateTime($subscription_start_date);
+            $expiration_date = clone $subscription_start_date;
+            $expiration_date->add(new DateInterval('P' . $duration_months . 'M'));
+
+            // Calcula el tiempo restante
+            $today = new DateTime();
+            $today->setTime(0, 0, 0); // Normaliza la hora actual a medianoche
+
+            // Verifica si el plan ha expirado
+            if ($today > $expiration_date) {
+                // Actualiza el estado del usuario a 'Expired' si ha expirado
+                $qry_update = "UPDATE members SET status='Expired' WHERE user_id=?";
+                $stmt_update = $conn->prepare($qry_update);
+                $stmt_update->bind_param("i", $id);
+                $stmt_update->execute();
+            }
+        }
+        $stmt->close();
+    }
+}
+
+// Cierra la conexión
+$conn->close();
+?>
 </script>
 </body>
 </html>

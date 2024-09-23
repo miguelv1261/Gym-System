@@ -21,6 +21,12 @@ header('location:../index.php');
 <link href="../font-awesome/css/all.css" rel="stylesheet" />
 <link rel="stylesheet" href="../css/jquery.gritter.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<style>
+        .expired-input {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
@@ -153,10 +159,7 @@ while($row=mysqli_fetch_array($result)){
             </div>
             <?php
                 include 'dbcon.php';
-
-
                 // Consulta para obtener el nombre del plan del usuario
-
                 $query = "SELECT plan, paid_date FROM members WHERE user_id = ?";
                 $stmt = $conn->prepare($query);
                 $stmt->bind_param("i", $id);
@@ -188,7 +191,8 @@ while($row=mysqli_fetch_array($result)){
                         $interval = $today->diff($expiration_date);
 
                         if ($today > $expiration_date) {
-                            $result1 = 'El plan ha expirado.';
+                          $result1 = 'El plan ha expirado.';
+                          $inputClass = 'expired-input';
                             $qry = "update members set status='Expired' where user_id='$id'";
                             $result2 = mysqli_query($conn,$qry);
                             
@@ -217,7 +221,7 @@ while($row=mysqli_fetch_array($result)){
             <div class="control-group">
               <label class="control-label">Tiempo Restante :</label>
               <div class="controls">
-              <input type="text" class="span11" name="address" readonly value='<?php echo $result1; ?>' />
+              <input type="text" class="span11 <?php echo $inputClass; ?>" name="address" readonly value='<?php echo $result1; ?>' />
               </div>
             </div>
 
@@ -227,7 +231,7 @@ while($row=mysqli_fetch_array($result)){
             </div>
           </div>
           <td>
-    <div class='text-center'>
+        <div class='text-center'>
       <?php
         
         // URL de la imagen QR almacenada en tu servidor local
