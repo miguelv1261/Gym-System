@@ -235,7 +235,7 @@ while($row=mysqli_fetch_array($result)){
       <?php
         
         // URL de la imagen QR almacenada en tu servidor local
-        $image_url = "http://localhost/Gym-System/admin/qrcodes/".$row['username'].".png"; 
+        $image_url = "http://localhost/Gym-System/admin/barcodes/".$row['username'].".png"; 
         // Texto del mensaje que quieres enviar junto con la imagen
         $message = urlencode("Hola ".$row['fullname']. ",  bienvenid@ a la Familia *94 Fitness Center* ");
         $phone_number = '+593' . substr($row['contact'], 1);
@@ -255,7 +255,7 @@ $stmt->fetch();
 $stmt->close();
 
 // Ruta completa de la imagen QR
-$qr_path = "qrcodes/" . $username . ".png";
+$qr_path = "barcodes/" . $username . ".png";
 ?>
     <img src="<?php echo $qr_path; ?>" alt="Código QR">
     </div>

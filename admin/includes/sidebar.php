@@ -53,6 +53,7 @@
         <li class="<?php if($page=='member-repo'){ echo 'active'; }?>"><a href="members-report.php"><i class="fas fa-arrow-right"></i> Members Report</a></li>
         -->
         <li class="<?php if($page=='c-p-r'){ echo 'active'; }?>"><a href="progress-report.php"><i class="fas fa-arrow-right"></i> Reporte de Progreso</a></li>
+        <li class="<?php if($page=='c-p-r'){ echo 'active'; }?>"><a href="progress-report.php"><i class="fas fa-arrow-right"></i> Reporte de Caja</a></li>
       </ul>
     </li>
       <div id="clock" style="color: white; font-size: 35px; position: absolute; bottom: -150px; left: 35px;"></div>
